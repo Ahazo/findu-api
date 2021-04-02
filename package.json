@@ -1,0 +1,14 @@
+{
+  "name": "ahazo-api",
+  "version": "1.0.0",
+  "description": "Ahazo backend service",
+  "main": "index.js",
+  "repository": "https://github.com/Ahazo/ahazo-api.git",
+  "author": "Lucca Scarano <lucca.scarano@hotmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@types/express": "^4.17.11",
+    "express": "^4.17.1"
+  }
+}
