@@ -1,17 +1,13 @@
 {
   "type": "postgres",
-  "host": "ec2-34-233-0-64.compute-1.amazonaws.com",
+  "host": "localhost",
   "port": 5432,
-  "username": "ykjnfpgodgiswq",
-  "password": "1deb6d66c8ab119bb57901dc1d797d4372238837dded9bef21ac6dd2a0a2c4cb",
-  "database": "d7k5rq9bhnlalr",
+  "username": "ahazo",
+  "password": "ahazo",
+  "database": "ahazo",
   "entities": ["src/modules/**/infra/typeorm/entities/*.ts"],
   "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
   "cli": {
     "migrationsDir": "./src/shared/infra/typeorm/migrations"
-  },
-  "ssl": {
-    "require": true,
-    "rejectUnauthorized": false
   }
 }

@@ -1,60 +1,56 @@
-import { 
-  Entity, 
-  Column, 
+import {
+  Column,
+  Entity,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn, 
-  ManyToOne, 
-  JoinColumn, 
+  UpdateDateColumn,
   OneToOne,
-  ManyToMany
+  JoinColumn
 } from 'typeorm';
 
-import UserLevel from './UserLevel';
 import Person from './Person';
-import GenericStatus from '../../../../status/infra/typeorm/GenericStatus';
-import { Exclude } from 'class-transformer';
-import Follower from './Followers';
 
-@Entity({name: 'users'})
+enum Status {
+  active = 'active',
+  inactive = 'inactive',
+  deleted = 'deleted'
+}
+
+@Entity('users')
 class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(type => Person)
-  @JoinColumn()
-  personId: number;
+  @Column({type: 'int4'})
+  person_id: number;
 
-  @Column()
-  @Exclude()
-  password: string;
+  @OneToOne(() => Person, (person:Person) => person.user)
+  @JoinColumn({name:'person_id'})
+  person:Person;
 
-  @ManyToOne(type => GenericStatus)
-  @JoinColumn()
-  statusId: string;
+  @Column({type:'varchar',length:50,nullable:false,unique:false})
+  password:string;
 
-  @ManyToOne(type => UserLevel)
-  @JoinColumn()
-  levelId: number;
+  @Column({type:'enum', enum:Status,default:Status.active})
+  status:Status;
 
+  @Column({type:'int4', nullable:false,unique:false,default:0})
+  followers_count:number;
 
-  @Column()
-  experience: number;
+  @Column({type:'int4', nullable:false,unique:false,default:0})
+  campaigns_count:number;
 
-  @Column()
-  recommendationsCount: number
+  @Column({type:'int4', nullable:false,unique:false,default:0})
+  recommendations_count:number;
 
-  @Column()
-  campaignsCount: number
+  @Column({type:'int4', nullable:false,unique:false,default:0})
+  experience:number;
 
-  @Column()
-  followersCount: number;
+  @CreateDateColumn({type: 'timestamp'})
+  created_at: Date;
 
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
+  @UpdateDateColumn({type: 'timestamp'})
+  updated_at: Date;
 }
 
 export default User;

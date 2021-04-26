@@ -8,7 +8,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "server": "tsnd  --transpile-only src/shared/infra/http/server.ts"
+    "server": "tsnd  --transpile-only src/shared/infra/http/server.ts",
+    "start": "ts-node src/shared/infra/http/server.ts",
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
