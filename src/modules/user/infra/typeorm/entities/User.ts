@@ -16,7 +16,7 @@ import GenericStatus from '../../../../status/infra/typeorm/GenericStatus';
 import { Exclude } from 'class-transformer';
 import Follower from './Followers';
 
-@Entity('users')
+@Entity({name: 'users'})
 class User {
   @PrimaryGeneratedColumn()
   id: number;

@@ -19,7 +19,7 @@ class Follower {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToMany(type => User, user => user.id)
+  @ManyToMany(type => User)
   @JoinTable()
   followerId: User[];
 
