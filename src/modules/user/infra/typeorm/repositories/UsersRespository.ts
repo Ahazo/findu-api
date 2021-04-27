@@ -2,10 +2,10 @@ import { getRepository, Repository } from 'typeorm';
 
 import User from '../entities/User';
 
-import IUserRepository from '@modules/user/repositories/IUserRepository';
-import ICreateUserDTO from '@modules/user/dtos/ICreateUserDTO';
+import IUserRepository from '../../../repositories/IUserRepository';
+import ICreateUserDTO from '../../../dtos/ICreateUserDTO';
 
-class UserRepository implements IUserRepository {
+class UsersRepository implements IUserRepository {
   private userRepository:Repository<User>;
 
   constructor() {
@@ -14,6 +14,7 @@ class UserRepository implements IUserRepository {
 
   public async create(userData: ICreateUserDTO):Promise<User> {
     const user = this.userRepository.create(userData);
+
     await this.userRepository.save(user)
     return user;
   }
@@ -24,4 +25,4 @@ class UserRepository implements IUserRepository {
   }
 }
 
-export default UserRepository;
+export default UsersRepository;

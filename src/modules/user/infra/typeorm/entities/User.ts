@@ -13,7 +13,7 @@ import Person from './Person';
 enum Status {
   active = 'active',
   inactive = 'inactive',
-  deleted = 'deleted'
+  deleted = 'deleted',
 }
 
 @Entity('users')
@@ -35,7 +35,7 @@ class User {
   password:string;
 
   @Column({type:'enum', enum:Status,default:Status.active})
-  status:Status;
+  status: Status;
 
   @Column({type:'int4', nullable:false,unique:false,default:0})
   followers_count:number;
