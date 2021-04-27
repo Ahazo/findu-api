@@ -42,7 +42,7 @@ class Person {
   @Column({type:'int',nullable:true})
   address_id:number;
 
-  @OneToOne(() => UserAddress, (userAddress:UserAddress) => userAddress.person)
+  @OneToOne(() => UserAddress, (userAddress:UserAddress) => userAddress.person, { cascade: true })
   @JoinColumn({name:'address_id'})
   userAddress:UserAddress; 
 

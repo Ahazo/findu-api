@@ -24,9 +24,12 @@ class User {
   @Column({type: 'int4'})
   person_id: number;
 
-  @OneToOne(() => Person, (person:Person) => person.user)
+  @OneToOne(() => Person, (person:Person) => person.user,{ cascade:true })
   @JoinColumn({name:'person_id'})
   person:Person;
+
+  @Column({type: 'varchar', length:20, nullable: false, unique: true})
+  username: string;
 
   @Column({type:'varchar',length:50,nullable:false,unique:false})
   password:string;
