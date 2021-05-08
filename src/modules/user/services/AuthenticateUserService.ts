@@ -2,7 +2,7 @@ import { inject, injectable } from 'tsyringe';
 import User from '../infra/typeorm/entities/User';
 import IUserRepository from '../repositories/IUserRepository';
 
-import { generateToken } from '@shared/utils/generateToken';
+import { generateToken } from '../../../shared/utils/generateToken';
 
 interface IResponse {
   user: User,
@@ -23,6 +23,7 @@ class AuthenticatUserService {
 
   public async execute({ username, password }: IRequestBody): Promise<IResponse> {
     const user = await this.usersRepository.findByUsername(username);
+
     if (!user) {
       throw new Error('usuário não encontrado')
     }
