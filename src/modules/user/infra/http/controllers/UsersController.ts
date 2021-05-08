@@ -7,10 +7,9 @@ export default class UsersController {
   async createUser(request: Request, response: Response) {
     const userData = request.body;
     const createUser = container.resolve(CreateUserService);
-
     const user = await createUser.execute(userData);
 
-    return response.status(204).json({ user });
+    return response.status(200).json({ user });
   }
 }
 
