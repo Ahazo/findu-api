@@ -28,7 +28,7 @@ class UsersRepository implements IUserRepository {
       where: {
         username
       }
-    })
+    });
     return user;
   }
 
