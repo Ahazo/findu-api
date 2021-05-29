@@ -1,6 +1,6 @@
 import ICreatePersonDTO from './ICreatePersonDTO';
 
-enum Status {
+export enum Status {
   active = 'active',
   inactive = 'inactive',
   deleted = 'deleted'

@@ -31,7 +31,7 @@ class User {
   @Column({type: 'varchar', length:20, nullable: false, unique: true})
   username: string;
 
-  @Column({type:'varchar',length:50,nullable:false,unique:false})
+  @Column({type:'varchar',length:120,nullable:false,unique:false})
   password:string;
 
   @Column({type:'enum', enum:Status,default:Status.active})
