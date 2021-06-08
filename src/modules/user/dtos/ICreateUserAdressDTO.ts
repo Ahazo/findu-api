@@ -1,4 +1,4 @@
-export default interface ICreateUserAdressesDTO {
+export default interface ICreateUserAdressDTO {
   postal_code: string;
   street: string;
   house_number: number;
