@@ -1,12 +1,11 @@
 import { injectable, inject } from 'tsyringe';
-import ICreateEstablishmentDTO from '../dtos/ICreateEstablishmentDTO';
 import Establishment from '../infra/typeorm/entities/Establishment';
 
+import ICreateEstablishmentDTO from '../dtos/ICreateEstablishmentDTO';
 import IEstablishmentRepository from '../repositories/IEstablishmentRepository';
 
-
 @injectable()
-export default class createEstablishment {
+export default class CreateEstablishmentService {
   constructor (
     @inject('EstablishmentRepository')
     private establishmentRepository: IEstablishmentRepository,
@@ -14,7 +13,7 @@ export default class createEstablishment {
 
   public async execute(establishmentData: ICreateEstablishmentDTO): Promise<Establishment> {
     const establishment = await this.establishmentRepository.create(establishmentData);
-    console.log(establishment);
+    console.log("establishment data for create......", establishment);
     return establishment;
   }
 }

@@ -1,10 +1,10 @@
-import FindEstablishmentById from '@modules/establishment/services/FindEstablishmentByIdService';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe'; 
 
+import FindEstablishmentById from '../../../services/FindEstablishmentByIdService';
 import CreateEstablishmentService from '../../../services/CreateEstablishmentService';
 
-export default class UsersController {
+export default class EstablishmentController {
   async createEstablishment(request: Request, response: Response) {
     const establishmentData = request.body;
     const createEstablishment = container.resolve(CreateEstablishmentService);

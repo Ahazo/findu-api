@@ -1,4 +1,3 @@
-import { EStatus } from '@shared/utils/dtos/EStatus';
 import {
   Column,
   Entity,
@@ -10,6 +9,8 @@ import {
 } from 'typeorm';
 
 import Person from './Person';
+
+import { EStatus } from '../../../../../shared/utils/dtos/EStatus';
 
 @Entity('users')
 class User {

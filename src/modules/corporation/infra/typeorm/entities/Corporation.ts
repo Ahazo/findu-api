@@ -1,11 +1,11 @@
-import Establishment from '@modules/establishment/infra/typeorm/entities/Establishment';
+
+import Establishment from '../../../../establishment/infra/typeorm/entities/Establishment';
 import {
   Column,
   Entity,
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  JoinColumn,
   OneToMany
 } from 'typeorm';
 

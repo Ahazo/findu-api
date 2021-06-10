@@ -5,7 +5,7 @@ import IEstablishmentRepository from '../repositories/IEstablishmentRepository';
 
 
 @injectable()
-export default class FindEstablishmentById {
+export default class FindEstablishmentByIdService {
   constructor (
     @inject('EstablishmentRepository')
     private establishmentRepository: IEstablishmentRepository,

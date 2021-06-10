@@ -1,4 +1,4 @@
-import ICreateEstablishmentDTO from "@modules/establishment/dtos/ICreateEstablishmentDTO";
+import ICreateEstablishmentDTO from "../dtos/ICreateEstablishmentDTO";
 import Establishment from "../infra/typeorm/entities/Establishment";
 
 export default interface IEstablishmentRepository {

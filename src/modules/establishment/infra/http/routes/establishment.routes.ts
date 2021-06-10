@@ -2,17 +2,17 @@ import { Router } from 'express';
 
 import EstablishmentController from '../controllers/EstablishmentController';
 
-const usersRouter = Router();
+const establishmentRouter = Router();
 const establishmentController = new EstablishmentController();
 
-usersRouter.post(
+establishmentRouter.post(
   '/',
   establishmentController.createEstablishment,
 );
 
-usersRouter.get(
+establishmentRouter.get(
   '/:id',
   establishmentController.findEstablishmentById,
 );
 
-export default usersRouter;
+export default establishmentRouter;

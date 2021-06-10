@@ -1,5 +1,5 @@
 import ICreateEstablishmentAdressDTO from "./ICreateEstablishmentAdressDTO";
-import ICreateCorporationDTO from "@modules/corporation/dtos/ICreateCorporationDTO";
+import ICreateCorporationDTO from "../../corporation/dtos/ICreateCorporationDTO";
 
 import { EStatus } from '../../../shared/utils/dtos/EStatus';
 

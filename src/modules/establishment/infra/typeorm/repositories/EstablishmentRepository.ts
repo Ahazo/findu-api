@@ -1,7 +1,8 @@
-import ICreateEstablishmentDTO from "@modules/establishment/dtos/ICreateEstablishmentDTO";
 import { getRepository, Repository } from "typeorm";
-import IEstablishmentRepository from "../../../repositories/IEstablishmentRepository";
 import Establishment from "../entities/Establishment";
+
+import ICreateEstablishmentDTO from "../../../dtos/ICreateEstablishmentDTO"
+import IEstablishmentRepository from "../../../repositories/IEstablishmentRepository";
 
 class EstablishmentRepository implements IEstablishmentRepository {
   private establishmentRepository: Repository<Establishment>;
@@ -34,3 +35,5 @@ class EstablishmentRepository implements IEstablishmentRepository {
     return establishment;
   }
 }
+
+export default EstablishmentRepository;

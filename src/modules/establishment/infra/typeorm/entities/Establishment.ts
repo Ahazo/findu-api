@@ -8,8 +8,8 @@ import {
   JoinColumn
 } from 'typeorm';
 
-import { EStatus } from '@shared/utils/dtos/EStatus';
-import Corporation from '@modules/corporation/infra/typeorm/entities/Corporation';
+import { EStatus } from '../../../../../shared/utils/dtos/EStatus';
+import Corporation from '../../../../corporation/infra/typeorm/entities/Corporation';
 import EstablishmentAddress from './EstablishmentAddress';
 
 @Entity('establishments')
@@ -20,7 +20,7 @@ class Establishment {
   @Column({type: 'int4'})
   corporation_id: number;
 
-  @OneToOne(() => Corporation, (corporation: Corporation) => corporation.establishment,{ cascade:true, eager: true })
+  @OneToOne(() => Corporation, (corporation: Corporation) => corporation.establishment,{ eager: true })
   @JoinColumn({name:'corporation_id'})
   corporation: Corporation;
 
