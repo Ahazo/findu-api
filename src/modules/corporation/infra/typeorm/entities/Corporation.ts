@@ -1,5 +1,3 @@
-
-import Establishment from '../../../../establishment/infra/typeorm/entities/Establishment';
 import {
   Column,
   Entity,
@@ -9,13 +7,15 @@ import {
   OneToMany
 } from 'typeorm';
 
+import Brand from '../../../../brand/infra/typeorm/entities/Brand';
+
 @Entity('persons')
 class Corporation {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToMany(() => Establishment, (establishment: Establishment) => establishment.corporation)
-  establishment: Establishment;
+  @OneToMany(() => Brand, (brand: Brand) => brand.corporation)
+  brand: Brand;
 
   @Column({type:'varchar', nullable:false, unique:true})
   cnpj: string;

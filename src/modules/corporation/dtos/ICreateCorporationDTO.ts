@@ -1,8 +1,10 @@
+import { EStatus } from "shared/utils/dtos/EStatus";
+
 export default interface ICreateCorporationDTO {
-  companyName: string;
+  company_name: string;
   cnpj: string;
-  department: string;
   username: string;
   password: string;
   email: string;
+  status: EStatus;
 }

@@ -9,7 +9,8 @@ import {
 } from 'typeorm';
 
 import { EStatus } from '../../../../../shared/utils/dtos/EStatus';
-import Corporation from '../../../../corporation/infra/typeorm/entities/Corporation';
+
+import Brand from '../../../../brand/infra/typeorm/entities/Brand';
 import EstablishmentAddress from './EstablishmentAddress';
 
 @Entity('establishments')
@@ -18,11 +19,11 @@ class Establishment {
   id: number;
 
   @Column({type: 'int4'})
-  corporation_id: number;
+  brand_id: number;
 
-  @OneToOne(() => Corporation, (corporation: Corporation) => corporation.establishment,{ eager: true })
-  @JoinColumn({name:'corporation_id'})
-  corporation: Corporation;
+  @OneToOne(() => Brand, (brand: Brand) => brand.establishment, { eager: true })
+  @JoinColumn({name:'brand_id'})
+  brand: Brand;
 
   @Column({type: 'varchar', nullable: false, unique: true})
   establishment_name: string;

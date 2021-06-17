@@ -10,4 +10,8 @@ usersRouter.post(
   usersController.createUser,
 )
 
+usersRouter.get(
+  '/',
+  usersController.findUser,
+)
 export default usersRouter;
