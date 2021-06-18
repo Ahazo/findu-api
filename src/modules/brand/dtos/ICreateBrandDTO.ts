@@ -1,9 +1,11 @@
-import ICreateCorporationDTO from "modules/corporation/dtos/ICreateCorporationDTO";
 import { EStatus } from "shared/utils/dtos/EStatus";
 
-export default interface ICreateBrand {
+import ICreateDepartment from "./ICreateDepartmentDTO";
+import ICreateCorporationDTO from "modules/corporation/dtos/ICreateCorporationDTO";
+
+export default interface ICreateBrandDTO {
   brandName: string;
-  department: string;
+  department: ICreateDepartment;
   corporation?: ICreateCorporationDTO;
   status: EStatus;
 }

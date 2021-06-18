@@ -76,6 +76,8 @@ export class CreateEstablishments1623900705468 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.dropForeignKey('departments', 'addressId');
+
     await queryRunner.dropTable('establishments');
   }
 

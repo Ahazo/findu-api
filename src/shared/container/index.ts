@@ -10,6 +10,7 @@ import IEstablishmentRepository from '../../modules/establishment/repositories/I
 import EstablishmentRepository from '../../modules/establishment/infra/typeorm/repositories/EstablishmentRepository';
 
 import '../../modules/user/providers';
+import IDepartmentRepository from 'modules/brand/repositories/IDepartmentRepository';
 
 container.registerSingleton<IUserRepository>(
   'UsersRepository',
@@ -25,3 +26,8 @@ container.registerSingleton<IEstablishmentRepository>(
   'EstablishmentRepository',
   EstablishmentRepository
 )
+
+// container.registerSingleton<IDepartmentRepository>(
+//   'DepartmentRepository',
+//   DepartmentRepository
+// )
