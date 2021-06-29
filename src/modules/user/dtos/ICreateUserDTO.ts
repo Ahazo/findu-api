@@ -1,16 +1,12 @@
 import ICreatePersonDTO from './ICreatePersonDTO';
 
-export enum Status {
-  active = 'active',
-  inactive = 'inactive',
-  deleted = 'deleted'
-}
+import { EStatus } from '../../../shared/utils/dtos/EStatus';
 
 export default interface ICreateUserDTO {
   person: ICreatePersonDTO;
   username: string;
   password: string;
-  status: Status;
+  status: EStatus;
   followers_count: number;
   campaigns_count: number;
   recommendations_count: number;

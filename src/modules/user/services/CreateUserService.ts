@@ -1,5 +1,4 @@
 import { injectable, inject } from 'tsyringe';
-import { TableInheritance } from 'typeorm';
 
 import ICreateUserDTO from '../dtos/ICreateUserDTO';
 import User from '../infra/typeorm/entities/User';

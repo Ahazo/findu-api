@@ -6,7 +6,7 @@ import IUserRepository from '../../../repositories/IUserRepository';
 import ICreateUserDTO from '../../../dtos/ICreateUserDTO';
 
 class UsersRepository implements IUserRepository {
-  private userRepository:Repository<User>;
+  private userRepository: Repository<User>;
 
   constructor() {
     this.userRepository = getRepository(User);

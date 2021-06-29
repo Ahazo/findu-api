@@ -1,5 +1,5 @@
-import ICreateUserDTO from "@modules/user/dtos/ICreateUserDTO";
-import IUserRepository from "@modules/user/repositories/IUserRepository";
+import ICreateUserDTO from "../../../../dtos/ICreateUserDTO";
+import IUserRepository from "../../../../repositories/IUserRepository";
 import User from "../../entities/User";
 
 class FakeUsersRepository implements IUserRepository {
