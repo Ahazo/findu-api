@@ -21,23 +21,20 @@ class Establishment {
   @Column({type: 'int4'})
   brand_id: number;
 
-  @OneToOne(() => Brand, (brand: Brand) => brand.establishment, { eager: true })
+  @OneToOne(() => Brand, (brand: Brand) => brand.establishment, { cascade: true, eager: true })
   @JoinColumn({name:'brand_id'})
   brand: Brand;
 
   @Column({type: 'varchar', nullable: false, unique: true})
   establishment_name: string;
 
-  @Column({type: 'varchar', nullable: true, unique: true})
-  landline: string;
-
   @Column({type: 'varchar', nullable: true})
-  stablishment_cnpj: string;
+  establishment_cnpj: string;
 
   @Column({type:'int',nullable:true})
   address_id: number;
 
-  @OneToOne(() => EstablishmentAddress, (establishmentAddress: EstablishmentAddress) => establishmentAddress.establishment, { cascade: true })
+  @OneToOne(() => EstablishmentAddress, (establishmentAddress: EstablishmentAddress) => establishmentAddress.establishment, { cascade: true,  eager: true })
   @JoinColumn({name:'address_id'})
   establishment_address: EstablishmentAddress;
 
@@ -46,9 +43,6 @@ class Establishment {
 
   @Column({type:'int4', nullable: false, unique: false, default:0})
   followers_count: number;
-
-  @Column({type:'int4', nullable: false, unique: false, default:0})
-  campaigns_count: number;
 
   @Column({type:'int4', nullable: false, unique: false, default:0})
   experience: number;

@@ -1,15 +1,7 @@
 import { injectable, inject } from 'tsyringe';
-import jwt, { verify } from 'jsonwebtoken';
 
 import User from '../infra/typeorm/entities/User';
 import IUserRepository from '../repositories/IUserRepository';
-import auth from '../../../config/auth';
-
-interface ITokenPayload {
-  id: number;
-  iat: number;
-  exp: number;
-}
 
 @injectable()
 export default class FindUserService {
@@ -18,11 +10,13 @@ export default class FindUserService {
     private usersRepository: IUserRepository,
   ) {}
 
-  public async execute(token: string): Promise<User | undefined> {
-    const decoded = verify(token, auth.jwt.secret);
-    const { id } = decoded as ITokenPayload
-    
+  public async executeById(id: number): Promise<User | undefined> {    
     const user = await this.usersRepository.findById(id);
     return user;
   }
+
+  // public async executeByUsername(id: number): Promise<User | undefined> {    
+  //   const user = await this.usersRepository.findById(id);
+  //   return user;
+  // }
 }

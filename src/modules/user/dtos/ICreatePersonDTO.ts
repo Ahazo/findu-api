@@ -1,4 +1,4 @@
-import ICreateUserAdressDTO from './ICreateUserAdressDTO';
+import ICreateUserAddressDTO from './ICreateUserAddressDTO';
 
 export default interface ICreatePersonDTO {
   cpf:string;
@@ -7,5 +7,5 @@ export default interface ICreatePersonDTO {
   first_name:string;
   last_name: string;
   birth_date: Date;
-  userAddress: ICreateUserAdressDTO;
+  userAddress: ICreateUserAddressDTO;
 }

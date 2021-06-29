@@ -12,8 +12,9 @@ export default class CreateEstablishmentService {
   ) {}
 
   public async execute(establishmentData: ICreateEstablishmentDTO): Promise<Establishment> {
+    console.warn("establishment data for creation......", establishmentData);
     const establishment = await this.establishmentRepository.create(establishmentData);
-    console.log("establishment data for create......", establishment);
+    console.log('establishmentCreated.......', establishment)
     return establishment;
   }
 }

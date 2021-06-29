@@ -1,5 +1,7 @@
 import { Router } from 'express';
 
+import ensureAuth from '../../../../../shared/infra/http/middlewares/EnsureAuth';
+
 import UsersController from '../controllers/UsersController';
 
 const usersRouter = Router();
@@ -12,6 +14,8 @@ usersRouter.post(
 
 usersRouter.get(
   '/',
-  usersController.findUser,
+  ensureAuth,
+  usersController.findUserById,
 )
+
 export default usersRouter;

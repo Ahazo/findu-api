@@ -22,18 +22,18 @@ class BrandRepository implements IBrandRepository {
     return await this.brandRepository.save(brand);
   }
 
-  public async findByBrandName(brand_name: string): Promise<Brand | undefined> {
-    const corporation = await this.brandRepository.findOne({
+  public async findByName(brand_name: string): Promise<Brand | undefined> {
+    const brand = await this.brandRepository.findOne({
       where: {
         brand_name
       }
     });
-    return corporation;
+    return brand;
   }
 
   public async findById(id: number): Promise<Brand | undefined> {
-    const corporation = await this.brandRepository.findOne(id);
-    return corporation;
+    const brand = await this.brandRepository.findOne(id);
+    return brand;
   }
 }
 

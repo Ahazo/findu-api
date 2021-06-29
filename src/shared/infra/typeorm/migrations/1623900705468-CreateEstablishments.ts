@@ -32,6 +32,12 @@ export class CreateEstablishments1623900705468 implements MigrationInterface {
           isNullable: true,
         },
         {
+          name: 'brand_id',
+          type: 'int',
+          isUnique: false,
+          isNullable: false
+        },
+        {
           name: 'followers_count',
           type: 'int',
           default: 0,
@@ -64,10 +70,18 @@ export class CreateEstablishments1623900705468 implements MigrationInterface {
       ],
       foreignKeys: [
         {
-          name: 'addressId',
+          name: 'addressIdToEstablishment',
           referencedTableName: 'establishment_addresses',
           referencedColumnNames: ['id'],
           columnNames: ['address_id'],
+          onDelete: 'SET NULL',
+          onUpdate: 'CASCADE'
+        },
+        {
+          name: 'brandIdToEstablishment',
+          referencedTableName: 'brands',
+          referencedColumnNames: ['id'],
+          columnNames: ['brand_id'],
           onDelete: 'SET NULL',
           onUpdate: 'CASCADE'
         }
@@ -76,7 +90,8 @@ export class CreateEstablishments1623900705468 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('departments', 'addressId');
+    await queryRunner.dropForeignKey('departments', 'addressIdToEstablishment');
+    await queryRunner.dropForeignKey('departments', 'brandIdToEstablishment');
 
     await queryRunner.dropTable('establishments');
   }

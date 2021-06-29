@@ -9,8 +9,14 @@ import CorporationRepository from '../../modules/corporation/infra/typeorm/repos
 import IEstablishmentRepository from '../../modules/establishment/repositories/IEstablishmentRepository';
 import EstablishmentRepository from '../../modules/establishment/infra/typeorm/repositories/EstablishmentRepository';
 
+import IDepartmentRepository from '../../modules/brand/repositories/IDepartmentRepository';
+import DepartmentRepository from '../../modules/brand/infra/typeorm/repositories/DepartmentRepository';
+
+import IBrandRepository from '../../modules/brand/repositories/IBrandRepository';
+import BrandRepository from '../../modules/brand/infra/typeorm/repositories/BrandRepository';
+
 import '../../modules/user/providers';
-import IDepartmentRepository from 'modules/brand/repositories/IDepartmentRepository';
+
 
 container.registerSingleton<IUserRepository>(
   'UsersRepository',
@@ -27,7 +33,12 @@ container.registerSingleton<IEstablishmentRepository>(
   EstablishmentRepository
 )
 
-// container.registerSingleton<IDepartmentRepository>(
-//   'DepartmentRepository',
-//   DepartmentRepository
-// )
+container.registerSingleton<IDepartmentRepository>(
+  'DepartmentRepository',
+  DepartmentRepository
+)
+
+container.registerSingleton<IBrandRepository>(
+  'BrandRepository',
+  BrandRepository
+)

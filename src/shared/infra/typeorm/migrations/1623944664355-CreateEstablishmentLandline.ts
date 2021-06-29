@@ -54,13 +54,12 @@ export class CreateEstablishmentLandline1623944664355 implements MigrationInterf
           }
         ]
       })
-      queryRunner.createTable(establishment_landline);
+      await queryRunner.createTable(establishment_landline);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-      queryRunner.dropForeignKey('establishment_landlines', 'establishmentId')
-
-      queryRunner.dropTable('establishment_landlines');
+      await queryRunner.dropForeignKey('establishment_landlines', 'establishmentId')
+      await queryRunner.dropTable('establishment_landlines');
     }
 
 }

@@ -69,7 +69,7 @@ export class CreatePerson1619454362655 implements MigrationInterface {
           foreignKeys: [
             {
               name: 'userAddressId',
-              referencedTableName: 'user_adresses',
+              referencedTableName: 'user_addresses',
               referencedColumnNames: ['id'],
               columnNames: ['address_id'],
               onDelete: 'SET NULL',

@@ -3,7 +3,7 @@ import {MigrationInterface, QueryRunner, Table, TableUnique} from "typeorm";
 export class CreateEstablishmentAddress1623898791738 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
-    const establishment_adresses = new Table({
+    const establishment_addresses = new Table({
       name: 'establishment_addresses',
       columns: [
         {
@@ -15,7 +15,7 @@ export class CreateEstablishmentAddress1623898791738 implements MigrationInterfa
         },
         {
           name: 'street',
-          type: 'int',
+          type: 'varchar',
           isNullable: false
         },
         {
@@ -31,7 +31,7 @@ export class CreateEstablishmentAddress1623898791738 implements MigrationInterfa
         },
         {
           name: 'state',
-          type: 'varchar',
+          type: 'varchar(2)',
           isUnique: false,
           isNullable: false,
         },
@@ -62,8 +62,8 @@ export class CreateEstablishmentAddress1623898791738 implements MigrationInterfa
       ]
     })
 
-    await queryRunner.createTable(establishment_adresses),
-    queryRunner.createUniqueConstraint(establishment_adresses, new TableUnique({
+    await queryRunner.createTable(establishment_addresses),
+    queryRunner.createUniqueConstraint(establishment_addresses, new TableUnique({
       name: 'streetnumber_composite',
       columnNames: [
         'street',

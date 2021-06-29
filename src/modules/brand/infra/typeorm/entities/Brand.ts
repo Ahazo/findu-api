@@ -23,17 +23,17 @@ class Brand {
   @Column({type: 'int4', nullable: true})
   corporation_id: number;
 
-  @ManyToOne(() => Corporation, (corporation: Corporation) => corporation.brand,{ eager: true })
+  @ManyToOne(() => Corporation, (corporation: Corporation) => corporation.brand)
   @JoinColumn({name:'corporation_id'})
   corporation: Corporation;
 
   @Column({type: 'varchar', nullable: false, unique: true})
   brand_name: string;
 
-  @Column({type: 'int4', nullable: false, unique: false})
+  @Column({type: 'int4'})
   department_id: number;
 
-  @ManyToOne(() => Department, (department: Department) => department.brand)
+  @ManyToOne(() => Department, (department: Department) => department.brand, { cascade: true, eager: true })
   @JoinColumn({name:'department_id'})
   department: Department;
 

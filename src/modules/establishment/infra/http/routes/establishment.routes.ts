@@ -10,9 +10,9 @@ establishmentRouter.post(
   establishmentController.createEstablishment,
 );
 
-establishmentRouter.get(
-  '/:id',
-  establishmentController.findEstablishmentById,
-);
+// establishmentRouter.get(
+//   '/:id',
+//   establishmentController.findEstablishmentById,
+// );
 
 export default establishmentRouter;

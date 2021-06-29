@@ -10,25 +10,25 @@ import {
 import Establishment from './Establishment';
 
 
-@Entity('establishment_address')
+@Entity('establishment_addresses')
 class EstablishmentAddress {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({type:'varchar',length:9,nullable:false,unique:false})
-  postal_code:string;
+  postal_code: string;
 
   @Column({type:'varchar',length:100, nullable:false, unique:false})
-  street:string;
+  street: string;
 
   @Column({type:'int4', nullable:false,unique:false})
-  establishment_number:number;
+  number: number;
 
   @Column({type:'varchar',length:100, nullable:false, unique:false})
-  city:string;
+  city: string;
 
   @Column({type:'varchar',length:2, nullable:false, unique:false})
-  state:string;
+  state: string;
 
   @CreateDateColumn({type: 'timestamp'})
   created_at: Date;
