@@ -1,14 +1,15 @@
-import ICreatePersonDTO from './ICreatePersonDTO';
-
 import { EStatus } from '../../../shared/utils/dtos/EStatus';
+
+import ICreateInfluencerLevelDTO from './ICreateInfluencerLevelDTO';
+import ICreatePersonDTO from './ICreatePersonDTO';
 
 export default interface ICreateUserDTO {
   person: ICreatePersonDTO;
   username: string;
   password: string;
-  status: EStatus;
-  followers_count: number;
-  campaigns_count: number;
-  recommendations_count: number;
+  level: ICreateInfluencerLevelDTO;
   experience: number;
+  followers_count: number;
+  following_count: number;
+  status: EStatus;
 }

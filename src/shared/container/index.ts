@@ -3,6 +3,7 @@ import { container } from 'tsyringe';
 import UsersRepository from '../../modules/user/infra/typeorm/repositories/UsersRespository';
 import IUserRepository from '../../modules/user/repositories/IUserRepository';
 
+<<<<<<< Updated upstream
 import ICorporationRepository from '../../modules/corporation/repositories/ICorporationRepository';
 import CorporationRepository from '../../modules/corporation/infra/typeorm/repositories/CorporationRepository';
 
@@ -15,6 +16,8 @@ import DepartmentRepository from '../../modules/brand/infra/typeorm/repositories
 import IBrandRepository from '../../modules/brand/repositories/IBrandRepository';
 import BrandRepository from '../../modules/brand/infra/typeorm/repositories/BrandRepository';
 
+=======
+>>>>>>> Stashed changes
 import '../../modules/user/providers';
 
 
@@ -22,6 +25,7 @@ container.registerSingleton<IUserRepository>(
   'UsersRepository',
   UsersRepository
 )
+<<<<<<< Updated upstream
 
 container.registerSingleton<ICorporationRepository>(
   'CorporationRepository',
@@ -42,3 +46,5 @@ container.registerSingleton<IBrandRepository>(
   'BrandRepository',
   BrandRepository
 )
+=======
+>>>>>>> Stashed changes
