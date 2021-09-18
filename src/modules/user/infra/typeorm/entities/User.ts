@@ -1,4 +1,5 @@
 
+import Freelancer from 'modules/freelancer/infra/typeorm/entities/Freelancer';
 import { EStatus } from 'shared/utils/dtos/EStatus';
 import { Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Column, OneToOne, JoinColumn } from 'typeorm';
 import InfluencerLevel from './InfluencerLevel';
@@ -8,6 +9,9 @@ import Person from './Person';
 export default class User {
 	@PrimaryGeneratedColumn()
 	id: number;
+
+	@OneToOne(() => Freelancer, (freelancer: Freelancer) => freelancer.user)
+	freelancer: Freelancer;
 
 	@Column({type: 'int4', nullable: false, unique: true})
 	person_id: number;
@@ -26,10 +30,10 @@ export default class User {
 	experience: number;
 
 	@Column({type: 'int4', nullable: false, unique: false})
-	influence_level_id: number;
+	level_id: number;
 
 	@OneToOne(() => InfluencerLevel, (influencerLevel: InfluencerLevel) => influencerLevel.user, { eager: true })
-	@JoinColumn({ name: 'influence_level_id'})
+	@JoinColumn({ name: 'level_id'})
 	influencerLevel: InfluencerLevel
 
 	@Column({type: 'number', nullable: false, unique: true, default: 0})

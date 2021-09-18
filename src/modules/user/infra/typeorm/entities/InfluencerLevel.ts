@@ -16,7 +16,7 @@ export default class InfluencerLevel {
   @Column({type:'enum', enum: EStatus, default: EStatus.active})
   status: EStatus;
 
-	@OneToMany(() => User, (user: User) => user.influence_level_id)
+	@OneToMany(() => User, (user: User) => user.level_id)
 	user: User;
 
   @CreateDateColumn({type: 'timestamp', nullable: false, unique: false})
