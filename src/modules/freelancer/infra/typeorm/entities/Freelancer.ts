@@ -1,8 +1,13 @@
-import { EStatus } from 'shared/utils/dtos/EStatus';
-import User from 'modules/user/infra/typeorm/entities/User';
-import { Column, JoinColumn, OneToOne, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn} from 'typeorm';
-import ProfessionalLevel from './ProfessionalLevel';
+import { EStatus } from '../../../../../shared/utils/dtos/EStatus';
 
+import { Column, JoinColumn, OneToOne, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany, Entity } from 'typeorm';
+
+import ProfessionalLevel from './ProfessionalLevel';
+import BundleRelation from '../../../../bundle/infra/http/typeorm/entities/BundleRelation';
+import Skill from './Skill';
+import User from '../../../../user/infra/typeorm/entities/User';
+
+@Entity('freelancers')
 export default class Freelancer {
 	@PrimaryGeneratedColumn()
 	id: number;
@@ -35,6 +40,12 @@ export default class Freelancer {
 
   @UpdateDateColumn({type: 'timestamp', nullable: false, unique: false})
   updated_at: Date;
+
+	@OneToMany(() => BundleRelation, (bundleRelation: BundleRelation) => bundleRelation.freelancer, { eager: true })
+	bundleRelation: BundleRelation;
+
+	@OneToMany(() => Skill, (skill: Skill) => skill.freelancer, { eager: true })
+	skill: Skill;
 
 	@Column({type: 'enum', enum: EStatus, default: EStatus.active})
 	status: EStatus;

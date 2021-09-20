@@ -1,4 +1,4 @@
-import { EStatus } from "shared/utils/dtos/EStatus";
+import { EStatus } from "../../../../../shared/utils/dtos/EStatus";
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import Address from "./Address";
 import User from "./User";

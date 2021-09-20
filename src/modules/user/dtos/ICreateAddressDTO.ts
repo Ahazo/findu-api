@@ -1,4 +1,4 @@
-import { EStatus } from "shared/utils/dtos/EStatus";
+import { EStatus } from "../../../shared/utils/dtos/EStatus";
 
 export default interface ICreateAddressDTO {
   postal_code: string;

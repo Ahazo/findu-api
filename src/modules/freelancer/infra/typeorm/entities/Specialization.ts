@@ -1,11 +1,15 @@
-import { EStatus } from "shared/utils/dtos/EStatus";
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { EStatus } from "../../../../../shared/utils/dtos/EStatus";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 import Area from "./Area";
+import Skill from "./Skill";
 
 @Entity('specializations')
 export default class Specialization {
 	@PrimaryGeneratedColumn()
 	id: number;
+
+	@OneToMany(() => Skill, (skill: Skill) => skill.specialization)
+  skill: number;
 
 	@Column({type: 'int4', nullable: false, unique: false})
 	area_id: number;

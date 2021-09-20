@@ -1,4 +1,4 @@
-import { EStatus } from 'shared/utils/dtos/EStatus';
+import { EStatus } from '../../../../../shared/utils/dtos/EStatus';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import Specialization from './Specialization';
 

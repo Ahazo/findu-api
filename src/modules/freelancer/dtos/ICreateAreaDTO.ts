@@ -1,7 +1,6 @@
 import { EStatus } from "../../../shared/utils/dtos/EStatus";
 
-export default interface ICreateInfluencerLevelDTO {
+export default interface ICreateAreaDTO {
   description: string;
-  experience_needed: number;
   status: EStatus;
 }

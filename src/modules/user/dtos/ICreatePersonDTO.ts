@@ -1,4 +1,4 @@
-import { EStatus } from "shared/utils/dtos/EStatus";
+import { EStatus } from "../../../shared/utils/dtos/EStatus";
 
 import ICreateAddressDTO from './ICreateAddressDTO';
 

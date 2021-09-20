@@ -1,8 +1,8 @@
-import { EStatus } from "shared/utils/dtos/EStatus";
-import ICreateAreaType from "./ICreateAreaDTO";
+import { EStatus } from "../../../shared/utils/dtos/EStatus";
+import ICreateAreaDTO from "./ICreateAreaDTO";
 
 export default interface ICreateSpecializationDTO {
-	area: ICreateAreaType;
+	area: ICreateAreaDTO;
 	description: string;
 	status: EStatus;
 }
