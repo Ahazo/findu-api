@@ -1,7 +1,7 @@
 
 import Freelancer from 'modules/freelancer/infra/typeorm/entities/Freelancer';
 import { EStatus } from 'shared/utils/dtos/EStatus';
-import { Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Column, OneToOne, JoinColumn } from 'typeorm';
+import { } from 'typeorm';
 import InfluencerLevel from './InfluencerLevel';
 import Person from './Person';
 
