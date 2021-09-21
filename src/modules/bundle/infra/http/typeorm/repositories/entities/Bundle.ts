@@ -1,6 +1,7 @@
+import Order from '../../../../../../order/dtos/infra/typeorm/entities/Order';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
 
-import { EStatus } from '../../../../../../shared/utils/dtos/EStatus'
+import { EStatus } from '../../../../../../../shared/utils/dtos/EStatus'
 import BundleMedia from './BundleMedia';
 import BundleRelation from './BundleRelation';
 
@@ -8,6 +9,9 @@ import BundleRelation from './BundleRelation';
 export default class Bundle{
   @PrimaryGeneratedColumn()
   id: number;
+
+  @OneToMany(() => Order, (order: Order) => order.bundle)
+  order: number;
 
   @Column({type: 'varchar', length: 50, nullable: false, unique: true })
   title: string;

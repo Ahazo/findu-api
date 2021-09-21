@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne } from 'typeorm'
 
 import Bundle from './Bundle'
-import Freelancer from '../../../../../freelancer/infra/typeorm/entities/Freelancer'
+import Freelancer from '../../../../../../freelancer/infra/typeorm/entities/Freelancer'
 
 @Entity('bundle_relations')
 export default class BundleRelation {
@@ -22,6 +22,6 @@ export default class BundleRelation {
 	@JoinColumn({name: 'freelancer_id'})
 	freelancer: Bundle;
 
-  @Column({type: 'number', nullable: false, unique: true})
+  @Column({type: 'int4', nullable: false, unique: true})
   percentage: number;
 }

@@ -13,7 +13,7 @@ export default class Address {
   @Column({type: 'varchar', length: 100, nullable: false, unique: false})
   street: string;
 
-  @Column({type: 'int4', nullable: false,unique: false})
+  @Column({type: 'int', nullable: false, unique: false})
   house_number: number;
 
   @Column({type: 'varchar',length: 100, nullable: false, unique: false})

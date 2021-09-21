@@ -1,17 +1,48 @@
 
 import Freelancer from '../../../../freelancer/infra/typeorm/entities/Freelancer';
 import { EStatus } from '../../../../../shared/utils/dtos/EStatus';
-import { Entity, PrimaryGeneratedColumn, OneToOne, Column, JoinColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, OneToOne, Column, JoinColumn, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToOne } from 'typeorm';
 import InfluencerLevel from './InfluencerLevel';
 import Person from './Person';
+import Order from '../../../../order/dtos/infra/typeorm/entities/Order';
+import PostRecommendation from './PostRecommendation';
+import Recommendation from './Recommendation';
+import Follower from './Followers';
+import PostComment from '../../../../freelancer/infra/typeorm/entities/Post/PostComment';
+import PostLike from '../../../../freelancer/infra/typeorm/entities/Post/PostLike';
+import DeliveryAgreement from '../../../../order/dtos/infra/typeorm/entities/DeliveryAgreement';
 
 @Entity('user')
 export default class User {
 	@PrimaryGeneratedColumn()
 	id: number;
 
+	@OneToMany(() => DeliveryAgreement, ( deliveryAgreement: DeliveryAgreement) => deliveryAgreement.user)
+	deliveryAgreement: DeliveryAgreement;
+
+	@OneToMany(() => PostComment, (postComment: PostComment) => postComment.user)
+	postComment: string;
+
+	@ManyToOne(() => PostLike, (postLike: PostLike) => postLike.user)
+	postLike: string;
+
+	@OneToMany(() => Order, (order: Order) => order.user)
+  order: number;
+
 	@OneToOne(() => Freelancer, (freelancer: Freelancer) => freelancer.user)
 	freelancer: Freelancer;
+
+	@OneToMany(() => PostRecommendation, (postRecommendation: PostRecommendation) => postRecommendation.user)
+	postRecommendation: PostRecommendation;
+
+	@OneToMany(() => Recommendation, (recommendation: Recommendation) => recommendation.user)
+	recommendation: Recommendation;
+
+	@OneToMany(() => Follower, (follower: Follower) => follower.user_id)
+	follower_parent: Follower;
+
+	@OneToMany(() => Follower, (follower: Follower) => follower.followed_user_id)
+	follower_child: Follower;
 
 	@Column({type: 'int4', nullable: false, unique: true})
 	person_id: number;
@@ -36,10 +67,10 @@ export default class User {
 	@JoinColumn({ name: 'level_id'})
 	influencerLevel: InfluencerLevel
 
-	@Column({type: 'number', nullable: false, unique: true, default: 0})
+	@Column({type: 'int4', nullable: false, unique: true, default: 0})
 	follower_count: number;
 
-	@Column({type: 'number', nullable: false, unique: true, default: 0})
+	@Column({type: 'int4', nullable: false, unique: true, default: 0})
 	following_count: number;
 
 	@CreateDateColumn({type: 'timestamp', nullable: false, unique: false})

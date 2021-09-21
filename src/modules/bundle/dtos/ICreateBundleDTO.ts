@@ -1,6 +1,6 @@
 import { EStatus } from '../../../shared/utils/dtos/EStatus'
 
-export interface ICreateBundleDTO {
+export default interface ICreateBundleDTO {
   title: string;
   description: string;
   value: number;

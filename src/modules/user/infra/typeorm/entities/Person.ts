@@ -18,7 +18,7 @@ export default class Person {
   cellphone_number: string;
 
   @Column({type: 'varchar', nullable: false, unique: false})
-  firts_name: string;
+  first_name: string;
 
   @Column({type: 'varchar', nullable: false, unique: false})
   last_name: string;
@@ -26,18 +26,18 @@ export default class Person {
   @Column({type: Date, nullable: false, unique: true})
   birth_date: Date;
 
-  @Column({type: 'int4', nullable: false})
+  @Column({type: 'int', nullable: false})
   address_id: number;
+
+  @OneToOne(() => Address, (address: Address) => address.person, { eager: true, cascade: true })
+  @JoinColumn({ name: 'address_id'})
+  address: Address;
 
   @Column({type:'enum', enum: EStatus, default: EStatus.active})
   status: EStatus;
 
 	@OneToOne(() => User, (user: User) => user.person_id)
 	user: User;
-
-  @OneToOne(() => Address, (address: Address) => address.person, { eager: true, cascade: true })
-  @JoinColumn({ name: 'address_id'})
-  address: Address
 
   @CreateDateColumn({type: 'timestamp'})
   created_at: Date;

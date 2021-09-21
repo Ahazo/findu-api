@@ -1,5 +1,5 @@
 import ICreateFreelancerDTO from "../../freelancer/dtos/ICreateFreelancerDTO";
-import { ICreateBundleDTO } from "./ICreateBundleDTO";
+import ICreateBundleDTO from "./ICreateBundleDTO";
 
 export default interface ICreateBundleRelationDTO {
 	bundle: ICreateBundleDTO;

@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne } from 'typeorm'
 
-import { EStatus } from '../../../../../../shared/utils/dtos/EStatus'
+import { EStatus } from '../../../../../../../shared/utils/dtos/EStatus'
 import Bundle from './Bundle'
 
 
@@ -15,7 +15,6 @@ export default class BundleMedia {
   @ManyToOne(() => Bundle, (bundle: Bundle) => bundle.bundleMedia)
   @JoinColumn({name: 'bundle_id'})
   bundle: Bundle;
-
 
   @Column({type: 'varchar', nullable: true, unique: true})
   url: string;
