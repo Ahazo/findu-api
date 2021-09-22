@@ -88,8 +88,8 @@ export class CreatePerson1632247967291 implements MigrationInterface {
 						onUpdate: 'CASCADE'
 					}
 				]
-			}))
-		}
+		}))
+}
 
     public async down(queryRunner: QueryRunner): Promise<void> {
 			await queryRunner.dropForeignKey('persons', 'personToAddress');
