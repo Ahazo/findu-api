@@ -85,20 +85,20 @@ export class CreateUser1632248795758 implements MigrationInterface {
 					},
 					{
 						name: 'levelToUser',
-						referencedTableName: 'level_influencers',
+						referencedTableName: 'influencer_levels',
 						referencedColumnNames: ['id'],
 						columnNames: ['level_id'],
 						onDelete: 'SET NULL',
 						onUpdate: 'CASCADE'
 					}
 				]
-		}))
-}
+			}))
+    }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
 			await queryRunner.dropForeignKey('users', 'personToUser')
 			await queryRunner.dropForeignKey('users', 'levelToUser')
-			await queryRunner.dropTable('users')
-		}
+			await queryRunner.dropTable('persons')
+    }
 
 }

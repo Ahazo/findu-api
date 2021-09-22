@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
 export class CreatePostLike1632249071828 implements MigrationInterface {
@@ -61,5 +62,16 @@ export class CreatePostLike1632249071828 implements MigrationInterface {
 			await queryRunner.dropTable('post_likes')
 
 		}
+=======
+import { MigrationInterface, QueryRunner } from "typeorm";
+
+export class CreatePostLike1632249071828 implements MigrationInterface {
+
+	public async up(queryRunner: QueryRunner): Promise<void> {
+	}
+
+	public async down(queryRunner: QueryRunner): Promise<void> {
+	}
+>>>>>>> fa28d698cb35a63ca99ea9d4468fc2a7e564298f
 
 }

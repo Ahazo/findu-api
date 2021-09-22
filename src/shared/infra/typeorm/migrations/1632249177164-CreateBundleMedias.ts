@@ -51,5 +51,4 @@ export class CreateBundleMedias1632249177164 implements MigrationInterface {
 			await queryRunner.dropForeignKey('bundle_medias', 'bundleToBundleMedias')
 			await queryRunner. dropTable('bundle_medias')
 		}
-
 }

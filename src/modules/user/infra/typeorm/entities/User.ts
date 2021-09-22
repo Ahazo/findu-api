@@ -1,4 +1,3 @@
-
 import Freelancer from '../../../../freelancer/infra/typeorm/entities/Freelancer';
 import { EStatus } from '../../../../../shared/utils/dtos/EStatus';
 import { Entity, PrimaryGeneratedColumn, OneToOne, Column, JoinColumn, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToOne } from 'typeorm';
