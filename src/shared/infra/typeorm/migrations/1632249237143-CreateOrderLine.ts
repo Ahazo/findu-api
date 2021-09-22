@@ -1,10 +1,9 @@
-import { query } from "express";
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreateOrderLine1632249237143 implements MigrationInterface {
-
-    public async up(queryRunner: QueryRunner): Promise<void> {
-			await queryRunner.createTable(new Table({
+	public async up(queryRunner: QueryRunner): Promise<void> {
+		await queryRunner.createTable(
+			new Table({
 				name: 'order_lines',
 				columns: [
 					{
@@ -18,20 +17,20 @@ export class CreateOrderLine1632249237143 implements MigrationInterface {
 						name: 'order_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true
+						isUnique: true,
 					},
 					{
 						name: 'freelancer_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true
+						isUnique: true,
 					},
 					{
 						name: 'total_value',
 						type: 'int',
 						isNullable: false,
-						isUnique: true
-					}
+						isUnique: true,
+					},
 				],
 				foreignKeys: [
 					{
@@ -40,7 +39,7 @@ export class CreateOrderLine1632249237143 implements MigrationInterface {
 						referencedColumnNames: ['id'],
 						columnNames: ['order_id'],
 						onDelete: 'SET NULL',
-						onUpdate: 'CASCADE'
+						onUpdate: 'CASCADE',
 					},
 					{
 						name: 'freelancerToOrderLine',
@@ -48,16 +47,16 @@ export class CreateOrderLine1632249237143 implements MigrationInterface {
 						referencedColumnNames: ['id'],
 						columnNames: ['freelancer_id'],
 						onDelete: 'SET NULL',
-						onUpdate: 'CASCADE'
-					}
-				]
-			}))
-		}
+						onUpdate: 'CASCADE',
+					},
+				],
+			})
+		);
+	}
 
-    public async down(queryRunner: QueryRunner): Promise<void> {
-			await queryRunner.dropForeignKey('order_lines', 'orderToOrderLine')
-			await queryRunner.dropForeignKey('order_lines', 'freelancerToOrderLine')
-			await queryRunner.dropTable('order_lines')
-		}
-
+	public async down(queryRunner: QueryRunner): Promise<void> {
+		await queryRunner.dropForeignKey('order_lines', 'orderToOrderLine');
+		await queryRunner.dropForeignKey('order_lines', 'freelancerToOrderLine');
+		await queryRunner.dropTable('order_lines');
+	}
 }

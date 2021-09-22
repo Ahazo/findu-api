@@ -1,9 +1,9 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreatePostComment1632249076540 implements MigrationInterface {
-
-    public async up(queryRunner: QueryRunner): Promise<void> {
-			await queryRunner.createTable(new Table({
+	public async up(queryRunner: QueryRunner): Promise<void> {
+		await queryRunner.createTable(
+			new Table({
 				name: 'post_comments',
 				columns: [
 					{
@@ -11,34 +11,44 @@ export class CreatePostComment1632249076540 implements MigrationInterface {
 						type: 'int',
 						isPrimary: true,
 						generationStrategy: 'increment',
-						isGenerated: true
+						isGenerated: true,
 					},
 					{
 						name: 'post_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true
+						isUnique: true,
 					},
 					{
 						name: 'user_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true
+						isUnique: true,
 					},
 					{
 						name: 'content',
 						type: 'varchar',
 						isNullable: false,
-						isUnique: true
+						isUnique: true,
+					},
+					{
+						name: 'created_at',
+						type: 'timestamp',
+						default: 'now()',
+					},
+					{
+						name: 'updated_at',
+						type: 'timestamp',
+						default: 'now()',
 					},
 					{
 						name: 'status',
 						type: 'enum',
 						enum: ['active', 'inactive', 'deleted'],
 						enumName: 'statusEnum',
-						default: 'active',
-						isNullable: false
-					}
+						default: `'active'`,
+						isNullable: false,
+					},
 				],
 				foreignKeys: [
 					{
@@ -47,7 +57,7 @@ export class CreatePostComment1632249076540 implements MigrationInterface {
 						referencedColumnNames: ['id'],
 						columnNames: ['post_id'],
 						onDelete: 'SET NULL',
-						onUpdate: 'CASCADE'
+						onUpdate: 'CASCADE',
 					},
 					{
 						name: 'userToPostComment',
@@ -55,16 +65,16 @@ export class CreatePostComment1632249076540 implements MigrationInterface {
 						referencedColumnNames: ['id'],
 						columnNames: ['user_id'],
 						onDelete: 'SET NULL',
-						onUpdate: 'CASCADE'
-					}
-				]
-			}))
-		}
+						onUpdate: 'CASCADE',
+					},
+				],
+			})
+		);
+	}
 
-    public async down(queryRunner: QueryRunner): Promise<void> {
-			await queryRunner.dropForeignKey('post_comments', 'postToPostComment')
-			await queryRunner.dropForeignKey('post_comments', 'userToPostComment')
-			await queryRunner.dropTable('post_comments')
-		}
-
+	public async down(queryRunner: QueryRunner): Promise<void> {
+		await queryRunner.dropForeignKey('post_comments', 'postToPostComment');
+		await queryRunner.dropForeignKey('post_comments', 'userToPostComment');
+		await queryRunner.dropTable('post_comments');
+	}
 }

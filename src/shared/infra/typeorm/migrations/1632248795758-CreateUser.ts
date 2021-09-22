@@ -1,9 +1,9 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreateUser1632248795758 implements MigrationInterface {
-
-    public async up(queryRunner: QueryRunner): Promise<void> {
-			await queryRunner.createTable(new Table({
+	public async up(queryRunner: QueryRunner): Promise<void> {
+		await queryRunner.createTable(
+			new Table({
 				name: 'users',
 				columns: [
 					{
@@ -11,68 +11,68 @@ export class CreateUser1632248795758 implements MigrationInterface {
 						type: 'int',
 						isPrimary: true,
 						generationStrategy: 'increment',
-						isGenerated: true
+						isGenerated: true,
 					},
 					{
 						name: 'person_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true
+						isUnique: true,
 					},
 					{
 						name: 'username',
 						type: 'varchar',
 						isNullable: false,
-						isUnique: true
+						isUnique: true,
 					},
 					{
 						name: 'password',
 						type: 'varchar',
 						isNullable: false,
-						isUnique: true
+						isUnique: true,
 					},
 					{
 						name: 'experience',
 						type: 'int',
 						isNullable: false,
-						isUnique: true
+						isUnique: true,
 					},
 					{
 						name: 'level_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true
+						isUnique: true,
 					},
 					{
 						name: 'follower_count',
 						type: 'int4',
 						isNullable: false,
-						isUnique: true
+						isUnique: true,
 					},
 					{
 						name: 'following_count',
 						type: 'int4',
 						isNullable: false,
-						isUnique: true
+						isUnique: true,
 					},
 					{
 						name: 'created_at',
 						type: 'timestamp',
-						default: 'now()'
+						default: 'now()',
 					},
 					{
 						name: 'updated_at',
 						type: 'timestamp',
-						default: 'now()'
+						default: 'now()',
 					},
 					{
 						name: 'status',
 						type: 'enum',
 						enum: ['active', 'inactive', 'deleted'],
 						enumName: 'statusEnum',
-						default: 'active',
+						default: `'active'`,
 						isNullable: false,
-					}
+					},
 				],
 				foreignKeys: [
 					{
@@ -81,7 +81,7 @@ export class CreateUser1632248795758 implements MigrationInterface {
 						referencedColumnNames: ['id'],
 						columnNames: ['person_id'],
 						onDelete: 'SET NULL',
-						onUpdate: 'CASCADE'
+						onUpdate: 'CASCADE',
 					},
 					{
 						name: 'levelToUser',
@@ -89,16 +89,16 @@ export class CreateUser1632248795758 implements MigrationInterface {
 						referencedColumnNames: ['id'],
 						columnNames: ['level_id'],
 						onDelete: 'SET NULL',
-						onUpdate: 'CASCADE'
-					}
-				]
-			}))
-    }
+						onUpdate: 'CASCADE',
+					},
+				],
+			})
+		);
+	}
 
-    public async down(queryRunner: QueryRunner): Promise<void> {
-			await queryRunner.dropForeignKey('users', 'personToUser')
-			await queryRunner.dropForeignKey('users', 'levelToUser')
-			await queryRunner.dropTable('persons')
-    }
-
+	public async down(queryRunner: QueryRunner): Promise<void> {
+		await queryRunner.dropForeignKey('users', 'personToUser');
+		await queryRunner.dropForeignKey('users', 'levelToUser');
+		await queryRunner.dropTable('persons');
+	}
 }

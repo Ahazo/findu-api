@@ -1,10 +1,9 @@
-import Post from "modules/freelancer/infra/typeorm/entities/Post/Post";
-import {MigrationInterface, QueryRunner, Table } from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreatePost1632249061149 implements MigrationInterface {
-
-    public async up(queryRunner: QueryRunner): Promise<void> {
-			await queryRunner.createTable(new Table({
+	public async up(queryRunner: QueryRunner): Promise<void> {
+		await queryRunner.createTable(
+			new Table({
 				name: 'posts',
 				columns: [
 					{
@@ -12,28 +11,38 @@ export class CreatePost1632249061149 implements MigrationInterface {
 						type: 'int',
 						isPrimary: true,
 						generationStrategy: 'increment',
-						isGenerated: true
+						isGenerated: true,
 					},
 					{
 						name: 'freelancer_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true
+						isUnique: true,
 					},
 					{
 						name: 'content',
 						type: 'int',
 						isNullable: false,
-						isUnique: true
+						isUnique: true,
+					},
+					{
+						name: 'created_at',
+						type: 'timestamp',
+						default: 'now()',
+					},
+					{
+						name: 'updated_at',
+						type: 'timestamp',
+						default: 'now()',
 					},
 					{
 						name: 'status',
 						type: 'enum',
 						enum: ['active', 'inactive', 'deleted'],
 						enumName: 'statusEnum',
-						default: 'active',
+						default: `'active'`,
 						isNullable: false,
-					}
+					},
 				],
 				foreignKeys: [
 					{
@@ -42,15 +51,15 @@ export class CreatePost1632249061149 implements MigrationInterface {
 						referencedColumnNames: ['id'],
 						columnNames: ['freelancer_id'],
 						onDelete: 'SET NULL',
-						onUpdate: 'CASCADE'
-					}
-			]
-			}))
-		}
+						onUpdate: 'CASCADE',
+					},
+				],
+			})
+		);
+	}
 
-    public async down(queryRunner: QueryRunner): Promise<void> {
-			await queryRunner.dropForeignKey('posts', 'freelancerToPost')
-			await queryRunner.dropTable('posts')
-		}
-
+	public async down(queryRunner: QueryRunner): Promise<void> {
+		await queryRunner.dropForeignKey('posts', 'freelancerToPost');
+		await queryRunner.dropTable('posts');
+	}
 }

@@ -1,5 +1,6 @@
-import ICreateFreelancerDTO from "modules/freelancer/dtos/ICreateFreelancerDTO";
-import ICreateOrderDTO from "./ICreateOrderDTO";
+import ICreateFreelancerDTO from 'modules/freelancer/dtos/ICreateFreelancerDTO';
+
+import ICreateOrderDTO from './ICreateOrderDTO';
 
 export default interface ICreateOrderLineDTO {
 	order: ICreateOrderDTO;

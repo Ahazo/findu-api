@@ -1,9 +1,11 @@
-import {MigrationInterface, QueryRunner, Table, TreeLevelColumn} from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreatePostRecommendation1632248979856 implements MigrationInterface {
-
-    public async up(queryRunner: QueryRunner): Promise<void> {
-			await queryRunner.createTable(new Table({
+export class CreatePostRecommendation1632248979856
+	implements MigrationInterface
+{
+	public async up(queryRunner: QueryRunner): Promise<void> {
+		await queryRunner.createTable(
+			new Table({
 				name: 'post_recomendations',
 				columns: [
 					{
@@ -11,44 +13,44 @@ export class CreatePostRecommendation1632248979856 implements MigrationInterface
 						type: 'int',
 						isPrimary: true,
 						generationStrategy: 'increment',
-						isGenerated: true
+						isGenerated: true,
 					},
 					{
 						name: 'user_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true
+						isUnique: true,
 					},
 					{
 						name: 'freelancer_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true
+						isUnique: true,
 					},
 					{
 						name: 'content',
 						type: 'varchar',
 						isNullable: false,
-						isUnique: true
+						isUnique: true,
 					},
 					{
 						name: 'created_at',
 						type: 'timestamp',
-						default: 'now()'
-				},
-				{
+						default: 'now()',
+					},
+					{
 						name: 'updated_at',
 						type: 'timestamp',
-						default: 'now()'
-				},
-				{
+						default: 'now()',
+					},
+					{
 						name: 'status',
 						type: 'enum',
 						enum: ['active', 'inactive', 'deleted'],
 						enumName: 'statusEnum',
-						default: 'active',
+						default: `'active'`,
 						isNullable: false,
-				}
+					},
 				],
 				foreignKeys: [
 					{
@@ -57,7 +59,7 @@ export class CreatePostRecommendation1632248979856 implements MigrationInterface
 						referencedColumnNames: ['id'],
 						columnNames: ['user_id'],
 						onDelete: 'SET NULL',
-						onUpdate: 'CASCADE'
+						onUpdate: 'CASCADE',
 					},
 					{
 						name: 'freelancerToPostRecommendation',
@@ -65,16 +67,22 @@ export class CreatePostRecommendation1632248979856 implements MigrationInterface
 						referencedColumnNames: ['id'],
 						columnNames: ['freelancer_id'],
 						onDelete: 'SET NULL',
-						onUpdate: 'CASCADE'
-					}
-				]
-			}))
-		}
+						onUpdate: 'CASCADE',
+					},
+				],
+			})
+		);
+	}
 
-    public async down(queryRunner: QueryRunner): Promise<void> {
-			await queryRunner.dropForeignKey('post_recommendations', 'userToPostRecommendations')
-			await queryRunner.dropForeignKey('post_recommendations', 'freelancerToPostRecommendation')
-			await queryRunner.dropTable('post_recommendations')
-		}
-
+	public async down(queryRunner: QueryRunner): Promise<void> {
+		await queryRunner.dropForeignKey(
+			'post_recommendations',
+			'userToPostRecommendations'
+		);
+		await queryRunner.dropForeignKey(
+			'post_recommendations',
+			'freelancerToPostRecommendation'
+		);
+		await queryRunner.dropTable('post_recommendations');
+	}
 }

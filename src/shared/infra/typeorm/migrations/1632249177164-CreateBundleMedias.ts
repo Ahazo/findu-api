@@ -1,9 +1,9 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreateBundleMedias1632249177164 implements MigrationInterface {
-
-    public async up(queryRunner: QueryRunner): Promise<void> {
-			await queryRunner.createTable(new Table({
+	public async up(queryRunner: QueryRunner): Promise<void> {
+		await queryRunner.createTable(
+			new Table({
 				name: 'bundle_medias',
 				columns: [
 					{
@@ -11,28 +11,38 @@ export class CreateBundleMedias1632249177164 implements MigrationInterface {
 						type: 'int',
 						isPrimary: true,
 						generationStrategy: 'increment',
-						isGenerated: true
+						isGenerated: true,
 					},
 					{
 						name: 'bundle_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true
+						isUnique: true,
 					},
 					{
 						name: 'url',
 						type: 'varchar',
 						isNullable: false,
-						isUnique: true
+						isUnique: true,
+					},
+					{
+						name: 'created_at',
+						type: 'timestamp',
+						default: 'now()',
+					},
+					{
+						name: 'updated_at',
+						type: 'timestamp',
+						default: 'now()',
 					},
 					{
 						name: 'status',
 						type: 'enum',
 						enum: ['active', 'inactive', 'deleted'],
 						enumName: 'statusEnum',
-						default: 'active',
-						isNullable: false
-					}
+						default: `'active'`,
+						isNullable: false,
+					},
 				],
 				foreignKeys: [
 					{
@@ -41,14 +51,15 @@ export class CreateBundleMedias1632249177164 implements MigrationInterface {
 						referencedColumnNames: ['id'],
 						columnNames: ['bundle_id'],
 						onDelete: 'SET NULL',
-						onUpdate: 'CASCADE'
-					}
-				]
-			}))
-		}
+						onUpdate: 'CASCADE',
+					},
+				],
+			})
+		);
+	}
 
-    public async down(queryRunner: QueryRunner): Promise<void> {
-			await queryRunner.dropForeignKey('bundle_medias', 'bundleToBundleMedias')
-			await queryRunner. dropTable('bundle_medias')
-		}
+	public async down(queryRunner: QueryRunner): Promise<void> {
+		await queryRunner.dropForeignKey('bundle_medias', 'bundleToBundleMedias');
+		await queryRunner.dropTable('bundle_medias');
+	}
 }

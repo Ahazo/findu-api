@@ -1,11 +1,11 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateDeliveryAgreement1632249249224 implements MigrationInterface {
-
-    public async up(queryRunner: QueryRunner): Promise<void> {
-			await queryRunner.createTable(new Table({
+export class CreateDeliveryAgreement1632249249224
+	implements MigrationInterface
+{
+	public async up(queryRunner: QueryRunner): Promise<void> {
+		await queryRunner.createTable(
+			new Table({
 				name: 'delivery_agreements',
 				columns: [
 					{
@@ -19,32 +19,32 @@ export class CreateDeliveryAgreement1632249249224 implements MigrationInterface 
 						name: 'order_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true
+						isUnique: true,
 					},
 					{
 						name: 'user_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true
+						isUnique: true,
 					},
 					{
 						name: 'created_at',
 						type: 'timestamp',
-						default: 'now()'
-				},
-				{
+						default: 'now()',
+					},
+					{
 						name: 'updated_at',
 						type: 'timestamp',
-						default: 'now()'
-				},
-				{
+						default: 'now()',
+					},
+					{
 						name: 'status',
 						type: 'enum',
-						enum: ['active', 'inactive', 'deleted'],
-						enumName: 'statusEnum',
-						default: 'active',
+						enum: ['accepted', 'refused', 'deleted'],
+						enumName: 'AgreementStatusEnum',
+						default: `'accepted'`,
 						isNullable: false,
-				}
+					},
 				],
 				foreignKeys: [
 					{
@@ -53,7 +53,7 @@ export class CreateDeliveryAgreement1632249249224 implements MigrationInterface 
 						referencedColumnNames: ['id'],
 						columnNames: ['user_id'],
 						onDelete: 'SET NULL',
-						onUpdate: 'CASCADE'
+						onUpdate: 'CASCADE',
 					},
 					{
 						name: 'orderToDeliveryAgreement',
@@ -61,38 +61,22 @@ export class CreateDeliveryAgreement1632249249224 implements MigrationInterface 
 						referencedColumnNames: ['id'],
 						columnNames: ['order_id'],
 						onDelete: 'SET NULL',
-						onUpdate: 'CASCADE'
-					}
-				]
-			}))
-		}
-
-    public async down(queryRunner: QueryRunner): Promise<void> {
-			await queryRunner.dropForeignKey('delivery_agreements', 'userToDeliveryAgrement')
-			await queryRunner.dropForeignKey('delivery_agreements', 'orderToDeliveryAgrement')
-			await queryRunner.dropTable('delivery_agreements')
-		}
-=======
-import { MigrationInterface, QueryRunner } from "typeorm";
-
-export class CreateDeliveryAgreement1632249249224 implements MigrationInterface {
-
-	public async up(queryRunner: QueryRunner): Promise<void> {
+						onUpdate: 'CASCADE',
+					},
+				],
+			})
+		);
 	}
 
 	public async down(queryRunner: QueryRunner): Promise<void> {
+		await queryRunner.dropForeignKey(
+			'delivery_agreements',
+			'userToDeliveryAgrement'
+		);
+		await queryRunner.dropForeignKey(
+			'delivery_agreements',
+			'orderToDeliveryAgrement'
+		);
+		await queryRunner.dropTable('delivery_agreements');
 	}
->>>>>>> fa28d698cb35a63ca99ea9d4468fc2a7e564298f
-=======
-import { MigrationInterface, QueryRunner } from "typeorm";
-
-export class CreateDeliveryAgreement1632249249224 implements MigrationInterface {
-
-	public async up(queryRunner: QueryRunner): Promise<void> {
-	}
-
-	public async down(queryRunner: QueryRunner): Promise<void> {
-	}
->>>>>>> fa28d698cb35a63ca99ea9d4468fc2a7e564298f
-
 }

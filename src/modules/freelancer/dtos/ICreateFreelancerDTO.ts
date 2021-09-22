@@ -1,5 +1,5 @@
-import ICreateUserDTO from "../../user/dtos/ICreateUserDTO";
-import ICreateProfessionalLevelDTO from "./ICreateProfessionalLevelDTO";
+import ICreateUserDTO from '../../user/dtos/ICreateUserDTO';
+import ICreateProfessionalLevelDTO from './ICreateProfessionalLevelDTO';
 
 export default interface ICreateFreelancerDTO {
 	user: ICreateUserDTO;

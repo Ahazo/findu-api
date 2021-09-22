@@ -1,11 +1,9 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreatePostLike1632249071828 implements MigrationInterface {
-
-    public async up(queryRunner: QueryRunner): Promise<void> {
-			await queryRunner.createTable(new Table({
+	public async up(queryRunner: QueryRunner): Promise<void> {
+		await queryRunner.createTable(
+			new Table({
 				name: 'post_likes',
 				columns: [
 					{
@@ -13,28 +11,38 @@ export class CreatePostLike1632249071828 implements MigrationInterface {
 						type: 'int',
 						isPrimary: true,
 						generationStrategy: 'increment',
-						isGenerated: true
+						isGenerated: true,
 					},
 					{
 						name: 'post_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true
+						isUnique: true,
 					},
 					{
 						name: 'user_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true
+						isUnique: true,
+					},
+					{
+						name: 'created_at',
+						type: 'timestamp',
+						default: 'now()',
+					},
+					{
+						name: 'updated_at',
+						type: 'timestamp',
+						default: 'now()',
 					},
 					{
 						name: 'status',
 						type: 'enum',
 						enum: ['active', 'inactive', 'deleted'],
 						enumName: 'statusEnum',
-						default: 'active',
+						default: `'active'`,
 						isNullable: false,
-					}
+					},
 				],
 				foreignKeys: [
 					{
@@ -43,7 +51,7 @@ export class CreatePostLike1632249071828 implements MigrationInterface {
 						referencedColumnNames: ['id'],
 						columnNames: ['post_id'],
 						onDelete: 'SET NULL',
-						onUpdate: 'CASCADE'
+						onUpdate: 'CASCADE',
 					},
 					{
 						name: 'userToPostLike',
@@ -51,39 +59,16 @@ export class CreatePostLike1632249071828 implements MigrationInterface {
 						referencedColumnNames: ['id'],
 						columnNames: ['user_id'],
 						onDelete: 'SET NULL',
-						onUpdate: 'CASCADE'
-					}
-				]
-			}))
-		}
-
-    public async down(queryRunner: QueryRunner): Promise<void> {
-			await queryRunner.dropForeignKey('post_likes', 'postToPostLike')
-			await queryRunner.dropForeignKey('post_likes', 'userToPostLike')
-			await queryRunner.dropTable('post_likes')
-
-		}
-=======
-import { MigrationInterface, QueryRunner } from "typeorm";
-
-export class CreatePostLike1632249071828 implements MigrationInterface {
-
-	public async up(queryRunner: QueryRunner): Promise<void> {
+						onUpdate: 'CASCADE',
+					},
+				],
+			})
+		);
 	}
 
 	public async down(queryRunner: QueryRunner): Promise<void> {
+		await queryRunner.dropForeignKey('post_likes', 'postToPostLike');
+		await queryRunner.dropForeignKey('post_likes', 'userToPostLike');
+		await queryRunner.dropTable('post_likes');
 	}
->>>>>>> fa28d698cb35a63ca99ea9d4468fc2a7e564298f
-=======
-import { MigrationInterface, QueryRunner } from "typeorm";
-
-export class CreatePostLike1632249071828 implements MigrationInterface {
-
-	public async up(queryRunner: QueryRunner): Promise<void> {
-	}
-
-	public async down(queryRunner: QueryRunner): Promise<void> {
-	}
->>>>>>> fa28d698cb35a63ca99ea9d4468fc2a7e564298f
-
 }
