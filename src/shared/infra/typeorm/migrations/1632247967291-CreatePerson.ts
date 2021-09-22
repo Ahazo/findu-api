@@ -89,7 +89,6 @@ export class CreatePerson1632247967291 implements MigrationInterface {
 			]
 		}))
 	}
-
 	public async down(queryRunner: QueryRunner): Promise<void> {
 		await queryRunner.dropForeignKey('persons', 'personToAddress');
 		await queryRunner.dropTable('persons');

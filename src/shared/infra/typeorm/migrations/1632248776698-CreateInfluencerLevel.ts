@@ -45,7 +45,6 @@ export class CreateInfluencerLevel1632248776698 implements MigrationInterface {
 			]
 		}))
 	}
-
 	public async down(queryRunner: QueryRunner): Promise<void> {
 			await queryRunner.dropTable('influencer_levels');
 	}
