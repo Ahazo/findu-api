@@ -26,6 +26,16 @@ export class CreateProfilePhoto1632423276539 implements MigrationInterface {
 						isUnique: true,
 					},
 					{
+						name: 'created_at',
+						type: 'timestamp',
+						default: 'now()',
+					},
+					{
+						name: 'updated_at',
+						type: 'timestamp',
+						default: 'now()',
+					},
+					{
 						name: 'status',
 						type: 'enum',
 						enum: ['active', 'inactive', 'deleted'],

@@ -16,6 +16,7 @@ import PostComment from '../../../../freelancer/infra/typeorm/entities/PostComme
 import PostLike from '../../../../freelancer/infra/typeorm/entities/PostLike';
 import DeliveryAgreement from '../../../../order/infra/typeorm/entities/DeliveryAgreement';
 import Order from '../../../../order/infra/typeorm/entities/Order';
+import BannerPhoto from './BannerPhoto';
 import Follower from './Followers';
 import InfluencerLevel from './InfluencerLevel';
 import Person from './Person';
@@ -42,6 +43,9 @@ export default class User {
 		(profilePhoto: ProfilePhoto) => profilePhoto.user
 	)
 	profilePhoto: ProfilePhoto;
+
+	@OneToMany(() => BannerPhoto, (bannerPhoto: BannerPhoto) => bannerPhoto.user)
+	bannerPhoto: BannerPhoto;
 
 	@ManyToOne(() => PostLike, (postLike: PostLike) => postLike.user)
 	postLike: string;

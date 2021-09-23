@@ -26,6 +26,12 @@ export default class BannerPhoto {
 	@Column({ type: 'varchar', nullable: false, unique: true })
 	url: string;
 
+	@CreateDateColumn({ type: 'timestamp', nullable: false, unique: false })
+	created_at: Date;
+
+	@UpdateDateColumn({ type: 'timestamp', nullable: false, unique: false })
+	updated_at: Date;
+
 	@Column({ type: 'enum', enum: EStatus, default: EStatus.active })
 	status: EStatus;
 }
