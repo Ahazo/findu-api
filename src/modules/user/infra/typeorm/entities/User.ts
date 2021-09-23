@@ -20,6 +20,7 @@ import Follower from './Followers';
 import InfluencerLevel from './InfluencerLevel';
 import Person from './Person';
 import PostRecommendation from './PostRecommendation';
+import ProfilePhoto from './ProfilePhoto';
 import Recommendation from './Recommendation';
 
 @Entity('user')
@@ -35,6 +36,12 @@ export default class User {
 
 	@OneToMany(() => PostComment, (postComment: PostComment) => postComment.user)
 	postComment: string;
+
+	@OneToMany(
+		() => ProfilePhoto,
+		(profilePhoto: ProfilePhoto) => profilePhoto.user
+	)
+	profilePhoto: ProfilePhoto;
 
 	@ManyToOne(() => PostLike, (postLike: PostLike) => postLike.user)
 	postLike: string;
