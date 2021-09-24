@@ -19,7 +19,7 @@ class UsersRepository implements IUserRepository {
 	}
 
 	public async save(user: User): Promise<User> {
-		return await this.userRepository.save(user);
+		return this.userRepository.save(user);
 	}
 
 	public async findByUsername(username: string): Promise<User | undefined> {

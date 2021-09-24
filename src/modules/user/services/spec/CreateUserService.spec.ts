@@ -1,10 +1,12 @@
 // import AppError from '../../../shared/errors/AppError';
 
-import { Status } from '../../dtos/ICreateUserDTO';
+import ICreateInfluencerLevelDTO from 'modules/user/dtos/ICreateInfluencerLevelDTO';
+import ICreateUserDTO from 'modules/user/dtos/ICreateUserDTO';
+
+import { EStatus } from '../../../../shared/utils/dtos/EStatus';
 import User from '../../infra/typeorm/entities/User';
 import FakeUserRepository from '../../infra/typeorm/repositories/fakes/FakeUsersRepository';
 import FakeHashProvider from '../../providers/fakes/FakeHashProvider';
-import AuthenticateUserService from '../AuthenticateUserService';
 import CreateUserService from '../CreateUserService';
 
 describe('CreateUser', () => {
@@ -17,30 +19,41 @@ describe('CreateUser', () => {
 			fakeHashProvider
 		);
 
-		const user = await CreateUser.execute({
-			username: 'julia4',
-			password: 'alves',
+		const level: ICreateInfluencerLevelDTO = {
+			description: 'Mestre dos magos',
+			experience_needed: 0,
+			status: EStatus.active,
+		};
+
+		const userData: ICreateUserDTO = {
 			person: {
-				cpf: '493.726.168-51',
-				email: 'scarano.dev4@gmail.com',
-				cellphone: '+55 11 97852-3866',
-				birth_date: new Date(),
+				address: {
+					postal_code: '05638-060',
+					street: 'Rua Gabriel Antunes',
+					house_number: 4,
+					complement: 'na frente do poster de um cara gostoso',
+					city: 'Sao Paulo',
+					state: 'SP',
+					status: EStatus.active,
+				},
+				cpf: '493.726.168-18',
+				email: 'scarano.dev@gmail.com',
+				cellphone_number: '(11) 97801-3866',
 				first_name: 'Lucca',
 				last_name: 'Scarano',
-				userAddress: {
-					postal_code: '12490-362',
-					street: 'Rua Marques do Pombal',
-					house_number: 100,
-					state: 'RJ',
-					city: 'Sao Paulo',
-				},
+				birth_date: new Date(),
+				status: EStatus.active,
 			},
-			status: Status.active,
-			followers_count: 0,
-			campaigns_count: 0,
-			recommendations_count: 0,
+			username: 'scaralu',
+			password: 'AndreGostoso767!!',
+			level: 1,
 			experience: 0,
-		});
+			followers_count: 0,
+			following_count: 0,
+			status: EStatus.active,
+		};
+
+		const user = await CreateUser.execute();
 
 		expect(user).toBeInstanceOf(User);
 	});

@@ -1,12 +1,11 @@
 import { EStatus } from '../../../shared/utils/dtos/EStatus';
-import ICreateInfluencerLevelDTO from './ICreateInfluencerLevelDTO';
 import ICreatePersonDTO from './ICreatePersonDTO';
 
 export default interface ICreateUserDTO {
 	person: ICreatePersonDTO;
 	username: string;
 	password: string;
-	level: ICreateInfluencerLevelDTO;
+	level: number;
 	experience: number;
 	followers_count: number;
 	following_count: number;
