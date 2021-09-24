@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateProfilePhoto1632423276539 implements MigrationInterface {
+export class CreateProfileBanner1632484901510 implements MigrationInterface {
 	public async up(queryRunner: QueryRunner): Promise<void> {
 		await queryRunner.createTable(
 			new Table({
-				name: 'profile_photos',
+				name: 'banner_photos',
 				columns: [
 					{
 						name: 'id',
@@ -46,7 +46,7 @@ export class CreateProfilePhoto1632423276539 implements MigrationInterface {
 				],
 				foreignKeys: [
 					{
-						name: 'userToProfilePhoto',
+						name: 'userToBannerPhoto',
 						referencedTableName: 'users',
 						referencedColumnNames: ['id'],
 						columnNames: ['user_id'],
@@ -59,7 +59,7 @@ export class CreateProfilePhoto1632423276539 implements MigrationInterface {
 	}
 
 	public async down(queryRunner: QueryRunner): Promise<void> {
-		await queryRunner.dropForeignKey('profile_photos', 'userToProfilePhoto');
-		await queryRunner.dropTable('profile_photos');
+		await queryRunner.dropForeignKey('banner_photos', 'userToBannerPhoto');
+		await queryRunner.dropTable('banner_photos');
 	}
 }
