@@ -19,7 +19,7 @@ export default class PostRecommendation {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ type: 'int4', nullable: false, unique: false })
+	Column({ type: 'int4', nullable: false, unique: false })
 	user_id: number;
 
 	@ManyToOne(() => User, (user: User) => user.postRecommendation)
