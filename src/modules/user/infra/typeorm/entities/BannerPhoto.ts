@@ -16,7 +16,7 @@ export default class BannerPhoto {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ type: 'int', nullable: false, unique: true })
+	@Column({ type: 'int', nullable: false, unique: false })
 	user_id: number;
 
 	@ManyToOne(() => User, (user: User) => user.bannerPhoto)
