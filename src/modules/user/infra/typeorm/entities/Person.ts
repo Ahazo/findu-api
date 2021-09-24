@@ -35,7 +35,7 @@ export default class Person {
 	@Column({ type: Date, nullable: false, unique: false })
 	birth_date: Date;
 
-	@Column({ type: 'int', nullable: false, unique: true })
+	@Column({ type: 'int', nullable: false, unique: false })
 	address_id: number;
 
 	@OneToOne(() => Address, (address: Address) => address.person, {

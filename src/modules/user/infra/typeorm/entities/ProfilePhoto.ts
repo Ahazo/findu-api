@@ -23,7 +23,7 @@ export default class ProfilePhoto {
 	@JoinColumn({ name: 'user_id' })
 	user: User;
 
-	@Column({ type: 'varchar', nullable: false, unique: true })
+	@Column({ type: 'varchar', nullable: false, unique: false })
 	url: string;
 
 	@CreateDateColumn({ type: 'timestamp', nullable: false, unique: false })

@@ -10,9 +10,9 @@ export default class OrderStatus {
 	@OneToOne(() => Order, (order: Order) => order.orderStatus)
 	order: number;
 
-	@Column({ type: 'varchar', length: 40, nullable: true, unique: true })
+	@Column({ type: 'varchar', length: 40, nullable: true, unique: false })
 	description: string;
 
-	@Column({ type: 'int', nullable: false, unique: true })
+	@Column({ type: 'int', nullable: false, unique: false })
 	step: number;
 }

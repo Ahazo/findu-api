@@ -23,7 +23,7 @@ export default class BundleMedia {
 	@JoinColumn({ name: 'bundle_id' })
 	bundle: Bundle;
 
-	@Column({ type: 'varchar', nullable: true, unique: true })
+	@Column({ type: 'varchar', nullable: true, unique: false })
 	url: string;
 
 	@CreateDateColumn({ type: 'timestamp', nullable: false, unique: false })

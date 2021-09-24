@@ -20,16 +20,16 @@ export default class Bundle {
 	@OneToMany(() => Order, (order: Order) => order.bundle)
 	order: number;
 
-	@Column({ type: 'varchar', length: 50, nullable: false, unique: true })
+	@Column({ type: 'varchar', length: 50, nullable: false, unique: false })
 	title: string;
 
-	@Column({ type: 'varchar', length: 200, nullable: true, unique: true })
+	@Column({ type: 'varchar', length: 200, nullable: true, unique: false })
 	description: string;
 
-	@Column({ type: 'int', nullable: false, unique: true })
+	@Column({ type: 'int', nullable: false, unique: false })
 	value: number;
 
-	@Column({ type: 'timestamp', nullable: false, unique: true })
+	@Column({ type: 'timestamp', nullable: false, unique: false })
 	deadline: Date;
 
 	@OneToMany(

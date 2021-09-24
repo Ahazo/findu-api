@@ -15,10 +15,10 @@ export default class ProfessionalLevel {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ type: 'varchar', nullable: false, unique: true })
+	@Column({ type: 'varchar', nullable: false, unique: false })
 	description: string;
 
-	@Column({ type: 'int', nullable: false, unique: true })
+	@Column({ type: 'int', nullable: false, unique: false })
 	experience_needed: number;
 
 	@OneToMany(() => Freelancer, (freelancer: Freelancer) => freelancer.user)

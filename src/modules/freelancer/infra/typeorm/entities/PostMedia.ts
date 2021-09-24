@@ -23,7 +23,7 @@ export default class PostMedia {
 	@JoinColumn({ name: 'post_id' })
 	post: number;
 
-	@Column({ type: 'varchar', nullable: false, unique: true })
+	@Column({ type: 'varchar', nullable: false, unique: false })
 	url: string;
 
 	@CreateDateColumn({ type: 'timestamp', nullable: false, unique: false })

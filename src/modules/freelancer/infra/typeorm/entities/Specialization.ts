@@ -26,7 +26,7 @@ export default class Specialization {
 	@JoinColumn({ name: 'area_id' })
 	area: Area;
 
-	@Column({ type: 'varchar', nullable: false, unique: true })
+	@Column({ type: 'varchar', nullable: false, unique: false })
 	description: string;
 
 	@Column({ type: 'enum', enum: EStatus, default: EStatus.active })
