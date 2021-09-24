@@ -17,19 +17,19 @@ export class CreatePerson1619454362655 implements MigrationInterface {
 						name: 'user_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'bundle_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'order_status_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'created_at',

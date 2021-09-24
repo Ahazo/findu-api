@@ -17,7 +17,7 @@ export class CreatePostMedia1632249065837 implements MigrationInterface {
 						name: 'post_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'url',

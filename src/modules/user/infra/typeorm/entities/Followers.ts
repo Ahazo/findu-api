@@ -16,14 +16,14 @@ export default class Follower {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ type: 'int4', nullable: false, unique: true })
+	@Column({ type: 'int', nullable: false, unique: true })
 	user_id: number;
 
 	@ManyToOne(() => User, (user: User) => user.follower_parent)
 	@JoinColumn({ name: 'user_id' })
 	user: User;
 
-	@Column({ type: 'int4', nullable: false, unique: true })
+	@Column({ type: 'int', nullable: false, unique: true })
 	followed_user_id: number;
 
 	@ManyToOne(() => User, (user: User) => user.follower_child)

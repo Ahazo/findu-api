@@ -18,14 +18,14 @@ export default class PostLike {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ type: 'int4', nullable: false, unique: false })
+	@Column({ type: 'int', nullable: false, unique: false })
 	post_id: number;
 
 	@ManyToOne(() => Post, (post: Post) => post.postLike)
 	@JoinColumn({ name: 'post_id' })
 	post: number;
 
-	@Column({ type: 'int4', nullable: false, unique: false })
+	@Column({ type: 'int', nullable: false, unique: false })
 	user_id: number;
 
 	@OneToMany(() => User, (user: User) => user.postLike)

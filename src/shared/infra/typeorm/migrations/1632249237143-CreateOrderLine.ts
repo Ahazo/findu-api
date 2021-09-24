@@ -17,19 +17,19 @@ export class CreateOrderLine1632249237143 implements MigrationInterface {
 						name: 'order_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'freelancer_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'total_value',
 						type: 'int',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 				],
 				foreignKeys: [

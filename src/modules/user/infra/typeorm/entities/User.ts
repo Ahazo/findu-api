@@ -74,7 +74,7 @@ export default class User {
 	@OneToMany(() => Follower, (follower: Follower) => follower.followed_user_id)
 	follower_child: Follower;
 
-	@Column({ type: 'int4', nullable: false, unique: true })
+	@Column({ type: 'int', nullable: false, unique: true })
 	person_id: number;
 
 	@OneToOne(() => Person, (person: Person) => person.user, {
@@ -90,10 +90,10 @@ export default class User {
 	@Column({ type: 'varchar', length: 120, nullable: false, unique: true })
 	password: string;
 
-	@Column({ type: 'int4', nullable: false, unique: false, default: 0 })
+	@Column({ type: 'int', nullable: false, unique: false, default: 0 })
 	experience: number;
 
-	@Column({ type: 'int4', nullable: false, unique: false })
+	@Column({ type: 'int', nullable: false, unique: false })
 	level_id: number;
 
 	@OneToOne(
@@ -104,10 +104,10 @@ export default class User {
 	@JoinColumn({ name: 'level_id' })
 	influencerLevel: InfluencerLevel;
 
-	@Column({ type: 'int4', nullable: false, unique: true, default: 0 })
+	@Column({ type: 'int', nullable: false, unique: true, default: 0 })
 	follower_count: number;
 
-	@Column({ type: 'int4', nullable: false, unique: true, default: 0 })
+	@Column({ type: 'int', nullable: false, unique: true, default: 0 })
 	following_count: number;
 
 	@CreateDateColumn({ type: 'timestamp', nullable: false, unique: false })

@@ -23,7 +23,7 @@ export class CreateRecommendation1632248989008 implements MigrationInterface {
 						name: 'user_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'created_at',

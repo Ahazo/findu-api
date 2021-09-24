@@ -1,10 +1,14 @@
-import { json, Request, Response } from 'express';
-import CreateInfluencerLevelService from 'modules/user/services/influencerLevel/CreateInfluencerLevelService';
-import FindInfluencerLevelService from 'modules/user/services/influencerLevel/FindInfluencerLevelService';
+import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
+import CreateInfluencerLevelService from '../../../services/influencerLevel/CreateInfluencerLevelService';
+import FindInfluencerLevelService from '../../../services/influencerLevel/FindInfluencerLevelService';
+
 export default class InfluencerLevelController {
-	async createInfluencerLevel(request: Resquest, responde: Response) {
+	async createInfluencerLevel(
+		request: Request,
+		responde: Response
+	): Promise<Response> {
 		const influencerLevelData = request.body;
 		const createInfluencerLevel = container.resolve(
 			CreateInfluencerLevelService
@@ -16,7 +20,7 @@ export default class InfluencerLevelController {
 		return responde.status(200).json(influencerLevel);
 	}
 
-	async findById(request: Request, response: Response) {
+	async findById(request: Request, response: Response): Promise<Response> {
 		const findInfluencerLevel = container.resolve(FindInfluencerLevelService);
 		const { id } = request.params;
 		const influencerLevel = await findInfluencerLevel.executeById(+id);
@@ -27,6 +31,6 @@ export default class InfluencerLevelController {
 			});
 		}
 
-		response.status(200).json(influencerLevel);
+		return response.status(200).json(influencerLevel);
 	}
 }

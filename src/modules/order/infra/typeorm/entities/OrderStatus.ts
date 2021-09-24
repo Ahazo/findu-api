@@ -13,6 +13,6 @@ export default class OrderStatus {
 	@Column({ type: 'varchar', length: 40, nullable: true, unique: true })
 	description: string;
 
-	@Column({ type: 'int4', nullable: false, unique: true })
+	@Column({ type: 'int', nullable: false, unique: true })
 	step: number;
 }

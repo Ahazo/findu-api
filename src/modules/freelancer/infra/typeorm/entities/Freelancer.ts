@@ -29,7 +29,7 @@ export default class Freelancer {
 	@OneToMany(() => OrderLine, (orderLine: OrderLine) => orderLine.freelancer)
 	orderLine: number;
 
-	@Column({ type: 'int4', nullable: false, unique: true })
+	@Column({ type: 'int', nullable: false, unique: true })
 	user_id: number;
 
 	@OneToOne(() => User, (user: User) => user.freelancer)
@@ -42,7 +42,7 @@ export default class Freelancer {
 	)
 	postRecommendation: PostRecommendation;
 
-	@Column({ type: 'int4', nullable: false, unique: false, default: 1 })
+	@Column({ type: 'int', nullable: false, unique: false, default: 1 })
 	level_id: number;
 
 	@OneToOne(
@@ -52,10 +52,10 @@ export default class Freelancer {
 	@JoinColumn({ name: 'level_id' })
 	professionalLevel: ProfessionalLevel;
 
-	@Column({ type: 'int4', nullable: false, unique: true })
+	@Column({ type: 'int', nullable: false, unique: true })
 	projects_count: number;
 
-	@Column({ type: 'int4', nullable: false, unique: false })
+	@Column({ type: 'int', nullable: false, unique: false })
 	experience: number;
 
 	@Column({ type: 'bool', nullable: false, unique: false })

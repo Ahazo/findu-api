@@ -30,7 +30,7 @@ export default class Post {
 	@OneToOne(() => PostMedia, (postMedia: PostMedia) => postMedia.post)
 	postMedia: number;
 
-	@Column({ type: 'int4', nullable: false, unique: false })
+	@Column({ type: 'int', nullable: false, unique: false })
 	freelancer_id: number;
 
 	@ManyToOne(() => Freelancer, (freelancer: Freelancer) => freelancer.post)

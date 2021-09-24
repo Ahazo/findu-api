@@ -16,7 +16,7 @@ export default class BundleMedia {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ type: 'int4', nullable: false, unique: false })
+	@Column({ type: 'int', nullable: false, unique: false })
 	bundle_id: number;
 
 	@ManyToOne(() => Bundle, (bundle: Bundle) => bundle.bundleMedia)

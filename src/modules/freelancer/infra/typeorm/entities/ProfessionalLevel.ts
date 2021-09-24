@@ -18,7 +18,7 @@ export default class ProfessionalLevel {
 	@Column({ type: 'varchar', nullable: false, unique: true })
 	description: string;
 
-	@Column({ type: 'int4', nullable: false, unique: true })
+	@Column({ type: 'int', nullable: false, unique: true })
 	experience_needed: number;
 
 	@OneToMany(() => Freelancer, (freelancer: Freelancer) => freelancer.user)

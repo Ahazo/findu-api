@@ -16,20 +16,20 @@ export default class OrderLine {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ type: 'int4', nullable: false, unique: true })
+	@Column({ type: 'int', nullable: false, unique: true })
 	order_id: number;
 
 	@ManyToOne(() => Order, (order: Order) => order.orderLine)
 	@JoinColumn({ name: 'order_id' })
 	order: number;
 
-	@Column({ type: 'int4', nullable: false, unique: true })
+	@Column({ type: 'int', nullable: false, unique: true })
 	freelancer_id: number;
 
 	@ManyToOne(() => Freelancer, (freelancer: Freelancer) => freelancer.orderLine)
 	@JoinColumn({ name: 'freelancer_id' })
 	freelancer: number;
 
-	@Column({ type: 'int4', nullable: false, unique: true })
+	@Column({ type: 'int', nullable: false, unique: true })
 	total_value: number;
 }

@@ -21,7 +21,7 @@ export class CreateInfluencerLevel1632248776698 implements MigrationInterface {
 					},
 					{
 						name: 'experience_needed',
-						type: 'int4',
+						type: 'int',
 						isNullable: false,
 						isUnique: true,
 					},

@@ -19,19 +19,19 @@ export class CreatePostRecommendation1632248979856
 						name: 'user_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'freelancer_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'content',
 						type: 'varchar',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'created_at',

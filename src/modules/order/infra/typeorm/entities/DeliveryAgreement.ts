@@ -16,14 +16,14 @@ export default class DeliveryAgreement {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ type: 'int4', nullable: false, unique: false })
+	@Column({ type: 'int', nullable: false, unique: false })
 	order_id: number;
 
 	@ManyToOne(() => Order, (order: Order) => order.deliveryAgreement)
 	@JoinColumn({ name: 'order_id' })
 	order: Order;
 
-	@Column({ type: 'int4', nullable: false, unique: false })
+	@Column({ type: 'int', nullable: false, unique: false })
 	user_id: number;
 
 	@ManyToOne(() => User, (user: User) => user.deliveryAgreement)

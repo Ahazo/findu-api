@@ -17,13 +17,13 @@ export class CreatePost1632249061149 implements MigrationInterface {
 						name: 'freelancer_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'content',
 						type: 'int',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'created_at',

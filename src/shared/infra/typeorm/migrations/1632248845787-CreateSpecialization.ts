@@ -17,7 +17,7 @@ export class CreateSpecialization1632248845787 implements MigrationInterface {
 						name: 'area_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'description',

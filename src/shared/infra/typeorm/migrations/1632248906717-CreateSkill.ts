@@ -17,13 +17,13 @@ export class CreateSkill1632248906717 implements MigrationInterface {
 						name: 'specialization_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'freelancer_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'status',

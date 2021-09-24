@@ -19,13 +19,13 @@ export class CreateDeliveryAgreement1632249249224
 						name: 'order_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'user_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'created_at',

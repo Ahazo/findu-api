@@ -17,7 +17,7 @@ export class CreateProfilePhoto1632484907538 implements MigrationInterface {
 						name: 'user_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'url',

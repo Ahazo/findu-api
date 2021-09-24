@@ -16,14 +16,14 @@ export default class BundleRelation {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ type: 'int4', nullable: false, unique: false })
+	@Column({ type: 'int', nullable: false, unique: false })
 	bundle_id: number;
 
 	@ManyToOne(() => Bundle, (bundle: Bundle) => bundle.bundleRelation)
 	@JoinColumn({ name: 'bundle_id' })
 	bundle: Bundle;
 
-	@Column({ type: 'int4', nullable: false, unique: false })
+	@Column({ type: 'int', nullable: false, unique: false })
 	freelancer_id: number;
 
 	@ManyToOne(
@@ -33,7 +33,7 @@ export default class BundleRelation {
 	@JoinColumn({ name: 'freelancer_id' })
 	freelancer: Bundle;
 
-	@Column({ type: 'int4', nullable: false, unique: true })
+	@Column({ type: 'int', nullable: false, unique: true })
 	percentage: number;
 
 	@CreateDateColumn({ type: 'timestamp', nullable: false, unique: false })

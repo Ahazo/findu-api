@@ -17,13 +17,13 @@ export class CreateBundleMedias1632249177164 implements MigrationInterface {
 						name: 'bundle_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'url',
 						type: 'varchar',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'created_at',

@@ -17,13 +17,13 @@ export class CreateBundleRelations1632249171262 implements MigrationInterface {
 						name: 'bundle_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'freelancer_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'percentage',

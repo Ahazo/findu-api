@@ -1,6 +1,7 @@
-import InfluencerLevel from 'modules/user/infra/typeorm/entities/InfluencerLevel';
-import IInfluencerLevelRepository from 'modules/user/repositories/IInfluencerLevelRepository';
 import { injectable, inject } from 'tsyringe';
+
+import InfluencerLevel from '../../infra/typeorm/entities/InfluencerLevel';
+import IInfluencerLevelRepository from '../../repositories/IInfluencerLevelRepository';
 
 @injectable()
 export default class FindInfluencerLevel {

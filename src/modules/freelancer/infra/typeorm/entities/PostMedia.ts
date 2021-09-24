@@ -16,7 +16,7 @@ export default class PostMedia {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ type: 'int4', nullable: false, unique: false })
+	@Column({ type: 'int', nullable: false, unique: false })
 	post_id: number;
 
 	@ManyToOne(() => Post, (post: Post) => post.postMedia)

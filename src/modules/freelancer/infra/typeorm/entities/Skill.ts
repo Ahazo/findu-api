@@ -15,7 +15,7 @@ export default class Skill {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ type: 'int4', nullable: false, unique: false })
+	@Column({ type: 'int', nullable: false, unique: false })
 	specialization_id: number;
 
 	@ManyToOne(
@@ -25,7 +25,7 @@ export default class Skill {
 	@JoinColumn({ name: 'specialization_id' })
 	specialization: number;
 
-	@Column({ type: 'int4', nullable: false, unique: false })
+	@Column({ type: 'int', nullable: false, unique: false })
 	freelancer_id: number;
 
 	@ManyToOne(() => Freelancer, (freelancer: Freelancer) => freelancer.skill)

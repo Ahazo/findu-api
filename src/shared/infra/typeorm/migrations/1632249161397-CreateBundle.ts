@@ -17,13 +17,13 @@ export class CreateBundle1632249161397 implements MigrationInterface {
 						name: 'title',
 						type: 'varchar',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'description',
 						type: 'varchar',
-						isNullable: true,
-						isUnique: true,
+						isNullable: false,
+						isUnique: false,
 					},
 					{
 						name: 'value',
@@ -35,7 +35,7 @@ export class CreateBundle1632249161397 implements MigrationInterface {
 						name: 'deadline',
 						type: 'timestamp',
 						isNullable: true,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'created_at',

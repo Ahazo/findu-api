@@ -30,21 +30,21 @@ export default class Order {
 	@ManyToOne(() => OrderLine, (orderLine: OrderLine) => orderLine.order)
 	orderLine: number;
 
-	@Column({ type: 'int4', nullable: false, unique: true })
+	@Column({ type: 'int', nullable: false, unique: true })
 	user_id: number;
 
 	@ManyToOne(() => User, (user: User) => user.order)
 	@JoinColumn({ name: 'user_id' })
 	user: number;
 
-	@Column({ type: 'int4', nullable: false, unique: true })
+	@Column({ type: 'int', nullable: false, unique: true })
 	bundle_id: number;
 
 	@ManyToOne(() => Bundle, (bundle: Bundle) => bundle.order)
 	@JoinColumn({ name: 'bundle_id' })
 	bundle: number;
 
-	@Column({ type: 'int4', nullable: false, unique: true })
+	@Column({ type: 'int', nullable: false, unique: true })
 	order_status_id: number;
 
 	@OneToOne(() => OrderStatus, (orderStatus: OrderStatus) => orderStatus.order)

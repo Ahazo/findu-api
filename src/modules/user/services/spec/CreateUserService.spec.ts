@@ -1,9 +1,8 @@
 // import AppError from '../../../shared/errors/AppError';
 
-import ICreateInfluencerLevelDTO from 'modules/user/dtos/ICreateInfluencerLevelDTO';
-import ICreateUserDTO from 'modules/user/dtos/ICreateUserDTO';
-
 import { EStatus } from '../../../../shared/utils/dtos/EStatus';
+import ICreateInfluencerLevelDTO from '../../dtos/ICreateInfluencerLevelDTO';
+import ICreateUserDTO from '../../dtos/ICreateUserDTO';
 import User from '../../infra/typeorm/entities/User';
 import FakeUserRepository from '../../infra/typeorm/repositories/fakes/FakeUsersRepository';
 import FakeHashProvider from '../../providers/fakes/FakeHashProvider';
