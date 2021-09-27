@@ -29,6 +29,6 @@ export default class UsersController {
 			});
 		}
 
-		response.status(200).json(user);
+		return response.status(200).json(user);
 	}
 }

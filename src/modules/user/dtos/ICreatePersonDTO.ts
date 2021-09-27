@@ -1,4 +1,3 @@
-import { EStatus } from '../../../shared/utils/dtos/EStatus';
 import ICreateAddressDTO from './ICreateAddressDTO';
 
 export default interface ICreatePersonDTO {
@@ -9,5 +8,4 @@ export default interface ICreatePersonDTO {
 	first_name: string;
 	last_name: string;
 	birth_date: Date;
-	status: EStatus;
 }

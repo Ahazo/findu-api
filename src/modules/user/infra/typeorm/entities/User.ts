@@ -24,7 +24,7 @@ import PostRecommendation from './PostRecommendation';
 import ProfilePhoto from './ProfilePhoto';
 import Recommendation from './Recommendation';
 
-@Entity('user')
+@Entity('users')
 export default class User {
 	@PrimaryGeneratedColumn()
 	id: number;
@@ -47,7 +47,7 @@ export default class User {
 	@OneToMany(() => BannerPhoto, (bannerPhoto: BannerPhoto) => bannerPhoto.user)
 	bannerPhoto: BannerPhoto;
 
-	@ManyToOne(() => PostLike, (postLike: PostLike) => postLike.user)
+	@OneToMany(() => PostLike, (postLike: PostLike) => postLike.user)
 	postLike: string;
 
 	@OneToMany(() => Order, (order: Order) => order.user)

@@ -4,25 +4,33 @@ import { EStatus } from '../../../../shared/utils/dtos/EStatus';
 import ICreateInfluencerLevelDTO from '../../dtos/ICreateInfluencerLevelDTO';
 import ICreateUserDTO from '../../dtos/ICreateUserDTO';
 import User from '../../infra/typeorm/entities/User';
+import FakeInfluencerLevelRepository from '../../infra/typeorm/repositories/fakes/FakeInfluencerLevelRepository';
 import FakeUserRepository from '../../infra/typeorm/repositories/fakes/FakeUsersRepository';
 import FakeHashProvider from '../../providers/fakes/FakeHashProvider';
 import CreateUserService from '../CreateUserService';
+import CreateInfluencerLevelService from '../influencerLevel/CreateInfluencerLevelService';
 
 describe('CreateUser', () => {
 	it('should be able to create user', async () => {
 		const fakeUserRepository = new FakeUserRepository();
 		const fakeHashProvider = new FakeHashProvider();
+		const fakeInfluencerLevelRepository = new FakeInfluencerLevelRepository();
 
 		const CreateUser = new CreateUserService(
 			fakeUserRepository,
 			fakeHashProvider
 		);
 
-		const level: ICreateInfluencerLevelDTO = {
-			description: 'Mestre dos magos',
-			experience_needed: 0,
-			status: EStatus.active,
+		const CreateInfluencerLevel = new CreateInfluencerLevelService(
+			fakeInfluencerLevelRepository
+		);
+
+		const levelData: ICreateInfluencerLevelDTO = {
+			description: 'Almost Mighty',
+			experience_needed: 1,
 		};
+
+		const level = await CreateInfluencerLevel.execute(levelData);
 
 		const userData: ICreateUserDTO = {
 			person: {
@@ -33,7 +41,6 @@ describe('CreateUser', () => {
 					complement: 'na frente do poster de um cara gostoso',
 					city: 'Sao Paulo',
 					state: 'SP',
-					status: EStatus.active,
 				},
 				cpf: '493.726.168-18',
 				email: 'scarano.dev@gmail.com',
@@ -41,19 +48,15 @@ describe('CreateUser', () => {
 				first_name: 'Lucca',
 				last_name: 'Scarano',
 				birth_date: new Date(),
-				status: EStatus.active,
 			},
 			username: 'scaralu',
 			password: 'AndreGostoso767!!',
-			level: 1,
-			experience: 0,
-			followers_count: 0,
-			following_count: 0,
-			status: EStatus.active,
+			level_id: level.id,
 		};
 
-		const user = await CreateUser.execute();
+		const user = await CreateUser.execute(userData);
 
 		expect(user).toBeInstanceOf(User);
+		expect(user.level_id).toEqual(level.id);
 	});
 });
