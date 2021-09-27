@@ -20,8 +20,22 @@ export default class UsersController {
 	}
 
 	async findUserById(request: Request, response: Response) {
-		const findUSer = container.resolve(FindUserService);
-		const user = await findUSer.executeById(request.userId);
+		const findUser = container.resolve(FindUserService);
+		const user = await findUser.executeById(request.userId);
+
+		if (!user) {
+			response.status(400).json({
+				message: 'User id not found',
+			});
+		}
+
+		return response.status(200).json(user);
+	}
+
+	async findUserByUsername(request: Request, response: Response) {
+		const findUser = container.resolve(FindUserService);
+		const { username } = request.params;
+		const user = await findUser.executeByUsername(username);
 
 		if (!user) {
 			response.status(400).json({
