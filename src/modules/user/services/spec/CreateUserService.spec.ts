@@ -8,12 +8,18 @@ import FakeHashProvider from '../../providers/fakes/FakeHashProvider';
 import CreateUserService from '../CreateUserService';
 import CreateInfluencerLevelService from '../influencerLevel/CreateInfluencerLevelService';
 
-describe('CreateUser', () => {
-	it('should be able to create user', async () => {
-		const fakeUserRepository = new FakeUserRepository();
-		const fakeHashProvider = new FakeHashProvider();
-		const fakeInfluencerLevelRepository = new FakeInfluencerLevelRepository();
+let fakeUserRepository: FakeUserRepository;
+let fakeHashProvider: FakeHashProvider;
+let fakeInfluencerLevelRepository: FakeInfluencerLevelRepository;
 
+describe('CreateUser', () => {
+	beforeEach(() => {
+		fakeUserRepository = new FakeUserRepository();
+		fakeHashProvider = new FakeHashProvider();
+		fakeInfluencerLevelRepository = new FakeInfluencerLevelRepository();
+	});
+
+	it('should be able to create user', async () => {
 		const CreateUser = new CreateUserService(
 			fakeUserRepository,
 			fakeHashProvider

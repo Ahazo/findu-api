@@ -6,7 +6,7 @@ import CreateUserService from '../../../services/CreateUserService';
 import FindUserService from '../../../services/FindUserService';
 
 export default class UsersController {
-	async createUser(request: Request, response: Response) {
+	async createUser(request: Request, response: Response): Promise<Response> {
 		const userData = request.body;
 		const createUser = container.resolve(CreateUserService);
 		const user = await createUser.execute(userData);
@@ -19,7 +19,7 @@ export default class UsersController {
 		});
 	}
 
-	async findUserById(request: Request, response: Response) {
+	async findUserById(request: Request, response: Response): Promise<Response> {
 		const findUser = container.resolve(FindUserService);
 		const user = await findUser.executeById(request.userId);
 
@@ -32,7 +32,10 @@ export default class UsersController {
 		return response.status(200).json(user);
 	}
 
-	async findUserByUsername(request: Request, response: Response) {
+	async findUserByUsername(
+		request: Request,
+		response: Response
+	): Promise<Response> {
 		const findUser = container.resolve(FindUserService);
 		const { username } = request.params;
 		const user = await findUser.executeByUsername(username);

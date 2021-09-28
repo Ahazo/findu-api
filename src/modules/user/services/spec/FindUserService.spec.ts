@@ -1,6 +1,5 @@
 import ICreateInfluencerLevelDTO from '../../dtos/ICreateInfluencerLevelDTO';
 import ICreateUserDTO from '../../dtos/ICreateUserDTO';
-import User from '../../infra/typeorm/entities/User';
 import FakeInfluencerLevelRepository from '../../infra/typeorm/repositories/fakes/FakeInfluencerLevelRepository';
 import FakeUserRepository from '../../infra/typeorm/repositories/fakes/FakeUsersRepository';
 import FakeHashProvider from '../../providers/fakes/FakeHashProvider';
@@ -8,14 +7,18 @@ import CreateUserService from '../CreateUserService';
 import FindUserService from '../FindUserService';
 import CreateInfluencerLevelService from '../influencerLevel/CreateInfluencerLevelService';
 
+let fakeUserRepository: FakeUserRepository;
+let fakeHashProvider: FakeHashProvider;
+let fakeInfluencerLevelRepository: FakeInfluencerLevelRepository;
+
 describe('FindBy', () => {
-	// FIND WITH ID
+	beforeEach(() => {
+		fakeUserRepository = new FakeUserRepository();
+		fakeHashProvider = new FakeHashProvider();
+		fakeInfluencerLevelRepository = new FakeInfluencerLevelRepository();
+	});
 
 	it('should be able to find users by id', async () => {
-		const fakeUserRepository = new FakeUserRepository();
-		const fakeHashProvider = new FakeHashProvider();
-		const fakeInfluencerLevelRepository = new FakeInfluencerLevelRepository();
-
 		const FindUser = new FindUserService(fakeUserRepository);
 
 		const CreateUser = new CreateUserService(
@@ -66,10 +69,6 @@ describe('FindBy', () => {
 	// FIND WITH USERNAME
 
 	it('should be able to find user by username', async () => {
-		const fakeUserRepository = new FakeUserRepository();
-		const fakeHashProvider = new FakeHashProvider();
-		const fakeInfluencerLevelRepository = new FakeInfluencerLevelRepository();
-
 		const FindUser = new FindUserService(fakeUserRepository);
 
 		const CreateUser = new CreateUserService(
