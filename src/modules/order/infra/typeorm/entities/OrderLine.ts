@@ -23,13 +23,13 @@ export default class OrderLine {
 	@JoinColumn({ name: 'order_id' })
 	order: number;
 
-	@Column({ type: 'int', nullable: false, unique: true })
+	@Column({ type: 'int', nullable: false, unique: false })
 	freelancer_id: number;
 
 	@ManyToOne(() => Freelancer, (freelancer: Freelancer) => freelancer.orderLine)
 	@JoinColumn({ name: 'freelancer_id' })
 	freelancer: number;
 
-	@Column({ type: 'int', nullable: false, unique: true })
+	@Column({ type: 'int', nullable: false, unique: false })
 	total_value: number;
 }

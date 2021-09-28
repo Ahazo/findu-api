@@ -52,7 +52,7 @@ export default class Freelancer {
 	@JoinColumn({ name: 'level_id' })
 	professionalLevel: ProfessionalLevel;
 
-	@Column({ type: 'int', nullable: false, unique: true })
+	@Column({ type: 'int', nullable: false, unique: false })
 	projects_count: number;
 
 	@Column({ type: 'int', nullable: false, unique: false })

@@ -1,15 +1,18 @@
 // import AppError from '../../../shared/errors/AppError';
 
-import { Status } from '../../dtos/ICreateUserDTO';
+import ICreateInfluencerLevelDTO from '../../dtos/ICreateInfluencerLevelDTO';
+import FakeInfluencerLevelRepository from '../../infra/typeorm/repositories/fakes/FakeInfluencerLevelRepository';
 import FakeUserRepository from '../../infra/typeorm/repositories/fakes/FakeUsersRepository';
 import FakeHashProvider from '../../providers/fakes/FakeHashProvider';
 import AuthenticateUserService from '../AuthenticateUserService';
 import CreateUserService from '../CreateUserService';
+import CreateInfluencerLevelService from '../influencerLevel/CreateInfluencerLevelService';
 
 describe('AuthenticateUser', () => {
 	it('should be able to authenticate', async () => {
 		const fakeUserRepository = new FakeUserRepository();
 		const fakeHashProvider = new FakeHashProvider();
+		const fakeInfluencerLevelRepository = new FakeInfluencerLevelRepository();
 
 		const CreateUser = new CreateUserService(
 			fakeUserRepository,
@@ -21,34 +24,42 @@ describe('AuthenticateUser', () => {
 			fakeHashProvider
 		);
 
+		const CreateInfluencerLevel = new CreateInfluencerLevelService(
+			fakeInfluencerLevelRepository
+		);
+
+		const levelData: ICreateInfluencerLevelDTO = {
+			description: 'Almost Mighty',
+			experience_needed: 1,
+		};
+
+		const level = await CreateInfluencerLevel.execute(levelData);
+
 		const user = await CreateUser.execute({
-			username: 'julia4',
-			password: 'alves',
 			person: {
-				cpf: '493.726.168-51',
-				email: 'scarano.dev4@gmail.com',
-				cellphone: '+55 11 97852-3866',
-				birth_date: new Date(),
+				address: {
+					postal_code: '05638-060',
+					street: 'Rua Gabriel Antunes',
+					house_number: 4,
+					complement: 'na frente do poster de um cara gostoso',
+					city: 'Sao Paulo',
+					state: 'SP',
+				},
+				cpf: '493.726.168-18',
+				email: 'scarano.dev@gmail.com',
+				cellphone_number: '(11) 97801-3866',
 				first_name: 'Lucca',
 				last_name: 'Scarano',
-				userAddress: {
-					postal_code: '12490-362',
-					street: 'Rua Marques do Pombal',
-					house_number: 100,
-					state: 'RJ',
-					city: 'Sao Paulo',
-				},
+				birth_date: new Date(),
 			},
-			status: Status.active,
-			followers_count: 0,
-			campaigns_count: 0,
-			recommendations_count: 0,
-			experience: 0,
+			username: 'scaralu',
+			password: 'AndreGostoso767!!',
+			level_id: level.id,
 		});
 
 		const response = await AuthenticateUser.execute({
-			username: 'julia4',
-			password: 'alves',
+			username: 'scaralu',
+			password: 'AndreGostoso767!!',
 		});
 
 		expect(response).toHaveProperty('token');
@@ -66,8 +77,8 @@ describe('AuthenticateUser', () => {
 
 		await expect(
 			AuthenticateUser.execute({
-				username: 'julia45',
-				password: '123456',
+				username: 'scaraluUsuarioNaoExistente',
+				password: 'AndreGostoso767!!',
 			})
 		).rejects.toBeInstanceOf(Error);
 	});
@@ -75,6 +86,7 @@ describe('AuthenticateUser', () => {
 	it('should not be able to authenticate an user with wrong password', async () => {
 		const fakeUserRepository = new FakeUserRepository();
 		const fakeHashProvider = new FakeHashProvider();
+		const fakeInfluencerLevelRepository = new FakeInfluencerLevelRepository();
 
 		const CreateUser = new CreateUserService(
 			fakeUserRepository,
@@ -86,34 +98,42 @@ describe('AuthenticateUser', () => {
 			fakeHashProvider
 		);
 
+		const CreateInfluencerLevel = new CreateInfluencerLevelService(
+			fakeInfluencerLevelRepository
+		);
+
+		const levelData: ICreateInfluencerLevelDTO = {
+			description: 'Almost Mighty',
+			experience_needed: 1,
+		};
+
+		const level = await CreateInfluencerLevel.execute(levelData);
+
 		await CreateUser.execute({
-			username: 'julia4',
-			password: 'alves',
 			person: {
-				cpf: '493.726.168-51',
-				email: 'scarano.dev4@gmail.com',
-				cellphone: '+55 11 97852-3866',
-				birth_date: new Date(),
+				address: {
+					postal_code: '05638-060',
+					street: 'Rua Gabriel Antunes',
+					house_number: 4,
+					complement: 'na frente do poster de um cara gostoso',
+					city: 'Sao Paulo',
+					state: 'SP',
+				},
+				cpf: '493.726.168-18',
+				email: 'scarano.dev@gmail.com',
+				cellphone_number: '(11) 97801-3866',
 				first_name: 'Lucca',
 				last_name: 'Scarano',
-				userAddress: {
-					postal_code: '12490-362',
-					street: 'Rua Marques do Pombal',
-					house_number: 100,
-					state: 'RJ',
-					city: 'Sao Paulo',
-				},
+				birth_date: new Date(),
 			},
-			status: Status.active,
-			followers_count: 0,
-			campaigns_count: 0,
-			recommendations_count: 0,
-			experience: 0,
+			username: 'scaralu',
+			password: 'AndreGostoso767!!',
+			level_id: level.id,
 		});
 
 		await expect(
 			AuthenticateUser.execute({
-				username: 'julia4',
+				username: 'scaralu',
 				password: 'wrong-password',
 			})
 		).rejects.toBeInstanceOf(Error);

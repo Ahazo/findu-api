@@ -4,7 +4,6 @@ import {
 	Entity,
 	JoinColumn,
 	ManyToOne,
-	OneToMany,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 } from 'typeorm';
@@ -28,7 +27,7 @@ export default class PostLike {
 	@Column({ type: 'int', nullable: false, unique: false })
 	user_id: number;
 
-	@OneToMany(() => User, (user: User) => user.postLike)
+	@ManyToOne(() => User, (user: User) => user.postLike)
 	@JoinColumn({ name: 'user_id' })
 	user: number;
 

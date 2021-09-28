@@ -32,7 +32,7 @@ export default class PostComment {
 	@JoinColumn({ name: 'user_id' })
 	user: number;
 
-	@Column({ type: 'varchar', nullable: false, unique: true })
+	@Column({ type: 'varchar', nullable: false, unique: false })
 	content: string;
 
 	@CreateDateColumn({ type: 'timestamp', nullable: false, unique: false })

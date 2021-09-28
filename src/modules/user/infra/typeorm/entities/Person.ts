@@ -32,10 +32,10 @@ export default class Person {
 	@Column({ type: 'varchar', nullable: false, unique: false })
 	last_name: string;
 
-	@Column({ type: Date, nullable: false, unique: true })
+	@Column({ type: Date, nullable: false, unique: false })
 	birth_date: Date;
 
-	@Column({ type: 'int', nullable: false })
+	@Column({ type: 'int', nullable: false, unique: false })
 	address_id: number;
 
 	@OneToOne(() => Address, (address: Address) => address.person, {

@@ -25,8 +25,6 @@ class FakeUsersRepository implements IUserRepository {
 		);
 
 		this.users.push(user);
-
-		console.log(user, this.users);
 		return user;
 	}
 

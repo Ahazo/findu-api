@@ -16,7 +16,7 @@ export default class DeliveryAgreement {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ type: 'int', nullable: false, unique: false })
+	@Column({ type: 'int', nullable: false, unique: true })
 	order_id: number;
 
 	@ManyToOne(() => Order, (order: Order) => order.deliveryAgreement)
