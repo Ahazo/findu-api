@@ -14,4 +14,9 @@ export default class FindUserService {
 		const user = await this.usersRepository.findById(id);
 		return user;
 	}
+
+	public async executeByUsername(username: string): Promise<User | undefined> {
+		const user = await this.usersRepository.findByUsername(username);
+		return user;
+	}
 }

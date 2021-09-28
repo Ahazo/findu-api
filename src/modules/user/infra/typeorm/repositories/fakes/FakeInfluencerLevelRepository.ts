@@ -17,8 +17,6 @@ class FakeInfluencerLevelRepository implements IInfluencerLevelRepository {
 		);
 
 		this.levels.push(influencerLevel);
-
-		console.log(influencerLevel, this.levels);
 		return influencerLevel;
 	}
 

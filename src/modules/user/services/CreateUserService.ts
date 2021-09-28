@@ -24,8 +24,6 @@ export default class CreateUserService {
 			password: hashedPassword,
 		});
 
-		console.log(user);
-
 		return user;
 	}
 }
