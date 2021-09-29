@@ -2,7 +2,7 @@ import ICreateUserDTO from '../../user/dtos/ICreateUserDTO';
 import ICreateProfessionalLevelDTO from './ICreateProfessionalLevelDTO';
 
 export default interface ICreateFreelancerDTO {
-	user: ICreateUserDTO;
+	// user: ICreateUserDTO;
 	level: ICreateProfessionalLevelDTO;
 	experience: number;
 	projects_counter: number;
