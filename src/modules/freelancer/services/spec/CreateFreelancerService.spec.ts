@@ -15,7 +15,7 @@ describe('CreateFreelancer', () => {
 		fakeProfessionalLevelRepository = new FakeProfessionalLevelRepository();
 	});
 
-	it('should be able to create freelancers', async () => {
+	it('should be able to create freelancer', async () => {
 		const CreateFreelancer = new CreateFreelancerService(
 			fakeFreelancerRepository
 		);

@@ -1,5 +1,5 @@
 import ICreateFreelancerDTO from '../../../../dtos/ICreateProfessionalLevelDTO';
-import IFreelancerRepository from '../../../../repositories/IProfessionalLevelRepository';
+import IFreelancerRepository from '../../../../repositories/IFreelancerRepository';
 import Freelancer from '../../entities/ProfessionalLevel';
 
 class FakeFreelancerRepository implements IFreelancerRepository {
