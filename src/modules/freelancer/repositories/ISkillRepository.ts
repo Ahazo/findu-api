@@ -5,5 +5,4 @@ export default interface ISkillRepository {
 	create(data: ICreateSkillsDTO): Promise<Skill>;
 	save(skill: Skill): Promise<Skill>;
 	findById(id: number): Promise<Skill | undefined>;
-	findByFreelancerId(freelancerId: number): Promise<Skill[] | undefined>;
 }

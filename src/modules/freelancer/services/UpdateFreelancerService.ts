@@ -9,4 +9,6 @@ export default class UpdateFreelancerService {
 		@inject('FreelancerRepository')
 		private freelancerRepository: IFreelancerRepository
 	) {}
+
+	public async execute() {}
 }

@@ -22,7 +22,41 @@ describe('CreateProfessionalLevel', () => {
 		);
 	});
 
-	it('should not be able to create a professional level with same experience_needed', async () => {});
+	it('should not be able to create a professional level with same experience_needed', async () => {
+		const fakeProfessionalLevelRepository =
+			new FakeProfessionalLevelRepository();
 
-	it('should not be able to create a professional level with same description', async () => {});
+		const CreateProfessionalLevel = new CreateProfessionalLevelService(
+			fakeProfessionalLevelRepository
+		);
+
+		const levelData: ICreateProfessionalLevelDTO = {
+			description: 'Very close to a Professional Mighty',
+			experience_needed: 7,
+		};
+
+		expect(await CreateProfessionalLevel.execute(levelData)).toBeInstanceOf(
+			Error
+		);
+
+		// Passou!!!! mas não era pra ter passado vamo ter que sabotar
+	});
+
+	it('should not be able to create a professional level with same description', async () => {
+		const fakeProfessionalLevelRepository =
+			new FakeProfessionalLevelRepository();
+
+		const CreateProfessionalLevel = new CreateProfessionalLevelService(
+			fakeProfessionalLevelRepository
+		);
+
+		const levelData: ICreateProfessionalLevelDTO = {
+			description: 'A little far to a Professional Mighty',
+			experience_needed: 1,
+		};
+
+		expect(await CreateProfessionalLevel.execute(levelData)).toBeInstanceOf(
+			Error
+		);
+	});
 });
