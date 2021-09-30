@@ -1,10 +1,8 @@
-import ICreateUserDTO from '../../user/dtos/ICreateUserDTO';
 import ICreateProfessionalLevelDTO from './ICreateProfessionalLevelDTO';
+import ICreateSkillsDTO from './ICreateSkillDTO';
 
 export default interface ICreateFreelancerDTO {
-	// user: ICreateUserDTO;
-	level: ICreateProfessionalLevelDTO;
-	experience: number;
-	projects_counter: number;
-	open_to_work: boolean;
+	user_id: number;
+	level_id: number;
+	skill: ICreateSkillsDTO;
 }

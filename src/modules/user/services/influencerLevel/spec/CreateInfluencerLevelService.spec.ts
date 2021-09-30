@@ -22,4 +22,8 @@ describe('CreateInfluencerLevel', () => {
 			InfluencerLevel
 		);
 	});
+
+	it('should not be able to create a influencer level with same experience_needed', async () => {});
+
+	it('should not be able to create a influencer level with same description', async () => {});
 });

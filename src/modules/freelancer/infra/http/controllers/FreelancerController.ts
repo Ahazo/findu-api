@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import UpdateFreelancerService from 'modules/freelancer/services/UpdateFreelancerService';
 import { container } from 'tsyringe';
 
 import CreateFreelancerService from '../../../services/CreateFreelancerService';
@@ -30,5 +31,17 @@ export default class FreelancerController {
 		}
 
 		return response.status(200).json(freelancer);
+	}
+
+	async updateFreelancer(
+		request: Request,
+		response: Response
+	): Promise<Response> {
+		const updateFreelancer = container.resolve(UpdateFreelancerService);
+		const freelancerData = request.body;
+
+		// const freelancer = await updateFreelancer.execute(freelancerData);
+
+		return response.status(204).send();
 	}
 }

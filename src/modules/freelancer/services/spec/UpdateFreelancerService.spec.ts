@@ -1,3 +1,5 @@
+import ICreateProfessionalLevelDTO from 'modules/freelancer/dtos/ICreateProfessionalLevelDTO';
+
 import ICreateFreelancerDTO from '../../dtos/ICreateFreelancerDTO';
 import Freelancer from '../../infra/typeorm/entities/Freelancer';
 import FakeFreelancerRepository from '../../infra/typeorm/repositories/fakes/FakeFreelancerRepository';
@@ -19,21 +21,17 @@ describe('UpdateFreelancer', () => {
 
 it('should be able to update work status', async () => {
 	const FindFreelancer = new FindFreelancerService(fakeFreelancerRepository);
-
 	const CreateFreelancer = new CreateFreelancerService(
 		fakeFreelancerRepository
 	);
-
 	const CreateProfessionalLevel = new CreateProfessionalLevelService(
 		fakeProfessionalLevelRepository
 	);
-
 	const UpdateFreelancer = new UpdateFreelancerService(
 		fakeFreelancerRepository
 	);
-
-	const levelData: ICreateInfluencerLevelDTO = {
-		description: 'Almost Mighty',
+	const levelData: ICreateProfessionalLevelDTO = {
+		description: 'Almost Professional Mighty',
 		experience_needed: 1,
 	};
 

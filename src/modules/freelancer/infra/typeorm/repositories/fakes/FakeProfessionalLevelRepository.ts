@@ -3,36 +3,39 @@ import IProfessionalLevelRepository from '../../../../repositories/IProfessional
 import ProfessionalLevel from '../../entities/ProfessionalLevel';
 
 class FakeProfessionalLevelRepository implements IProfessionalLevelRepository {
-	private levels: ProfessionalLevel[] = [];
+	private professionalLevels: ProfessionalLevel[] = [];
 
 	public async create(
-		levelData: ICreateProfessionalLevelDTO
+		professionalLevelsData: ICreateProfessionalLevelDTO
 	): Promise<ProfessionalLevel> {
 		const professionalLevel = new ProfessionalLevel();
 
 		Object.assign(
 			professionalLevel,
 			{ id: Math.floor(Math.random() * (10 - 1) + 1) },
-			levelData
+			professionalLevelsData
 		);
 
-		this.levels.push(professionalLevel);
+		this.professionalLevels.push(professionalLevel);
 		return professionalLevel;
 	}
 
-	public async save(freelancer: Freelancer): Promise<Freelancer> {
-		const findIndex = this.users.findIndex(
-			(findUser) => findUser.id === user.id
+	public async save(
+		professionalLevelData: ProfessionalLevel
+	): Promise<ProfessionalLevel> {
+		const findIndex = this.professionalLevels.findIndex(
+			(professionalLevel) => professionalLevel.id === professionalLevelData.id
 		);
 
-		this.users[findIndex] = user;
+		this.professionalLevels[findIndex] = professionalLevelData;
 
-		return user;
+		return this.professionalLevels[findIndex];
 	}
-}
 
 	public async findById(id: number): Promise<ProfessionalLevel | undefined> {
-		const professionalLevelFound = this.levels.find((level) => level.id === id);
+		const professionalLevelFound = this.professionalLevels.find(
+			(professionalLevel) => professionalLevel.id === id
+		);
 		return professionalLevelFound;
 	}
 }

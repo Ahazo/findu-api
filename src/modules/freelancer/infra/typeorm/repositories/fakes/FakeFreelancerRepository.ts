@@ -1,37 +1,37 @@
-import ICreateFreelancerDTO from '../../../../dtos/ICreateProfessionalLevelDTO';
+import ICreateFreelancerDTO from '../../../../dtos/ICreateFreelancerDTO';
 import IFreelancerRepository from '../../../../repositories/IFreelancerRepository';
-import Freelancer from '../../entities/ProfessionalLevel';
+import Freelancer from '../../entities/Freelancer';
 
 class FakeFreelancerRepository implements IFreelancerRepository {
-	private freela: Freelancer[] = [];
+	private freelancers: Freelancer[] = [];
 
-	public async create(
-		freelancerData: ICreateFreelancerDTO
-	): Promise<Freelancer> {
+	public async create(data: ICreateFreelancerDTO): Promise<Freelancer> {
 		const freelancer = new Freelancer();
 
 		Object.assign(
 			freelancer,
 			{ id: Math.floor(Math.random() * (10 - 1) + 1) },
-			freelancerData
+			data
 		);
 
-		this.freela.push(freelancer);
+		this.freelancers.push(freelancer);
 		return freelancer;
 	}
 
 	public async save(freelancer: Freelancer): Promise<Freelancer> {
-		const findIndex = this.freela.findIndex(
+		const findIndex = this.freelancers.findIndex(
 			(findFreelancer) => findFreelancer.id === freelancer.id
 		);
 
-		this.freela[findIndex] = freelancer;
+		this.freelancers[findIndex] = freelancer;
 
 		return freelancer;
 	}
 
 	public async findById(id: number): Promise<Freelancer | undefined> {
-		const freelancerFound = this.freela.find((freela) => freela.id === id);
+		const freelancerFound = this.freelancers.find(
+			(freelancer) => freelancer.id === id
+		);
 		return freelancerFound;
 	}
 }

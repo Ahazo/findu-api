@@ -13,7 +13,7 @@ describe('CreateProfessionalLevel', () => {
 		);
 
 		const levelData: ICreateProfessionalLevelDTO = {
-			description: 'Almost Mighty',
+			description: 'Almost Professional Mighty',
 			experience_needed: 1,
 		};
 
@@ -21,4 +21,8 @@ describe('CreateProfessionalLevel', () => {
 			ProfessionalLevel
 		);
 	});
+
+	it('should not be able to create a professional level with same experience_needed', async () => {});
+
+	it('should not be able to create a professional level with same description', async () => {});
 });
