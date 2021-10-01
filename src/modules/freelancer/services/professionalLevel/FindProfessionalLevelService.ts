@@ -13,6 +13,10 @@ export default class FindProfessionalLevelService {
 	public async executeById(id: number): Promise<ProfessionalLevel | undefined> {
 		const result = await this.professionalLevelRepository.findById(id);
 
+		if (!result) {
+			throw new Error('Unable to find professional level');
+		}
+
 		return result;
 	}
 }

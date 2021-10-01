@@ -39,10 +39,8 @@ describe('FindProfessionalLevel', () => {
 	});
 
 	it('should not be able to find a professional level by unexistent id', async () => {
-		const professionalLevelFound = await findProfessionalLevel.executeById(
-			112301
-		);
-
-		expect(professionalLevelFound).rejects.toBeInstanceOf(Error);
+		await expect(
+			findProfessionalLevel.executeById(112301)
+		).rejects.toBeInstanceOf(Error);
 	});
 });

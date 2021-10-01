@@ -7,17 +7,24 @@ import FindProfessionalLevelService from '../../../services/professionalLevel/Fi
 export default class ProfessionalLevelController {
 	async createProfessionalLevel(
 		request: Request,
-		responde: Response
+		response: Response
 	): Promise<Response> {
 		const professionalLevelData = request.body;
+
 		const createProfessionalLevel = container.resolve(
 			CreateProfessionalLevelService
 		);
+
 		const professionalLevel = await createProfessionalLevel.execute(
 			professionalLevelData
 		);
 
-		return responde.status(200).json(professionalLevel);
+		if (!professionalLevel)
+			response.status(400).json({
+				message: 'There was an error creating professional level',
+			});
+
+		return response.status(200).json(professionalLevel);
 	}
 
 	async findById(request: Request, response: Response): Promise<Response> {
