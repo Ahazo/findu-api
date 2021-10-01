@@ -6,14 +6,14 @@ class FakeProfessionalLevelRepository implements IProfessionalLevelRepository {
 	private professionalLevels: ProfessionalLevel[] = [];
 
 	public async create(
-		professionalLevelsData: ICreateProfessionalLevelDTO
+		professionalLevelData: ICreateProfessionalLevelDTO
 	): Promise<ProfessionalLevel> {
 		const professionalLevel = new ProfessionalLevel();
 
 		Object.assign(
 			professionalLevel,
-			{ id: Math.floor(Math.random() * (10 - 1) + 1) },
-			professionalLevelsData
+			{ id: Math.floor(Math.random() * (100 - 1) + 1) },
+			professionalLevelData
 		);
 
 		this.professionalLevels.push(professionalLevel);
@@ -36,6 +36,27 @@ class FakeProfessionalLevelRepository implements IProfessionalLevelRepository {
 		const professionalLevelFound = this.professionalLevels.find(
 			(professionalLevel) => professionalLevel.id === id
 		);
+		return professionalLevelFound;
+	}
+
+	public async findByDescription(
+		description: string
+	): Promise<ProfessionalLevel | undefined> {
+		const professionalLevelFound = this.professionalLevels.find(
+			(professionalLevel) => professionalLevel.description === description
+		);
+
+		return professionalLevelFound;
+	}
+
+	public async findByExperienceNeeded(
+		experience_needed: number
+	): Promise<ProfessionalLevel | undefined> {
+		const professionalLevelFound = this.professionalLevels.find(
+			(professionalLevel) =>
+				professionalLevel.experience_needed === experience_needed
+		);
+
 		return professionalLevelFound;
 	}
 }

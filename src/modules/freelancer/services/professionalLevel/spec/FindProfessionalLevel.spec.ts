@@ -1,57 +1,48 @@
-import { CreateProfessionalLevel1632248821790 } from 'shared/infra/typeorm/migrations/1632248821790-CreateProfessionalLevel';
-import { TableForeignKey } from 'typeorm';
-
 import ICreateProfessionalLevelDTO from '../../../dtos/ICreateProfessionalLevelDTO';
 import FakeProfessionalLevelRepository from '../../../infra/typeorm/repositories/fakes/FakeProfessionalLevelRepository';
 import CreateProfessionalLevelService from '../CreateProfessionalLevelService';
 import FindProfessionalLevelService from '../FindProfessionalLevelService';
 
 describe('FindProfessionalLevel', () => {
-	it('should be able to find a professional level by its ID', async () => {
-		const fakeProfessionalLevelRepository =
-			new FakeProfessionalLevelRepository();
+	let fakeProfessionalLevelRepository: FakeProfessionalLevelRepository;
 
-		const CreateProfessionalLevel = new CreateProfessionalLevelService(
+	let createProfessionalLevel: CreateProfessionalLevelService;
+	let findProfessionalLevel: FindProfessionalLevelService;
+
+	beforeEach(() => {
+		fakeProfessionalLevelRepository = new FakeProfessionalLevelRepository();
+
+		createProfessionalLevel = new CreateProfessionalLevelService(
 			fakeProfessionalLevelRepository
 		);
 
-		const FindProfessionalLevel = new FindProfessionalLevelService(
+		findProfessionalLevel = new FindProfessionalLevelService(
 			fakeProfessionalLevelRepository
 		);
-
-		const level: ICreateProfessionalLevelDTO = {
-			description: 'A little mighty',
-			experience_needed: 1,
-		};
-
-		const lvl = await CreateProfessionalLevel.execute(level);
-
-		const find = await FindProfessionalLevel.executeById(lvl.id);
-
-		expect(find).toEqual(lvl);
 	});
 
-	it('should not be able to find a professional level by the wrong id', async () => {
-		const fakeProfessionalLevelRepository =
-			new FakeProfessionalLevelRepository();
-
-		const CreateProfessionalLevel = new CreateProfessionalLevelService(
-			fakeProfessionalLevelRepository
-		);
-
-		const FindProfessionalLevel = new FindProfessionalLevelService(
-			fakeProfessionalLevelRepository
-		);
-
-		const level: ICreateProfessionalLevelDTO = {
-			description: 'A little mighty',
+	it('should be able to find a professional level by its ID', async () => {
+		const professionalLevelData: ICreateProfessionalLevelDTO = {
+			description: 'Professional mighty',
 			experience_needed: 1,
 		};
 
-		const lvl = await CreateProfessionalLevel.execute(level);
+		const professionalLevel = await createProfessionalLevel.execute(
+			professionalLevelData
+		);
 
-		const find = await FindProfessionalLevel.executeById(lvl.id + 1);
+		const professionalLevelFound = await findProfessionalLevel.executeById(
+			professionalLevel.id
+		);
 
-		expect(find).toEqual(undefined);
+		expect(professionalLevelFound).toEqual(professionalLevel);
+	});
+
+	it('should not be able to find a professional level by unexistent id', async () => {
+		const professionalLevelFound = await findProfessionalLevel.executeById(
+			112301
+		);
+
+		expect(professionalLevelFound).rejects.toBeInstanceOf(Error);
 	});
 });

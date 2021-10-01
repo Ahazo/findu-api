@@ -10,5 +10,7 @@ export default class UpdateFreelancerService {
 		private freelancerRepository: IFreelancerRepository
 	) {}
 
-	public async execute() {}
+	public async execute(freelancer: Freelancer): Promise<Freelancer> {
+		return this.freelancerRepository.save(freelancer);
+	}
 }

@@ -1,13 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 
+import Specialization from '../infra/typeorm/entities/Specialization';
 import ISpecializationRepository from '../repositories/ISpecializationRepository';
-
-interface IRequestDTO {
-	specializationId: number;
-
-	areaId: number;
-	description: string;
-}
 
 @injectable()
 export default class UpdateSpecializationService {
@@ -16,15 +10,9 @@ export default class UpdateSpecializationService {
 		private specializationRepository: ISpecializationRepository
 	) {}
 
-	public async execute({
-		specializationId: number,
-		areaId: number,
-		description: string,
-	}: IRequestDTO): Promise<Specialization> {
-		const result = await this.specializationRepository.findById(
-			specializationId
-		);
-
-		return await this.specializationRepository.save(result);
+	public async execute(
+		specialization: Specialization
+	): Promise<Specialization> {
+		return this.specializationRepository.save(specialization);
 	}
 }

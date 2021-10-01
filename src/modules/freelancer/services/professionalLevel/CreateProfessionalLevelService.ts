@@ -14,16 +14,24 @@ export default class CreateInfluencerLevelService {
 	public async execute(
 		data: ICreateProfessionalLevelDTO
 	): Promise<ProfessionalLevel> {
-		const result2 = await this.professionalLevelRepository.create(data);
-
-		if (data.experience_needed === data?.experience_needed) {
-			throw new Error(
-				'You cannot create two levels with the same experience needed'
+		const checkDescriptionProfessionalLevelExists =
+			await this.professionalLevelRepository.findByDescription(
+				data.description
 			);
-		} else if (data.description === data?.description) {
-			throw new Error('You cannot create two levels with the same description');
-		} else {
-			return result2;
-		}
+
+		if (checkDescriptionProfessionalLevelExists)
+			throw new Error('Description already exists');
+
+		const checkExperienceNeededProfessionalLevelExists =
+			await this.professionalLevelRepository.findByExperienceNeeded(
+				data.experience_needed
+			);
+
+		if (checkExperienceNeededProfessionalLevelExists)
+			throw new Error('Experience needed already exists');
+
+		const professionalLevel = this.professionalLevelRepository.create(data);
+
+		return professionalLevel;
 	}
 }
