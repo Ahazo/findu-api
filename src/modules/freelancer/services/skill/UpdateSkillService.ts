@@ -1,7 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 
-import Skill from '../infra/typeorm/entities/Skill';
-import ISkillRepository from '../repositories/ISkillRepository';
+import Skill from '../../infra/typeorm/entities/Skill';
+import ISkillRepository from '../../repositories/ISkillRepository';
 
 @injectable()
 export default class UpdateSkillService {

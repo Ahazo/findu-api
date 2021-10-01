@@ -1,6 +1,5 @@
 import { injectable, inject } from 'tsyringe';
 
-import ICreateFreelancerDTO from '../dtos/ICreateProfessionalLevelDTO';
 import Freelancer from '../infra/typeorm/entities/Freelancer';
 import IFreelancerRepository from '../repositories/IFreelancerRepository';
 

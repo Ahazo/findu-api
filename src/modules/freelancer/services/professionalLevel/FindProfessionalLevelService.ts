@@ -1,11 +1,10 @@
 import { injectable, inject } from 'tsyringe';
 
-import ICreateProfessionalLevelDTO from '../../dtos/ICreateProfessionalLevelDTO';
 import ProfessionalLevel from '../../infra/typeorm/entities/ProfessionalLevel';
 import IProfessionalLevelRepository from '../../repositories/IProfessionalLevelRepository';
 
 @injectable()
-export default class CreateInfluencerLevelService {
+export default class FindProfessionalLevelService {
 	constructor(
 		@inject('ProfessionaLevelRepository')
 		private professionalLevelRepository: IProfessionalLevelRepository

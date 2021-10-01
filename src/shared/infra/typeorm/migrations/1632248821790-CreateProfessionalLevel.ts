@@ -35,6 +35,16 @@ export class CreateProfessionalLevel1632248821790
 						default: `'active'`,
 						isNullable: false,
 					},
+					{
+						name: 'created_at',
+						type: 'timestamp',
+						default: 'now()',
+					},
+					{
+						name: 'updated_at',
+						type: 'timestamp',
+						default: 'now()',
+					},
 				],
 			})
 		);

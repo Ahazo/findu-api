@@ -1,7 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 
-import Specialization from '../infra/typeorm/entities/Specialization';
-import ISpecializationRepository from '../repositories/ISpecializationRepository';
+import Specialization from '../../infra/typeorm/entities/Specialization';
+import ISpecializationRepository from '../../repositories/ISpecializationRepository';
 
 @injectable()
 export default class FindSpecializationService {

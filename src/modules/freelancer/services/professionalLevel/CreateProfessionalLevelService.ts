@@ -5,9 +5,9 @@ import ProfessionalLevel from '../../infra/typeorm/entities/ProfessionalLevel';
 import IProfessionalLevelRepository from '../../repositories/IProfessionalLevelRepository';
 
 @injectable()
-export default class CreateInfluencerLevelService {
+export default class CreateProfessionalLevelService {
 	constructor(
-		@inject('ProfessionaLevelRepository')
+		@inject('ProfessionalLevelRepository')
 		private professionalLevelRepository: IProfessionalLevelRepository
 	) {}
 
@@ -30,7 +30,9 @@ export default class CreateInfluencerLevelService {
 		if (checkExperienceNeededProfessionalLevelExists)
 			throw new Error('Experience needed already exists');
 
-		const professionalLevel = this.professionalLevelRepository.create(data);
+		const professionalLevel = await this.professionalLevelRepository.create(
+			data
+		);
 
 		return professionalLevel;
 	}

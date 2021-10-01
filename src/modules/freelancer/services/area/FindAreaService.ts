@@ -1,7 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 
-import Area from '../infra/typeorm/entities/Area';
-import IAreaRepository from '../repositories/IAreaRepository';
+import Area from '../../infra/typeorm/entities/Area';
+import IAreaRepository from '../../repositories/IAreaRepository';
 
 @injectable()
 export default class FindAreaService {

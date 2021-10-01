@@ -96,7 +96,7 @@ export default class User {
 	@Column({ type: 'int', nullable: false, unique: false })
 	level_id: number;
 
-	@OneToOne(
+	@ManyToOne(
 		() => InfluencerLevel,
 		(influencerLevel: InfluencerLevel) => influencerLevel.user,
 		{ eager: true }
