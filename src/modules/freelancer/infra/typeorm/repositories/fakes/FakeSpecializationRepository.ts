@@ -44,3 +44,5 @@ class FakeSpecializationRepository implements ISpecializationRepository {
 		return specializationFound;
 	}
 }
+
+export default FakeSpecializationRepository;

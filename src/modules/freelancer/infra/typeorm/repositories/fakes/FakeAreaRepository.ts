@@ -34,3 +34,5 @@ class FakeAreaRepository implements IAreaRepository {
 		return area;
 	}
 }
+
+export default FakeAreaRepository;

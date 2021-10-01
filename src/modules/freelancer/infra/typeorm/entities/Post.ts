@@ -27,7 +27,7 @@ export default class Post {
 	@OneToMany(() => PostLike, (postLike: PostLike) => postLike.post)
 	postLike: number;
 
-	@OneToOne(() => PostMedia, (postMedia: PostMedia) => postMedia.post)
+	@OneToMany(() => PostMedia, (postMedia: PostMedia) => postMedia.post)
 	postMedia: number;
 
 	@Column({ type: 'int', nullable: false, unique: false })

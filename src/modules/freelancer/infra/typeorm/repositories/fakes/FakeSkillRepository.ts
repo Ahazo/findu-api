@@ -34,3 +34,5 @@ class FakeSkillRepository implements ISkillRepository {
 		return skillFound;
 	}
 }
+
+export default FakeSkillRepository;
