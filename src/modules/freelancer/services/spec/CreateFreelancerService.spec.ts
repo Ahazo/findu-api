@@ -90,8 +90,6 @@ describe('CreateFreelancer', () => {
 
 		const freelancer = await createFreelancer.execute(freelancerData);
 
-		console.log(freelancer);
-
 		expect(freelancer).toBeInstanceOf(Freelancer);
 	});
 });
