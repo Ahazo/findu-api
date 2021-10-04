@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import UpdateFreelancerService from 'modules/freelancer/services/UpdateFreelancerService';
 import { container } from 'tsyringe';
 
 import CreateFreelancerService from '../../../services/CreateFreelancerService';
 import FindFreelancerService from '../../../services/FindFreelancerService';
+import UpdateFreelancerService from '../../../services/UpdateFreelancerService';
 
 export default class FreelancerController {
 	async createUser(request: Request, response: Response): Promise<Response> {

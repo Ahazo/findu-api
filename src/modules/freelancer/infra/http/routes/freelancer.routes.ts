@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import FreelancerController from '../FreelancerController';
+import FreelancerController from '../controllers/FreelancerController';
 
 const freelancerRouter = Router();
 const freelancerController = new FreelancerController();

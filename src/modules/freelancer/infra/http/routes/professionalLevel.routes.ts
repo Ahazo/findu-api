@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import ProfessionalLevelController from '../ProfessionalLevelController';
+import ProfessionalLevelController from '../controllers/ProfessionalLevelController';
 
 const professionalLevelRouter = Router();
 const professionalLevelController = new ProfessionalLevelController();

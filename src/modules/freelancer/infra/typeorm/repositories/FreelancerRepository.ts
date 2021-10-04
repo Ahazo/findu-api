@@ -28,6 +28,11 @@ class FreelancerRepository implements IFreelancerRepository {
 		const freelancer = await this.freelancerRepository.findOne(id);
 		return freelancer;
 	}
+
+	public async findByUserId(user_id: number): Promise<Freelancer | undefined> {
+		const freelancer = await this.freelancerRepository.findOne(user_id);
+		return freelancer;
+	}
 }
 
 export default FreelancerRepository;

@@ -34,6 +34,14 @@ class FakeFreelancerRepository implements IFreelancerRepository {
 		);
 		return freelancerFound;
 	}
+
+	public async findByUserId(id: number): Promise<Freelancer | undefined> {
+		const freelancerFound = this.freelancers.find(
+			(freelancer) => freelancer.user_id === id
+		);
+
+		return freelancerFound;
+	}
 }
 
 export default FakeFreelancerRepository;
