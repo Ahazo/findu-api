@@ -1,6 +1,5 @@
 import ICreateInfluencerLevelDTO from '../../../user/dtos/ICreateInfluencerLevelDTO';
 import ICreateFreelancerDTO from '../../dtos/ICreateFreelancerDTO';
-import Freelancer from '../../infra/typeorm/entities/Freelancer';
 import FakeFreelancerRepository from '../../infra/typeorm/repositories/fakes/FakeFreelancerRepository';
 import FakeProfessionalLevelRepository from '../../infra/typeorm/repositories/fakes/FakeProfessionalLevelRepository';
 import CreateFreelancerService from '../CreateFreelancerService';
@@ -10,6 +9,9 @@ import CreateProfessionalLevelService from '../professionalLevel/CreateProfessio
 let fakeFreelancerRepository: FakeFreelancerRepository;
 let fakeProfessionalLevelRepository: FakeProfessionalLevelRepository;
 
+// Resolver problemas de servico
+// Adicionar criacao de usuario
+
 describe('FindBy Freelancer', () => {
 	beforeEach(() => {
 		fakeFreelancerRepository = new FakeFreelancerRepository();
@@ -18,7 +20,6 @@ describe('FindBy Freelancer', () => {
 
 	it('should be able to find freelancer by freelancer id', async () => {
 		const FindFreelancer = new FindFreelancerService(fakeFreelancerRepository);
-
 		const CreateFreelancer = new CreateFreelancerService(
 			fakeFreelancerRepository
 		);
@@ -36,32 +37,7 @@ describe('FindBy Freelancer', () => {
 
 		const freelancerData: ICreateFreelancerDTO = {
 			user_id: 1,
-			// user: {
-			// 	person: {
-			// 		address: {
-			// 			postal_code: '05638-060',
-			// 			street: 'Rua Gabriel Antunes',
-			// 			house_number: 4,
-			// 			complement: 'na frente do poster de um cara gostoso',
-			// 			city: 'Sao Paulo',
-			// 			state: 'SP',
-			// 		},
-			// 		cpf: '493.726.168-18',
-			// 		email: 'scarano.dev@gmail.com',
-			// 		cellphone_number: '(11) 97801-3866',
-			// 		first_name: 'Lucca',
-			// 		last_name: 'Scarano',
-			// 		birth_date: new Date(),
-			// 	},
-			// 	username: 'scaralu',
-			// 	password: 'AndreGostoso767!!',
-			// 	level_id: level.id,
-			// },
 			level_id: 2,
-			skill: {
-				freelancer_id: 1,
-				specialization_id: 1,
-			},
 		};
 
 		const freelancer = await CreateFreelancer.execute(freelancerData);
@@ -91,32 +67,7 @@ describe('FindBy Freelancer', () => {
 
 		const freelancerData: ICreateFreelancerDTO = {
 			user_id: 1,
-			// user: {
-			// 	person: {
-			// 		address: {
-			// 			postal_code: '05638-060',
-			// 			street: 'Rua Gabriel Antunes',
-			// 			house_number: 4,
-			// 			complement: 'na frente do poster de um cara gostoso',
-			// 			city: 'Sao Paulo',
-			// 			state: 'SP',
-			// 		},
-			// 		cpf: '493.726.168-18',
-			// 		email: 'scarano.dev@gmail.com',
-			// 		cellphone_number: '(11) 97801-3866',
-			// 		first_name: 'Lucca',
-			// 		last_name: 'Scarano',
-			// 		birth_date: new Date(),
-			// 	},
-			// 	username: 'scaralu',
-			// 	password: 'AndreGostoso767!!',
-			// 	level_id: level.id,
-			// },
-			level_id: 2,
-			skill: {
-				freelancer_id: 1,
-				specialization_id: 1,
-			},
+			level_id: level.id,
 		};
 
 		const freelancer = await CreateFreelancer.execute(freelancerData);

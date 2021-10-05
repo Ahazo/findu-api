@@ -12,6 +12,9 @@ import UpdateFreelancerService from '../UpdateFreelancerService';
 let fakeFreelancerRepository: FakeFreelancerRepository;
 let fakeProfessionalLevelRepository: FakeProfessionalLevelRepository;
 
+// Dar uma olhada nesse e resolver os testes
+// importante que esteja implementado
+
 describe('UpdateFreelancer', () => {
 	beforeEach(() => {
 		fakeFreelancerRepository = new FakeFreelancerRepository();

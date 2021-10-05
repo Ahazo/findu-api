@@ -44,6 +44,7 @@ export class CreateFreelancer1632248904509 implements MigrationInterface {
 						type: 'boolean',
 						isNullable: false,
 						isUnique: false,
+						default: true,
 					},
 					{
 						name: 'created_at',

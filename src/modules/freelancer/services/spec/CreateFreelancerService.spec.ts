@@ -24,6 +24,9 @@ let createProfessionalLevel: CreateProfessionalLevelService;
 let createUser: CreateUserService;
 let createInfluencerLevel: CreateInfluencerLevelService;
 
+// Resolver erros
+// Adicionar criacao de usuario, caso nao tenha
+
 describe('CreateFreelancer', () => {
 	beforeEach(() => {
 		fakeFreelancerRepository = new FakeFreelancerRepository();
