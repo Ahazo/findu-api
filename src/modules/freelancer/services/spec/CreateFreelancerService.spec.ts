@@ -35,7 +35,10 @@ describe('CreateFreelancer', () => {
 		fakeHashProvider = new FakeHashProvider();
 		fakeInfluencerLevelRepository = new FakeInfluencerLevelRepository();
 
-		createFreelancer = new CreateFreelancerService(fakeFreelancerRepository);
+		createFreelancer = new CreateFreelancerService(
+			fakeFreelancerRepository,
+			fakeUserRepository
+		);
 		createProfessionalLevel = new CreateProfessionalLevelService(
 			fakeProfessionalLevelRepository
 		);
