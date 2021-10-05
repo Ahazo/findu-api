@@ -1,98 +1,103 @@
-import ICreateInfluencerLevelDTO from '../../../user/dtos/ICreateInfluencerLevelDTO';
 import ICreateUserDTO from '../../../user/dtos/ICreateUserDTO';
+import FakeInfluencerLevelRepository from '../../../user/infra/typeorm/repositories/fakes/FakeInfluencerLevelRepository';
 import FakeUsersRepository from '../../../user/infra/typeorm/repositories/fakes/FakeUsersRepository';
 import FakeHashProvider from '../../../user/providers/fakes/FakeHashProvider';
+import IHashProvider from '../../../user/providers/models/IHashProvider';
+import IInfluencerLevelRepository from '../../../user/repositories/IInfluencerLevelRepository';
+import IUserRepository from '../../../user/repositories/IUserRepository';
 import CreateUserService from '../../../user/services/CreateUserService';
+import CreateInfluencerLevelService from '../../../user/services/influencerLevel/CreateInfluencerLevelService';
 import ICreateFreelancerDTO from '../../dtos/ICreateFreelancerDTO';
 import ICreateProfessionalLevelDTO from '../../dtos/ICreateProfessionalLevelDTO';
 import Freelancer from '../../infra/typeorm/entities/Freelancer';
 import FakeFreelancerRepository from '../../infra/typeorm/repositories/fakes/FakeFreelancerRepository';
 import FakeProfessionalLevelRepository from '../../infra/typeorm/repositories/fakes/FakeProfessionalLevelRepository';
+import IFreelancerRepository from '../../repositories/IFreelancerRepository';
+import IProfessionalLevelRepository from '../../repositories/IProfessionalLevelRepository';
 import CreateFreelancerService from '../CreateFreelancerService';
-import FindFreelancerService from '../FindFreelancerService';
 import CreateProfessionalLevelService from '../professionalLevel/CreateProfessionalLevelService';
-import UpdateFreelancerService from '../UpdateFreelancerService';
-
-let fakeFreelancerRepository: FakeFreelancerRepository;
-let fakeProfessionalLevelRepository: FakeProfessionalLevelRepository;
-let fakeHashProvider: FakeHashProvider;
-let fakeUserRepository: FakeUsersRepository;
-
-// Dar uma olhada nesse e resolver os testes
-// importante que esteja implementado
 
 describe('UpdateFreelancer', () => {
+	let fakeFreelancerRepository: IFreelancerRepository;
+	let fakeProfessionalLevelRepository: IProfessionalLevelRepository;
+	let fakeUserRepository: IUserRepository;
+	let fakeHashProvider: IHashProvider;
+	let fakeInfluencerLevelRepository: IInfluencerLevelRepository;
+
+	let createFreelancer: CreateFreelancerService;
+	let createProfessionalLevel: CreateProfessionalLevelService;
+	let createUser: CreateUserService;
+	let createInfluencerLevel: CreateInfluencerLevelService;
+
 	beforeEach(() => {
 		fakeFreelancerRepository = new FakeFreelancerRepository();
 		fakeProfessionalLevelRepository = new FakeProfessionalLevelRepository();
-		fakeHashProvider = new FakeHashProvider();
 		fakeUserRepository = new FakeUsersRepository();
+		fakeHashProvider = new FakeHashProvider();
+		fakeInfluencerLevelRepository = new FakeInfluencerLevelRepository();
+
+		createUser = new CreateUserService(fakeUserRepository, fakeHashProvider);
+		createInfluencerLevel = new CreateInfluencerLevelService(
+			fakeInfluencerLevelRepository
+		);
+
+		createFreelancer = new CreateFreelancerService(
+			fakeFreelancerRepository,
+			fakeUserRepository
+		);
+		createProfessionalLevel = new CreateProfessionalLevelService(
+			fakeProfessionalLevelRepository
+		);
 	});
-});
 
-it('should be able to update', async () => {
-	const FindFreelancer = new FindFreelancerService(fakeFreelancerRepository);
-	const CreateFreelancer = new CreateFreelancerService(
-		fakeFreelancerRepository,
-		fakeUserRepository
-	);
-	const CreateProfessionalLevel = new CreateProfessionalLevelService(
-		fakeProfessionalLevelRepository
-	);
+	it('should be able to update', async () => {
+		const influencerLevelData = {
+			description: 'Influencer Mighty',
+			experience_needed: 1,
+		};
 
-	const UpdateFreelancer = new UpdateFreelancerService(
-		fakeFreelancerRepository
-	);
+		const influencerLevel = await createInfluencerLevel.execute(
+			influencerLevelData
+		);
 
-	const CreateUser = new CreateUserService(
-		fakeUserRepository,
-		fakeHashProvider
-	);
-
-	const levelData: ICreateProfessionalLevelDTO = {
-		description: 'Almost Professional Mighty',
-		experience_needed: 1,
-	};
-
-	const level = await CreateProfessionalLevel.execute(levelData);
-
-	const userData: ICreateUserDTO = {
-		person: {
-			address: {
-				postal_code: '05638-060',
-				street: 'Rua Gabriel Antunes',
-				house_number: 4,
-				complement: 'na frente do poster de um cara gostoso',
-				city: 'Sao Paulo',
-				state: 'SP',
+		const userData: ICreateUserDTO = {
+			person: {
+				address: {
+					postal_code: '05638-060',
+					street: 'Rua Gabriel Antunes',
+					house_number: 4,
+					complement: 'na frente do poster de um cara gostoso',
+					city: 'Sao Paulo',
+					state: 'SP',
+				},
+				cpf: '493.726.168-18',
+				email: 'scarano.dev@gmail.com',
+				cellphone_number: '(11) 97801-3866',
+				first_name: 'Lucca',
+				last_name: 'Scarano',
+				birth_date: new Date(),
 			},
-			cpf: '493.726.168-18',
-			email: 'scarano.dev@gmail.com',
-			cellphone_number: '(11) 97801-3866',
-			first_name: 'Lucca',
-			last_name: 'Scarano',
-			birth_date: new Date(),
-		},
-		username: 'scaralu',
-		password: 'AndreGostoso767!!',
-		level_id: level.id,
-	};
+			username: 'scaralu',
+			password: 'AndreGostoso767!!',
+			level_id: influencerLevel.id,
+		};
 
-	const user = await CreateUser.execute(userData);
+		const user = await createUser.execute(userData);
 
-	const freelancerData: ICreateFreelancerDTO = {
-		user_id: user.id,
-		level_id: level.id,
-	};
+		const professionalLevelData: ICreateProfessionalLevelDTO = {
+			description: 'Almost Mighty',
+			experience_needed: 1,
+		};
 
-	const freelancerData1: ICreateFreelancerDTO = {
-		user_id: user.id,
-		level_id: level.id + 1,
-	};
+		const level = await createProfessionalLevel.execute(professionalLevelData);
 
-	const freelancer = await CreateFreelancer.execute(freelancerData);
+		const freelancerData: ICreateFreelancerDTO = {
+			user_id: user.id,
+			level_id: level.id,
+		};
 
-	const updatedFreelancer = await UpdateFreelancer.execute(freelancer);
+		const freelancer = await createFreelancer.execute(freelancerData);
 
-	expect(updatedFreelancer).toBeInstanceOf(Freelancer);
+		expect(freelancer).toBeInstanceOf(Freelancer);
+	});
 });

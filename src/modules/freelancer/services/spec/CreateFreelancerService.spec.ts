@@ -12,22 +12,19 @@ import FakeProfessionalLevelRepository from '../../infra/typeorm/repositories/fa
 import CreateFreelancerService from '../CreateFreelancerService';
 import CreateProfessionalLevelService from '../professionalLevel/CreateProfessionalLevelService';
 
-let fakeFreelancerRepository: FakeFreelancerRepository;
-let fakeProfessionalLevelRepository: FakeProfessionalLevelRepository;
-let fakeUserRepository: FakeUsersRepository;
-let fakeHashProvider: FakeHashProvider;
-let fakeInfluencerLevelRepository: FakeInfluencerLevelRepository;
-
-let createFreelancer: CreateFreelancerService;
-let createProfessionalLevel: CreateProfessionalLevelService;
-
-let createUser: CreateUserService;
-let createInfluencerLevel: CreateInfluencerLevelService;
-
-// Resolver erros
-// Adicionar criacao de usuario, caso nao tenha
-
 describe('CreateFreelancer', () => {
+	let fakeFreelancerRepository: FakeFreelancerRepository;
+	let fakeProfessionalLevelRepository: FakeProfessionalLevelRepository;
+	let fakeUserRepository: FakeUsersRepository;
+	let fakeHashProvider: FakeHashProvider;
+	let fakeInfluencerLevelRepository: FakeInfluencerLevelRepository;
+
+	let createFreelancer: CreateFreelancerService;
+	let createProfessionalLevel: CreateProfessionalLevelService;
+
+	let createUser: CreateUserService;
+	let createInfluencerLevel: CreateInfluencerLevelService;
+
 	beforeEach(() => {
 		fakeFreelancerRepository = new FakeFreelancerRepository();
 		fakeProfessionalLevelRepository = new FakeProfessionalLevelRepository();
