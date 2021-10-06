@@ -16,6 +16,7 @@ import IFreelancerRepository from '../../repositories/IFreelancerRepository';
 import IProfessionalLevelRepository from '../../repositories/IProfessionalLevelRepository';
 import CreateFreelancerService from '../CreateFreelancerService';
 import CreateProfessionalLevelService from '../professionalLevel/CreateProfessionalLevelService';
+import UpdateFreelancerService from '../UpdateFreelancerService';
 
 describe('UpdateFreelancer', () => {
 	let fakeFreelancerRepository: IFreelancerRepository;
@@ -28,6 +29,7 @@ describe('UpdateFreelancer', () => {
 	let createProfessionalLevel: CreateProfessionalLevelService;
 	let createUser: CreateUserService;
 	let createInfluencerLevel: CreateInfluencerLevelService;
+	let updateFreelancer: UpdateFreelancerService;
 
 	beforeEach(() => {
 		fakeFreelancerRepository = new FakeFreelancerRepository();
@@ -48,6 +50,8 @@ describe('UpdateFreelancer', () => {
 		createProfessionalLevel = new CreateProfessionalLevelService(
 			fakeProfessionalLevelRepository
 		);
+
+		updateFreelancer = new UpdateFreelancerService(fakeFreelancerRepository);
 	});
 
 	it('should be able to update', async () => {
@@ -98,6 +102,11 @@ describe('UpdateFreelancer', () => {
 
 		const freelancer = await createFreelancer.execute(freelancerData);
 
-		expect(freelancer).toBeInstanceOf(Freelancer);
+		const updatedFreelancer = await updateFreelancer.execute({
+			...freelancer,
+			projects_count: 1,
+		});
+
+		expect(updatedFreelancer).toHaveProperty('projects_count', 1);
 	});
 });

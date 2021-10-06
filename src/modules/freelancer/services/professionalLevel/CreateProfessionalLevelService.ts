@@ -14,8 +14,6 @@ export default class CreateProfessionalLevelService {
 	public async execute(
 		data: ICreateProfessionalLevelDTO
 	): Promise<ProfessionalLevel> {
-		console.info(this.professionalLevelRepository);
-
 		const checkDescriptionProfessionalLevelExists =
 			await this.professionalLevelRepository.findByDescription(
 				data.description
