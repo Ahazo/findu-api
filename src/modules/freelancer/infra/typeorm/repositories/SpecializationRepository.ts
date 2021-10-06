@@ -33,15 +33,18 @@ export default class SpecializationRepository
 	async findByName(
 		specializationName: string
 	): Promise<Specialization | undefined> {
-		const specialization =
-			this.specializationRepository.findOne(specializationName);
+		const specialization = this.specializationRepository.findOne({
+			where: {
+				description: specializationName,
+			},
+		});
 
 		return specialization;
 	}
 
 	async findAll(): Promise<Specialization[] | undefined> {
-		const specialization = this.specializationRepository.find();
+		const specializations = this.specializationRepository.find();
 
-		return specialization;
+		return specializations;
 	}
 }

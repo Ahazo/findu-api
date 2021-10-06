@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import FindAreaService from 'modules/freelancer/services/area/FindAreaService';
 import { container } from 'tsyringe';
 
 import CreateSpecializationService from '../../../services/specialization/CreateSpecializationService';
 import FindSpecializationService from '../../../services/specialization/FindSpecializationService';
+import UpdateSpecializationService from '../../../services/specialization/UpdateSpecializationService';
 
 export default class SpecializationController {
 	async create(request: Request, response: Response): Promise<Response> {
@@ -35,5 +35,22 @@ export default class SpecializationController {
 		}
 
 		return response.status(200).json(specialization);
+	}
+
+	async findAll(_request: Request, response: Response): Promise<Response> {
+		const findSpecialization = container.resolve(FindSpecializationService);
+
+		const specializations = findSpecialization.execute();
+
+		return response.status(200).json(specializations);
+	}
+
+	async update(request: Request, response: Response): Promise<Response> {
+		const updateSpecialization = container.resolve(UpdateSpecializationService);
+		const specializationData = request.body;
+
+		await updateSpecialization.execute(specializationData);
+
+		return response.status(204).send();
 	}
 }

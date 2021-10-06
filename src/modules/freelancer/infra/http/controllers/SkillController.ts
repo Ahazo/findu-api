@@ -3,6 +3,7 @@ import { container } from 'tsyringe';
 
 import CreateSkillService from '../../../services/skill/CreateSkillService';
 import FindSkillService from '../../../services/skill/FindSkillService';
+import UpdateSkillService from '../../../services/skill/UpdateSkillService';
 
 export default class SkillController {
 	async create(request: Request, response: Response): Promise<Response> {
@@ -31,5 +32,14 @@ export default class SkillController {
 		}
 
 		return response.status(200).json(skill);
+	}
+
+	async update(request: Request, response: Response): Promise<Response> {
+		const updateSkill = container.resolve(UpdateSkillService);
+		const skillData = request.body;
+
+		await updateSkill.execute(skillData);
+
+		return response.status(204).send();
 	}
 }

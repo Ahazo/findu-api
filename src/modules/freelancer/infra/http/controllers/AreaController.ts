@@ -14,7 +14,7 @@ export default class AreaController {
 
 		if (!area)
 			response.status(400).json({
-				message: 'There was an error creating your area',
+				message: 'There was an error creating new area',
 			});
 
 		return response.status(200).json(area);
@@ -52,8 +52,8 @@ export default class AreaController {
 		const updateArea = container.resolve(UpdateAreaService);
 		const areaData = request.body;
 
-		const area = await updateArea.execute(areaData);
+		await updateArea.execute(areaData);
 
-		return response.status(204).send(area);
+		return response.status(204).send();
 	}
 }

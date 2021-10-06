@@ -10,18 +10,23 @@ export default class FindSpecializationService {
 		private specializationRepository: ISpecializationRepository
 	) {}
 
-	public async executeById(id: number): Promise<Specialization | undefined> {
-		const result = await this.specializationRepository.findById(id);
+	public async execute(): Promise<Specialization[] | undefined> {
+		const specializations = await this.specializationRepository.findAll();
+		return specializations;
+	}
 
-		return result;
+	public async executeById(id: number): Promise<Specialization | undefined> {
+		const specialization = await this.specializationRepository.findById(id);
+
+		return specialization;
 	}
 
 	public async executeByName(
 		name: string
 	): Promise<Specialization | undefined> {
-		const result = await this.specializationRepository.findByName(name);
+		const specialization = await this.specializationRepository.findByName(name);
 
-		return result;
+		return specialization;
 	}
 
 	public async executeAll(): Promise<Specialization[] | undefined> {
