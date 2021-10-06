@@ -12,10 +12,10 @@ export default class SkillRepository implements ISkillRepository {
 	}
 
 	async create(data: ICreateSkillsDTO): Promise<Skill> {
-		const area = this.skillRepository.create(data);
+		const skill = this.skillRepository.create(data);
 
-		await this.skillRepository.save(area);
-		return area;
+		await this.skillRepository.save(skill);
+		return skill;
 	}
 
 	async save(skill: Skill): Promise<Skill> {
@@ -23,15 +23,20 @@ export default class SkillRepository implements ISkillRepository {
 	}
 
 	async findById(id: number): Promise<Skill | undefined> {
-		const area = await this.skillRepository.findOne(id);
-		return area;
+		const skill = await this.skillRepository.findOne(id);
+		return skill;
 	}
 
 	async findByFreelancerId(freelancerId: number): Promise<Skill[] | undefined> {
-		const area = await this.skillRepository.find({
+		const skill = await this.skillRepository.find({
 			where: freelancerId.toString(),
 		});
 
-		return area;
+		return skill;
+	}
+
+	async findAll(): Promise<Skill[] | undefined> {
+		const skill = await this.skillRepository.find();
+		return skill;
 	}
 }

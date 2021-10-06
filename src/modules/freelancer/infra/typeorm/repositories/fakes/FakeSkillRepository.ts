@@ -33,6 +33,10 @@ class FakeSkillRepository implements ISkillRepository {
 
 		return skillFound;
 	}
+
+	public async findAll(): Promise<Skill[] | undefined> {
+		return this.skills;
+	}
 }
 
 export default FakeSkillRepository;

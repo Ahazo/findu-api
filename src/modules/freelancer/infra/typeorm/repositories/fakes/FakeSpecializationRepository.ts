@@ -43,6 +43,10 @@ class FakeSpecializationRepository implements ISpecializationRepository {
 
 		return specializationFound;
 	}
+
+	async findAll(): Promise<Specialization[] | undefined> {
+		return this.specializations;
+	}
 }
 
 export default FakeSpecializationRepository;

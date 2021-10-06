@@ -21,4 +21,10 @@ export default class FindAreaService {
 
 		return result;
 	}
+
+	public async executeAll(): Promise<Area[] | undefined> {
+		const result = await this.areaRepository.findAll();
+
+		return result;
+	}
 }

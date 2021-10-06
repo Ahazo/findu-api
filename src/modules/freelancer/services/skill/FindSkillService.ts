@@ -15,4 +15,10 @@ export default class FindSkillService {
 
 		return result;
 	}
+
+	public async executeAll(): Promise<Skill[] | undefined> {
+		const result = await this.skillRepository.findAll();
+
+		return result;
+	}
 }

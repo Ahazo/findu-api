@@ -33,6 +33,10 @@ class FakeAreaRepository implements IAreaRepository {
 
 		return area;
 	}
+
+	public async findAll(): Promise<Area[] | undefined> {
+		return this.areas;
+	}
 }
 
 export default FakeAreaRepository;

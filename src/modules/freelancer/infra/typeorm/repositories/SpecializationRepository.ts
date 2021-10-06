@@ -38,4 +38,10 @@ export default class SpecializationRepository
 
 		return specialization;
 	}
+
+	async findAll(): Promise<Specialization[] | undefined> {
+		const specialization = this.specializationRepository.find();
+
+		return specialization;
+	}
 }

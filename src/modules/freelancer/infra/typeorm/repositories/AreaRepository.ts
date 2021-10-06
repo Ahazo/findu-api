@@ -1,36 +1,42 @@
 import ICreateAreaDTO from 'modules/freelancer/dtos/ICreateAreaDTO';
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Repository, Any } from 'typeorm';
 
 import IAreaRepository from '../../../repositories/IAreaRepository';
 import Area from '../entities/Area';
 
 export default class AreaRepository implements IAreaRepository {
-	private areaRespository: Repository<Area>;
+	private areaRepository: Repository<Area>;
 
 	constructor() {
-		this.areaRespository = getRepository(Area);
+		this.areaRepository = getRepository(Area);
 	}
 
 	async create(data: ICreateAreaDTO): Promise<Area> {
-		const area = this.areaRespository.create(data);
+		const area = this.areaRepository.create(data);
 
-		await this.areaRespository.save(area);
+		await this.areaRepository.save(area);
 		return area;
 	}
 
 	async save(area: Area): Promise<Area> {
-		return this.areaRespository.save(area);
+		return this.areaRepository.save(area);
 	}
 
 	async findById(id: number): Promise<Area | undefined> {
-		const area = await this.areaRespository.findOne(id);
+		const area = await this.areaRepository.findOne(id);
 		return area;
 	}
 
 	async findByName(areaName: string): Promise<Area | undefined> {
-		const area = await this.areaRespository.findOne({
+		const area = await this.areaRepository.findOne({
 			where: areaName,
 		});
+
+		return area;
+	}
+
+	async findAll(): Promise<Area[] | undefined> {
+		const area = await this.areaRepository.find();
 
 		return area;
 	}
