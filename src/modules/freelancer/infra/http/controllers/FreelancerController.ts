@@ -36,6 +36,6 @@ export default class FreelancerController {
 
 		const freelancer = await updateFreelancer.execute(freelancerData);
 
-		return response.status(204).send(freelancer);
+		return response.status(204).send();
 	}
 }
