@@ -34,8 +34,8 @@ export default class FreelancerController {
 		const updateFreelancer = container.resolve(UpdateFreelancerService);
 		const freelancerData = request.body;
 
-		// const freelancer = await updateFreelancer.execute(freelancerData);
+		const freelancer = await updateFreelancer.execute(freelancerData);
 
-		return response.status(204).send();
+		return response.status(204).send(freelancer);
 	}
 }

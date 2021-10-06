@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
-import CreateSkillService from 'modules/freelancer/services/skill/CreateSkillService';
-import FindSkillService from 'modules/freelancer/services/skill/FindSkillService';
 import { container } from 'tsyringe';
+
+import CreateSkillService from '../../../services/skill/CreateSkillService';
+import FindSkillService from '../../../services/skill/FindSkillService';
 
 export default class SkillController {
 	async create(request: Request, response: Response): Promise<Response> {
@@ -12,7 +13,7 @@ export default class SkillController {
 
 		if (!skill)
 			response.status(400).json({
-				message: 'There was an error creating professional level',
+				message: 'There was an error creating your skill',
 			});
 
 		return response.status(200).json(skill);

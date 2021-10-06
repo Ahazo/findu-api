@@ -1,5 +1,6 @@
 import { Router } from 'express';
 
+import areaRouter from '../../../../modules/freelancer/infra/http/routes/area.routes';
 import freelancerRouter from '../../../../modules/freelancer/infra/http/routes/freelancer.routes';
 import professionalLevelRouter from '../../../../modules/freelancer/infra/http/routes/professionalLevel.routes';
 import influencerLevelRouter from '../../../../modules/user/infra/http/routes/influencerLevel.routes';
