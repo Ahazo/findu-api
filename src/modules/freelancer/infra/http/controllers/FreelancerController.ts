@@ -6,7 +6,7 @@ import FindFreelancerService from '../../../services/FindFreelancerService';
 import UpdateFreelancerService from '../../../services/UpdateFreelancerService';
 
 export default class FreelancerController {
-	async createUser(request: Request, response: Response): Promise<Response> {
+	async create(request: Request, response: Response): Promise<Response> {
 		const freelancerData = request.body;
 		const createFreelancer = container.resolve(CreateFreelancerService);
 		const freelancer = await createFreelancer.execute(freelancerData);
@@ -16,10 +16,7 @@ export default class FreelancerController {
 		});
 	}
 
-	async findFreelancerById(
-		request: Request,
-		response: Response
-	): Promise<Response> {
+	async findById(request: Request, response: Response): Promise<Response> {
 		const findFreelancer = container.resolve(FindFreelancerService);
 		const { id } = request.params;
 		const freelancer = await findFreelancer.executeById(+id);
@@ -33,10 +30,7 @@ export default class FreelancerController {
 		return response.status(200).json(freelancer);
 	}
 
-	async updateFreelancer(
-		request: Request,
-		response: Response
-	): Promise<Response> {
+	async update(request: Request, response: Response): Promise<Response> {
 		const updateFreelancer = container.resolve(UpdateFreelancerService);
 		const freelancerData = request.body;
 

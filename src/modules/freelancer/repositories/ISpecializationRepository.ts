@@ -6,4 +6,5 @@ export default interface ISpecializationRepository {
 	save(specialization: Specialization): Promise<Specialization>;
 	findById(id: number): Promise<Specialization | undefined>;
 	findByName(specializationName: string): Promise<Specialization | undefined>;
+	findAll(): Promise<Specialization[] | undefined>;
 }

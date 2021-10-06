@@ -13,7 +13,6 @@ routes.use('/api/session', sessionRouter);
 routes.use('/api/influencerLevel', influencerLevelRouter);
 routes.use('/api/professionalLevel', professionalLevelRouter);
 routes.use('/api/freelancer', freelancerRouter);
-// routes.use('/api/area', areaRouter);
-// routes.use('/api/skills', influencerLevelRouter);
+routes.use('/api/area', areaRouter);
 
 export default routes;

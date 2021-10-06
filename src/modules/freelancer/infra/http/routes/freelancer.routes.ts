@@ -1,18 +1,18 @@
 import { Router } from 'express';
 
 import FreelancerController from '../controllers/FreelancerController';
+import SkillController from '../controllers/SkillController';
 
 const freelancerRouter = Router();
+
 const freelancerController = new FreelancerController();
+const skillController = new SkillController();
 
-freelancerRouter.post('/', freelancerController.createUser);
+freelancerRouter.post('/', freelancerController.create);
+freelancerRouter.put('/update', freelancerController.update);
+freelancerRouter.get('/', freelancerController.findById);
 
-freelancerRouter.post('/update', freelancerController.updateFreelancer);
-
-freelancerRouter.get('/', freelancerController.findFreelancerById);
+freelancerRouter.post('/skills/', skillController.create);
+freelancerRouter.get('/skills/:id', skillController.findById);
 
 export default freelancerRouter;
-
-// fazer as rotas dos servicos que voce criou
-// garantir que funcionam via postman
-// questionar se as informacoes que estao sendo passadas sao necessarias

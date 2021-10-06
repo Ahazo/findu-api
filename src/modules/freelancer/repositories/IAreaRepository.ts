@@ -6,4 +6,5 @@ export default interface IAreaRepository {
 	save(area: Area): Promise<Area>;
 	findById(id: number): Promise<Area | undefined>;
 	findByName(areaName: string): Promise<Area | undefined>;
+	findAll(): Promise<Area[] | undefined>;
 }
