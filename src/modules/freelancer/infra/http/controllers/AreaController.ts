@@ -1,15 +1,15 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
+import CreateAreaService from '../../../services/area/CreateAreaService';
 import FindAreaService from '../../../services/area/FindAreaService';
 import UpdateAreaService from '../../../services/area/UpdateAreaService';
-import CreateSkillService from '../../../services/skill/CreateSkillService';
 
 export default class AreaController {
 	async create(request: Request, response: Response): Promise<Response> {
 		const areaData = request.body;
 
-		const createArea = container.resolve(CreateSkillService);
+		const createArea = container.resolve(CreateAreaService);
 		const area = await createArea.execute(areaData);
 
 		if (!area)

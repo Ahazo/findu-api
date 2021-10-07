@@ -13,8 +13,8 @@ areaRouter.get('/:description', areaController.findByName);
 areaRouter.get('/:id', areaController.findById);
 areaRouter.put('/', areaController.update);
 
-areaRouter.post('/', specializationController.create);
-areaRouter.get('/:id', specializationController.findById);
-areaRouter.get('/', specializationController.findAll);
+areaRouter.post('/specialization/', specializationController.create);
+areaRouter.get('/specialization/:id', specializationController.findById);
+areaRouter.get('/specialization/', specializationController.findAll);
 
 export default areaRouter;
