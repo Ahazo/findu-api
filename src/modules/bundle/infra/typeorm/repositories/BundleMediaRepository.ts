@@ -15,6 +15,7 @@ export default class BundleMediaRepository implements IBundleMediaRepository {
 		const bundle = await this.bundleMediaRepository.create(data);
 
 		await this.bundleMediaRepository.save(bundle);
+
 		return bundle;
 	}
 
