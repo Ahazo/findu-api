@@ -1,6 +1,7 @@
-import express from 'express';
 import cors from 'cors';
+import express from 'express';
 import { createConnection } from 'typeorm';
+
 import routes from './routes';
 import '../../container';
 
