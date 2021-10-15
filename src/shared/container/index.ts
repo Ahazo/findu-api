@@ -16,6 +16,12 @@ import IAreaRepository from '../../modules/freelancer/repositories/IAreaReposito
 import AreaRepository from '../../modules/freelancer/infra/typeorm/repositories/AreaRepository';
 import ISpecializationRepository from '../../modules/freelancer/repositories/ISpecializationRepository';
 import SpecializationRepository from '../../modules/freelancer/infra/typeorm/repositories/SpecializationRepository';
+import IBundleRepository from '../../modules/bundle/repositories/IBundleRepository';
+import BundleRepository from '../../modules/bundle/infra/typeorm/repositories/BundleRepository';
+import IBundleMediaRepository from '../../modules/bundle/repositories/IBundleMediaRepository';
+import BundleMediaRepository from '../../modules/bundle/infra/typeorm/repositories/BundleMediaRepository';
+import IBundleRelationRepository from '../../modules/bundle/repositories/IBundleRelationRepository';
+import BundleRelationRepository from '../../modules/bundle/infra/typeorm/repositories/BundleRelationsRepository';
 
 container.registerSingleton<IUserRepository>(
 	'UsersRepository',
@@ -47,4 +53,19 @@ container.registerSingleton<ISkillRepository>(
 container.registerSingleton<ISpecializationRepository>(
 	'SpecializationRepository',
 	SpecializationRepository
+);
+
+container.registerSingleton<IBundleRepository>(
+	'BundleRepository',
+	BundleRepository
+);
+
+container.registerSingleton<IBundleMediaRepository>(
+	'BundleMediaRepository',
+	BundleMediaRepository
+);
+
+container.registerSingleton<IBundleRelationRepository>(
+	'BundleRelationsRepository',
+	BundleRelationRepository
 );

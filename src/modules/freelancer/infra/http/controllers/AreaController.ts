@@ -41,7 +41,7 @@ export default class AreaController {
 
 		if (!area) {
 			response.status(500).json({
-				message: 'Area not ID found',
+				message: 'Area ID not found',
 			});
 		}
 

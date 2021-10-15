@@ -1,8 +1,5 @@
-import ICreateFreelancerDTO from '../../freelancer/dtos/ICreateFreelancerDTO';
-import ICreateBundleDTO from './ICreateBundleDTO';
-
 export default interface ICreateBundleRelationDTO {
-	bundle: ICreateBundleDTO;
-	freelancer: ICreateFreelancerDTO;
+	bundle_id: number;
+	freelancer_id: number;
 	percentage: number;
 }
