@@ -22,6 +22,14 @@ import IBundleMediaRepository from '../../modules/bundle/repositories/IBundleMed
 import BundleMediaRepository from '../../modules/bundle/infra/typeorm/repositories/BundleMediaRepository';
 import IBundleRelationRepository from '../../modules/bundle/repositories/IBundleRelationRepository';
 import BundleRelationRepository from '../../modules/bundle/infra/typeorm/repositories/BundleRelationsRepository';
+import IDeliveryAgreementRepository from '../../modules/order/repositories/IDeliveryAgreementRepository';
+import DeliveryAgreementRepository from '../../modules/order/infra/typeorm/repositories/DeliveryAgreementRepository';
+import IOrderRepository from '../../modules/order/repositories/IOrderRepository';
+import OrderRepository from '../../modules/order/infra/typeorm/repositories/OrderRepository';
+import IOrderLineRepository from '../../modules/order/repositories/IOrderLineRepository';
+import OrderLineRepository from '../../modules/order/infra/typeorm/repositories/OrderLineRepository';
+import IOrderStatusRepository from '../../modules/order/repositories/IOrderStatusRepository';
+import OrderStatusRepository from '../../modules/order/infra/typeorm/repositories/OrderStatusRepository';
 
 container.registerSingleton<IUserRepository>(
 	'UsersRepository',
@@ -68,4 +76,24 @@ container.registerSingleton<IBundleMediaRepository>(
 container.registerSingleton<IBundleRelationRepository>(
 	'BundleRelationsRepository',
 	BundleRelationRepository
+);
+
+container.registerSingleton<IDeliveryAgreementRepository>(
+	'DeliveryAgreementRepository',
+	DeliveryAgreementRepository
+);
+
+container.registerSingleton<IOrderRepository>(
+	'OrderRepository',
+	OrderRepository
+);
+
+container.registerSingleton<IOrderLineRepository>(
+	'OrderLineRepository',
+	OrderLineRepository
+);
+
+container.registerSingleton<IOrderStatusRepository>(
+	'OrderStatusRepository',
+	OrderStatusRepository
 );

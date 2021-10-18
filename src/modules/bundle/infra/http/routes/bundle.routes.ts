@@ -12,7 +12,7 @@ const bundleRelationController = new BundleRelationController();
 
 bundleRouter.post('/', bundleController.create);
 bundleRouter.get('/:description', bundleController.findByName);
-bundleRouter.post('/', bundleController.create);
+bundleRouter.get('/:id', bundleController.findById);
 bundleRouter.put('/', bundleController.update);
 
 bundleRouter.post('/bundlemedia/', bundleMediaController.create);
