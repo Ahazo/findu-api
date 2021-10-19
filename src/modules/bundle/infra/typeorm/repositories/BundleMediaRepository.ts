@@ -1,6 +1,6 @@
-import ICreateBundleMediasDTO from 'modules/bundle/dtos/ICreateBundleMediaDTO';
 import { getRepository, Repository, Any } from 'typeorm';
 
+import ICreateBundleMediasDTO from '../../../dtos/ICreateBundleMediaDTO';
 import IBundleMediaRepository from '../../../repositories/IBundleMediaRepository';
 import BundleMedia from '../entities/BundleMedia';
 
