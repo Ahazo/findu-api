@@ -5,6 +5,6 @@ export default interface IAreaRepository {
 	create(data: ICreateAreaDTO): Promise<Area>;
 	save(area: Area): Promise<Area>;
 	findById(id: number): Promise<Area | undefined>;
-	findByName(areaName: string): Promise<Area | undefined>;
+	findByDescription(areaName: string): Promise<Area | undefined>;
 	findAll(): Promise<Area[] | undefined>;
 }

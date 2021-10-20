@@ -1,7 +1,5 @@
-import Area from 'modules/freelancer/infra/typeorm/entities/Area';
-
 import ICreateAreaDTO from '../../../dtos/ICreateAreaDTO';
-import FakeAreaRepository from '../../../infra/typeorm/repositories/fakes/FakeAreaRepository';
+import FakeAreaRepository from '../../../repositories/fakes/FakeAreaRepository';
 import CreateAreaService from '../CreateAreaService';
 import UpdateAreaService from '../UpdateAreaService';
 
@@ -19,18 +17,40 @@ describe('UpdateArea', () => {
 	});
 
 	it('should be able to update area', async () => {
-		const areaData1: ICreateAreaDTO = {
-			description: 'papirologia',
+		const areaData: ICreateAreaDTO = {
+			description: 'Area Description',
 		};
 
-		const area1 = await createAreaService.execute(areaData1);
+		const area = await createAreaService.execute(areaData);
 
 		const updatedArea = await updateAreaService.execute({
-			...area1,
-			id: area1.id,
-			description: 'aa',
+			...area,
+			description: 'Updated Area Description',
 		});
 
-		expect(updatedArea.description).toEqual('aa');
+		expect(updatedArea.description).toEqual('Updated Area Description');
+	});
+
+	it('should not be able update to an existent area description', async () => {
+		const areaData: ICreateAreaDTO = {
+			description: 'Area Description',
+		};
+
+		const secondAreaData: ICreateAreaDTO = {
+			description: 'Different Area Description',
+		};
+
+		await createAreaService.execute(areaData);
+
+		const areaWithExistentDescription = await createAreaService.execute(
+			secondAreaData
+		);
+
+		await expect(
+			updateAreaService.execute({
+				...areaWithExistentDescription,
+				description: 'Area Description',
+			})
+		).rejects.toBeInstanceOf(Error);
 	});
 });

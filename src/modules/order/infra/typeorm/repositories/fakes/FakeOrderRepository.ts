@@ -10,7 +10,7 @@ export default class FakeOrderRepository implements IOrderRepository {
 
 		Object.assign(
 			order,
-			{ id: Math.floor(Math.random() * (10 - 1) + 1) },
+			{ id: Math.floor(Math.random() * (100 - 1) + 1) },
 			data
 		);
 
@@ -19,16 +19,14 @@ export default class FakeOrderRepository implements IOrderRepository {
 	}
 
 	async save(data: Order): Promise<Order> {
-		const find = await this.orders.findIndex(
-			(findOrder) => findOrder.id === data.id
-		);
+		const find = this.orders.findIndex((findOrder) => findOrder.id === data.id);
 
 		this.orders[find] = data;
 		return data;
 	}
 
 	async findById(id: number): Promise<Order | undefined> {
-		const find = await this.orders.find((findOrder) => findOrder.id === id);
+		const find = this.orders.find((findOrder) => findOrder.id === id);
 
 		return find;
 	}

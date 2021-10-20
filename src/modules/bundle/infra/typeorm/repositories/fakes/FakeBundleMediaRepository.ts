@@ -13,7 +13,7 @@ export default class FakeBundleMediaRepository
 
 		Object.assign(
 			bundleMedia,
-			{ id: Math.floor(Math.random() * (10 - 1) + 1) },
+			{ id: Math.floor(Math.random() * (100 - 1) + 1) },
 			data
 		);
 

@@ -1,6 +1,6 @@
 import ICreateAreaDTO from '../../../dtos/ICreateAreaDTO';
 import Area from '../../../infra/typeorm/entities/Area';
-import FakeAreaRepository from '../../../infra/typeorm/repositories/fakes/FakeAreaRepository';
+import FakeAreaRepository from '../../../repositories/fakes/FakeAreaRepository';
 import CreateAreaService from '../CreateAreaService';
 
 describe('CreateArea', () => {
@@ -14,9 +14,25 @@ describe('CreateArea', () => {
 
 	it('should be able to create area', async () => {
 		const areaData: ICreateAreaDTO = {
-			description: 'Ideologia assincrona',
+			description: 'Area Description',
 		};
 
 		expect(await createAreaService.execute(areaData)).toBeInstanceOf(Area);
+	});
+
+	it('should not be able to create area with existing description', async () => {
+		const area: ICreateAreaDTO = {
+			description: 'Area Description',
+		};
+
+		await createAreaService.execute(area);
+
+		const areaWithExistingDescription: ICreateAreaDTO = {
+			description: 'Area Description',
+		};
+
+		expect(
+			await createAreaService.execute(areaWithExistingDescription)
+		).toBeInstanceOf(Error);
 	});
 });

@@ -7,8 +7,8 @@ import CreateInfluencerLevelService from '../../../user/services/influencerLevel
 import ICreateFreelancerDTO from '../../dtos/ICreateFreelancerDTO';
 import ICreateProfessionalLevelDTO from '../../dtos/ICreateProfessionalLevelDTO';
 import Freelancer from '../../infra/typeorm/entities/Freelancer';
-import FakeFreelancerRepository from '../../infra/typeorm/repositories/fakes/FakeFreelancerRepository';
-import FakeProfessionalLevelRepository from '../../infra/typeorm/repositories/fakes/FakeProfessionalLevelRepository';
+import FakeFreelancerRepository from '../../repositories/fakes/FakeFreelancerRepository';
+import FakeProfessionalLevelRepository from '../../repositories/fakes/FakeProfessionalLevelRepository';
 import CreateFreelancerService from '../CreateFreelancerService';
 import CreateProfessionalLevelService from '../professionalLevel/CreateProfessionalLevelService';
 

@@ -1,5 +1,5 @@
 import ICreateAreaDTO from '../../../dtos/ICreateAreaDTO';
-import FakeAreaRepository from '../../../infra/typeorm/repositories/fakes/FakeAreaRepository';
+import FakeAreaRepository from '../../../repositories/fakes/FakeAreaRepository';
 import CreateAreaService from '../CreateAreaService';
 import FindAreaService from '../FindAreaService';
 
@@ -16,61 +16,63 @@ describe('FindArea', () => {
 
 	it('should be able to find area by its id', async () => {
 		const areaData: ICreateAreaDTO = {
-			description: 'Airea aiaire',
+			description: 'Area Description',
 		};
 
 		const area = await createAreaService.execute(areaData);
-
 		const find = await findAreaService.executeById(area.id);
 
 		expect(find).toEqual(area);
 	});
 
-	it('should be able to find area by its name', async () => {
+	it('should be able to find area by its description', async () => {
 		const areaData: ICreateAreaDTO = {
-			description: 'Airea aiaire',
+			description: 'Area Description',
 		};
 
 		const area = await createAreaService.execute(areaData);
+		const areaFound = await findAreaService.executeByDescription(
+			area.description
+		);
 
-		const find = await findAreaService.executeByName(area.description);
-
-		expect(find).toEqual(area);
+		expect(areaFound).toEqual(area);
 	});
 
 	it('should not be able to find area by its wrong id', async () => {
 		const areaData: ICreateAreaDTO = {
-			description: 'Airea aiaire',
+			description: 'Area Description',
 		};
 
 		const area = await createAreaService.execute(areaData);
 
-		const find = await findAreaService.executeById(area.id + 1);
+		const unexistentId = area.id + 1;
 
-		expect(find).toEqual(undefined);
+		const areaNotFound = await findAreaService.executeById(unexistentId);
+
+		expect(areaNotFound).toEqual(undefined);
 	});
 
 	it('should not be able to find area by its wrong name', async () => {
 		const areaData: ICreateAreaDTO = {
-			description: 'Airea aiaire',
+			description: 'Area Description',
 		};
 
-		const area = await createAreaService.execute(areaData);
+		await createAreaService.execute(areaData);
 
-		const find = await findAreaService.executeByName('aracnologia');
-
-		expect(find).toEqual(undefined);
+		expect(
+			await findAreaService.executeByDescription('Wrong Area Description')
+		).toBe(undefined);
 	});
 
-	it('should be able to find all the areas', async () => {
+	it('should be able to find all areas', async () => {
 		const firstAreaData: ICreateAreaDTO = {
-			description: 'Aiaiairia',
+			description: 'First Area Description',
 		};
 
 		await createAreaService.execute(firstAreaData);
 
 		const secondAreaData: ICreateAreaDTO = {
-			description: 'AAAAREmaria',
+			description: 'Second Area Description',
 		};
 
 		await createAreaService.execute(secondAreaData);

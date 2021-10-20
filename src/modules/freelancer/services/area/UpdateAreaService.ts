@@ -17,9 +17,8 @@ export default class UpdateAreaService {
 			throw new Error('area not found');
 		}
 
-		const areaWithUpdatedDescription = await this.areaRepository.findByName(
-			area.description
-		);
+		const areaWithUpdatedDescription =
+			await this.areaRepository.findByDescription(area.description);
 
 		if (
 			areaWithUpdatedDescription &&

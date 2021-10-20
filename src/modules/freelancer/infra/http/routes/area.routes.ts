@@ -9,7 +9,7 @@ const areaController = new AreaController();
 const specializationController = new SpecializationController();
 
 areaRouter.post('/', areaController.create);
-areaRouter.get('/:description', areaController.findByName);
+areaRouter.get('/:description', areaController.findByDescription);
 areaRouter.get('/:id', areaController.findById);
 areaRouter.put('/', areaController.update);
 

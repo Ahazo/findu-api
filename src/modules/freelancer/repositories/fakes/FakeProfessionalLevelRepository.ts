@@ -1,6 +1,6 @@
-import ICreateProfessionalLevelDTO from '../../../../dtos/ICreateProfessionalLevelDTO';
-import IProfessionalLevelRepository from '../../../../repositories/IProfessionalLevelRepository';
-import ProfessionalLevel from '../../entities/ProfessionalLevel';
+import ICreateProfessionalLevelDTO from '../../dtos/ICreateProfessionalLevelDTO';
+import ProfessionalLevel from '../../infra/typeorm/entities/ProfessionalLevel';
+import IProfessionalLevelRepository from '../IProfessionalLevelRepository';
 
 class FakeProfessionalLevelRepository implements IProfessionalLevelRepository {
 	private professionalLevels: ProfessionalLevel[] = [];
@@ -55,6 +55,16 @@ class FakeProfessionalLevelRepository implements IProfessionalLevelRepository {
 		const professionalLevelFound = this.professionalLevels.find(
 			(professionalLevel) =>
 				professionalLevel.experience_needed === experience_needed
+		);
+
+		return professionalLevelFound;
+	}
+
+	public async findByLevelNumber(
+		levelNumber: number
+	): Promise<ProfessionalLevel | undefined> {
+		const professionalLevelFound = this.professionalLevels.find(
+			(professionalLevel) => professionalLevel.level_number === levelNumber
 		);
 
 		return professionalLevelFound;

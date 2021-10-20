@@ -1,7 +1,5 @@
-import ICreateAreaDTO from 'modules/freelancer/dtos/ICreateAreaDTO';
-import ICreateSkillDTO from 'modules/freelancer/dtos/ICreateSkillDTO';
-
-import FakeSkillRepository from '../../../infra/typeorm/repositories/fakes/FakeSkillRepository';
+import { EStatus } from '../../../../../shared/utils/dtos/EStatus';
+import FakeSkillRepository from '../../../repositories/fakes/FakeSkillRepository';
 import CreateSkillService from '../CreateSkillService';
 import UpdateSkillService from '../UpdateSkillService';
 
@@ -19,22 +17,16 @@ describe('UpdateSkill', () => {
 	});
 
 	it('should be able to update skill', async () => {
-		const skillData: ICreateSkillDTO = {
+		const skill = await createSkillService.execute({
 			freelancer_id: 1,
 			specialization_id: 1,
-		};
+		});
 
-		const skill = await createSkillService.execute(skillData);
+		const updatedSkill = await updateSkillService.execute({
+			...skill,
+			status: EStatus.deleted,
+		});
 
-		const skillData1: ICreateSkillDTO = {
-			freelancer_id: 2,
-			specialization_id: 2,
-		};
-
-		const skill1 = await createSkillService.execute(skillData1);
-
-		const updatedSkill = await updateSkillService.execute(skill1);
-
-		expect(updatedSkill).toEqual(skill1);
+		expect(updatedSkill.status).toEqual('deleted');
 	});
 });

@@ -12,8 +12,8 @@ export default class CreateAreaService {
 	) {}
 
 	public async execute(data: ICreateAreaDTO): Promise<Area> {
-		const result = await this.areaRepository.create(data);
+		const area = await this.areaRepository.create(data);
 
-		return result;
+		return area;
 	}
 }

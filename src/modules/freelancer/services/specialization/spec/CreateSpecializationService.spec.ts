@@ -1,6 +1,6 @@
 import ICreateSpecializationDTO from '../../../dtos/ICreateSpecializationDTO';
 import Specialization from '../../../infra/typeorm/entities/Specialization';
-import FakeSpecializationRepository from '../../../infra/typeorm/repositories/fakes/FakeSpecializationRepository';
+import FakeSpecializationRepository from '../../../repositories/fakes/FakeSpecializationRepository';
 import CreateSpecializationService from '../CreateSpecializationService';
 
 describe('CreateSpecialization', () => {

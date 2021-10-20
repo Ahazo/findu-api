@@ -14,7 +14,7 @@ export default class FakeDeliveryAgreementRepository
 
 		Object.assign(
 			delivery,
-			{ id: Math.floor(Math.random() * (10 - 1) + 1) },
+			{ id: Math.floor(Math.random() * (100 - 1) + 1) },
 			data
 		);
 
@@ -33,9 +33,7 @@ export default class FakeDeliveryAgreementRepository
 	}
 
 	public async findById(id: number): Promise<DeliveryAgreement | undefined> {
-		const findDelivery = await this.deliveryAgreements.find(
-			(find) => find.id === id
-		);
+		const findDelivery = this.deliveryAgreements.find((find) => find.id === id);
 
 		return findDelivery;
 	}

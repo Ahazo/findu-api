@@ -11,7 +11,7 @@ export default class FakeOrderLineRepository implements IOrderLineRepository {
 
 		Object.assign(
 			orderLine,
-			{ id: Math.floor(Math.random() * (10 - 1) + 1) },
+			{ id: Math.floor(Math.random() * (100 - 1) + 1) },
 			data
 		);
 
@@ -29,7 +29,7 @@ export default class FakeOrderLineRepository implements IOrderLineRepository {
 	}
 
 	public async findById(id: number): Promise<OrderLine | undefined> {
-		const findOrder = await this.orderLines.find((find) => find.id === id);
+		const findOrder = this.orderLines.find((find) => find.id === id);
 
 		return findOrder;
 	}

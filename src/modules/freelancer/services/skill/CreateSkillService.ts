@@ -12,8 +12,17 @@ export default class CreateSkillService {
 	) {}
 
 	public async execute(data: ICreateSkillDTO): Promise<Skill> {
-		const result = await this.skillRepository.create(data);
+		const skillFound = await this.skillRepository.findBoundedSkill(
+			data.freelancer_id,
+			data.specialization_id
+		);
 
-		return result;
+		if (skillFound) {
+			throw Error('Skill already bounded to freelancer');
+		}
+
+		const skill = await this.skillRepository.create(data);
+
+		return skill;
 	}
 }

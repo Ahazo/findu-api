@@ -11,20 +11,22 @@ export default class FindAreaService {
 	) {}
 
 	public async executeById(id: number): Promise<Area | undefined> {
-		const result = await this.areaRepository.findById(id);
+		const area = await this.areaRepository.findById(id);
 
-		return result;
+		return area;
 	}
 
-	public async executeByName(name: string): Promise<Area | undefined> {
-		const result = await this.areaRepository.findByName(name);
+	public async executeByDescription(
+		description: string
+	): Promise<Area | undefined> {
+		const area = await this.areaRepository.findByDescription(description);
 
-		return result;
+		return area;
 	}
 
 	public async executeAll(): Promise<Area[] | undefined> {
-		const result = await this.areaRepository.findAll();
+		const area = await this.areaRepository.findAll();
 
-		return result;
+		return area;
 	}
 }
