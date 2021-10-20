@@ -10,12 +10,12 @@ export default class SessionController {
 
 			const authenticateUser = container.resolve(AuthenticateUserService);
 
-			const { user, token } = await authenticateUser.execute({
+			const token = await authenticateUser.execute({
 				username,
 				password,
 			});
 
-			return response.json({ user, token });
+			return response.json({ token });
 		} catch (error) {
 			return response.status(400).json({ message: error.message });
 		}

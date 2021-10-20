@@ -5,11 +5,6 @@ import User from '../infra/typeorm/entities/User';
 import IHashProvider from '../providers/models/IHashProvider';
 import IUserRepository from '../repositories/IUserRepository';
 
-interface IResponse {
-	user: User;
-	token: string;
-}
-
 interface IRequestBody {
 	username: string;
 	password: string;
@@ -25,10 +20,7 @@ class AuthenticatUserService {
 		private hashProvider: IHashProvider
 	) {}
 
-	public async execute({
-		username,
-		password,
-	}: IRequestBody): Promise<IResponse> {
+	public async execute({ username, password }: IRequestBody): Promise<string> {
 		const user = await this.usersRepository.findByUsername(username);
 
 		if (!user) {
@@ -46,10 +38,7 @@ class AuthenticatUserService {
 
 		const token = generateToken(user.id);
 
-		return {
-			user,
-			token,
-		};
+		return token;
 	}
 }
 
