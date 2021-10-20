@@ -4,7 +4,6 @@ import ICreateUserDTO from '../ICreateUserDTO';
 import ICreatePostRecommendationDTO from './ICreatePostRecommendationDTO';
 
 export default interface ICreateRecommendationDTO {
-	post: ICreatePostRecommendationDTO;
-	user: ICreateUserDTO;
-	status: EStatus;
+	post_id: number;
+	user_id: number;
 }

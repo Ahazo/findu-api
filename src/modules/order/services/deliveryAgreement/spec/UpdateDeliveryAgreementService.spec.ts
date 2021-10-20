@@ -1,5 +1,5 @@
-import FakeDeliveryAgreementRepository from 'modules/order/infra/typeorm/repositories/fakes/FakeDeliveryAgreementRepository';
-
+import ICreateDeliveryAgreementDTO from '../../../dtos/ICreateDeliveryAgreementDTO';
+import FakeDeliveryAgreementRepository from '../../../infra/typeorm/repositories/fakes/FakeDeliveryAgreementRepository';
 import CreateDeliveryAgreementService from '../CreateDeliveryAgreementService';
 import UpdateDeliveryAgreementService from '../UpdateDeliveryAgreementService';
 
@@ -21,5 +21,23 @@ describe('UpdateDeliveryAgreement', () => {
 		);
 	});
 
-	it('should be able to update delivery agreement', async () => {});
+	it('should be able to update delivery agreement', async () => {
+		const deliveryAgrData: ICreateDeliveryAgreementDTO = {
+			user_id: 1,
+			order_id: 1,
+			status: 'accepted',
+		};
+
+		const deliveryAgr = await createDeliveryAgreementService.execute(
+			deliveryAgrData
+		);
+
+		const update = await updateDeliveryAgreementService.execute({
+			...deliveryAgr,
+			id: deliveryAgr.id,
+			status: 'refused',
+		});
+
+		expect(update.status).toEqual('refused');
+	});
 });

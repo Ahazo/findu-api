@@ -6,5 +6,5 @@ import ICreateOrderStatusDTO from './ICreateOrderStatusDTO';
 export default interface ICreateOrderDTO {
 	user_id: number;
 	bundle_id: number;
-	status_id: number;
+	order_status_id: number;
 }

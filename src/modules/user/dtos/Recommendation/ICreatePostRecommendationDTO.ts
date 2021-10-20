@@ -5,9 +5,8 @@ import { EStatus } from 'shared/utils/dtos/EStatus';
 import ICreateUserDTO from '../ICreateUserDTO';
 
 export default interface ICreatePostRecommendationDTO {
-	user: ICreateUserDTO;
-	freelancer: ICreateFreelancerDTO;
-	order: ICreateOrderDTO;
+	user_id: number;
+	freelancer_id: number;
+	order_id: number;
 	content: string;
-	status: EStatus;
 }

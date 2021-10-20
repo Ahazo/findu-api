@@ -5,7 +5,7 @@ import PostRecommendation from '../../entities/PostRecommendation';
 export default class FakePostRecommendationRepository
 	implements IPostRecommendationRepository
 {
-	private postRecs: PostRecommendation[] = [];
+	private posts: PostRecommendation[] = [];
 
 	public async create(
 		data: ICreatePostRecommendationDTO
@@ -18,20 +18,20 @@ export default class FakePostRecommendationRepository
 			data
 		);
 
-		this.postRecs.push(postRecommendations);
+		this.posts.push(postRecommendations);
 		return postRecommendations;
 	}
 
 	public async update(data: PostRecommendation): Promise<PostRecommendation> {
-		const findIndex = this.postRecs.findIndex((find) => find.id === data.id);
+		const findIndex = this.posts.findIndex((find) => find.id === data.id);
 
-		this.postRecs[findIndex] = data;
+		this.posts[findIndex] = data;
 
-		return this.postRecs[findIndex];
+		return this.posts[findIndex];
 	}
 
 	public async findById(id: number): Promise<PostRecommendation | undefined> {
-		const findIndex = this.postRecs.find((find) => find.id === id);
+		const findIndex = this.posts.find((find) => find.id === id);
 
 		return findIndex;
 	}
