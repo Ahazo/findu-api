@@ -30,18 +30,21 @@ export class CreateFreelancer1632248904509 implements MigrationInterface {
 						type: 'int',
 						isNullable: false,
 						isUnique: false,
+						default: 0,
 					},
 					{
 						name: 'experience',
 						type: 'int',
 						isNullable: false,
 						isUnique: false,
+						default: 0,
 					},
 					{
 						name: 'open_to_work',
 						type: 'boolean',
 						isNullable: false,
 						isUnique: false,
+						default: true,
 					},
 					{
 						name: 'created_at',

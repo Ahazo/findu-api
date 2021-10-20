@@ -2,7 +2,7 @@ import { EStatus } from '../../../shared/utils/dtos/EStatus';
 import ICreateBundleDTO from './ICreateBundleDTO';
 
 export default interface ICreateBundleMediasDTO {
-	bundle: ICreateBundleDTO;
+	bundle_id: number;
 	url: string;
-	status: EStatus;
+	// status: EStatus;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
@@ -20,16 +21,22 @@ export default class UsersController {
 	}
 
 	async findUserById(request: Request, response: Response): Promise<Response> {
-		const findUser = container.resolve(FindUserService);
-		const user = await findUser.executeById(request.userId);
+		try {
+			const findUser = container.resolve(FindUserService);
+			const user = await findUser.executeById(request.userId);
 
-		if (!user) {
-			response.status(400).json({
-				message: 'User id not found',
-			});
+			if (!user) {
+				response.status(400).json({
+					message: 'User id not found',
+				});
+			}
+
+			user!.password = '';
+
+			return response.status(200).json(user);
+		} catch (error) {
+			return response.status(400).json({ message: error });
 		}
-
-		return response.status(200).json(user);
 	}
 
 	async findUserByUsername(

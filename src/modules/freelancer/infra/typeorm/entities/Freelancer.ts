@@ -7,6 +7,7 @@ import {
 	UpdateDateColumn,
 	OneToMany,
 	Entity,
+	ManyToOne,
 } from 'typeorm';
 
 import { EStatus } from '../../../../../shared/utils/dtos/EStatus';
@@ -45,20 +46,20 @@ export default class Freelancer {
 	@Column({ type: 'int', nullable: false, unique: false, default: 1 })
 	level_id: number;
 
-	@OneToOne(
+	@ManyToOne(
 		() => ProfessionalLevel,
 		(professionalLevel: ProfessionalLevel) => professionalLevel.freelancer
 	)
 	@JoinColumn({ name: 'level_id' })
 	professionalLevel: ProfessionalLevel;
 
-	@Column({ type: 'int', nullable: false, unique: false })
+	@Column({ type: 'int', nullable: false, unique: false, default: 0 })
 	projects_count: number;
 
-	@Column({ type: 'int', nullable: false, unique: false })
+	@Column({ type: 'int', nullable: false, unique: false, default: 0 })
 	experience: number;
 
-	@Column({ type: 'bool', nullable: false, unique: false })
+	@Column({ type: 'bool', nullable: false, unique: false, default: true })
 	open_to_work: boolean;
 
 	@CreateDateColumn({ type: 'timestamp', nullable: false, unique: false })
