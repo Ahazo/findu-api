@@ -1,3 +1,5 @@
+import Area from 'modules/freelancer/infra/typeorm/entities/Area';
+
 import ICreateAreaDTO from '../../../dtos/ICreateAreaDTO';
 import FakeAreaRepository from '../../../infra/typeorm/repositories/fakes/FakeAreaRepository';
 import CreateAreaService from '../CreateAreaService';
@@ -17,20 +19,18 @@ describe('UpdateArea', () => {
 	});
 
 	it('should be able to update area', async () => {
-		const areaData: ICreateAreaDTO = {
-			description: 'papiromancia',
-		};
-
-		const area = await createAreaService.execute(areaData);
-
 		const areaData1: ICreateAreaDTO = {
 			description: 'papirologia',
 		};
 
 		const area1 = await createAreaService.execute(areaData1);
 
-		const updatedArea = await updateAreaService.execute(area1);
+		const updatedArea = await updateAreaService.execute({
+			...area1,
+			id: area1.id,
+			description: 'aa',
+		});
 
-		expect(updatedArea).toEqual(area1);
+		expect(updatedArea.description).toEqual('aa');
 	});
 });

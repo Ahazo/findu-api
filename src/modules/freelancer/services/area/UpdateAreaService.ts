@@ -11,6 +11,25 @@ export default class UpdateAreaService {
 	) {}
 
 	public async execute(area: Area): Promise<Area> {
-		return this.areaRepository.save(area);
+		const areaFound = await this.areaRepository.findById(area.id);
+
+		if (!areaFound) {
+			throw new Error('area not found');
+		}
+
+		const areaWithUpdatedDescription = await this.areaRepository.findByName(
+			area.description
+		);
+
+		if (
+			areaWithUpdatedDescription &&
+			areaWithUpdatedDescription.id !== area.id
+		) {
+			throw new Error('Area description already in use');
+		}
+
+		areaFound.description = area.description;
+
+		return this.areaRepository.save(areaFound);
 	}
 }
