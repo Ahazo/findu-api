@@ -8,20 +8,14 @@ import UpdateFreelancerService from '../UpdateFreelancerService';
 
 describe('UpdateFreelancer', () => {
 	let fakeFreelancerRepository: IFreelancerRepository;
-	let fakeUserRepository: IUserRepository;
 
 	let createFreelancer: CreateFreelancerService;
 	let updateFreelancer: UpdateFreelancerService;
 
 	beforeEach(() => {
 		fakeFreelancerRepository = new FakeFreelancerRepository();
-		fakeUserRepository = new FakeUsersRepository();
 
-		createFreelancer = new CreateFreelancerService(
-			fakeFreelancerRepository,
-			fakeUserRepository
-		);
-
+		createFreelancer = new CreateFreelancerService(fakeFreelancerRepository);
 		updateFreelancer = new UpdateFreelancerService(fakeFreelancerRepository);
 	});
 

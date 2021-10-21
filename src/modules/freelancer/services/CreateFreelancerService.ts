@@ -9,10 +9,7 @@ import IFreelancerRepository from '../repositories/IFreelancerRepository';
 export default class CreateFreelancerService {
 	constructor(
 		@inject('FreelancerRepository')
-		private freelancerRepository: IFreelancerRepository,
-
-		@inject('UsersRepository')
-		private userRepository: IUserRepository
+		private freelancerRepository: IFreelancerRepository
 	) {}
 
 	public async execute(data: ICreateFreelancerDTO): Promise<Freelancer> {
