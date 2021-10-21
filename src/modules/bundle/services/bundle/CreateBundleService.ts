@@ -12,6 +12,10 @@ export default class CreateBundleService {
 	) {}
 
 	public async execute(data: ICreateBundleDTO): Promise<Bundle> {
+		const check = await this.bundleRepository.findByName(data.description);
+
+		if (check) throw new Error('This bundle already exists');
+
 		const result = await this.bundleRepository.create(data);
 
 		return result;

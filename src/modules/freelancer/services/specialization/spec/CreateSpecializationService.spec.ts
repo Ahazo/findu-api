@@ -23,4 +23,22 @@ describe('CreateSpecialization', () => {
 			await createSpecializationService.execute(specializationData)
 		).toBeInstanceOf(Specialization);
 	});
+
+	it('should not be able to create specialization with the same name', async () => {
+		const specializationData: ICreateSpecializationDTO = {
+			area_id: 2,
+			description: 'Papiromancia',
+		};
+
+		await createSpecializationService.execute(specializationData);
+
+		const specializationData1: ICreateSpecializationDTO = {
+			area_id: 2,
+			description: 'Papiromancia',
+		};
+
+		await expect(
+			createSpecializationService.execute(specializationData1)
+		).rejects.toBeInstanceOf(Error);
+	});
 });

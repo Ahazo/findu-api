@@ -5,5 +5,4 @@ export default interface ICreateBundleDTO {
 	description: string;
 	value: number;
 	deadline: Date;
-	// status: EStatus;
 }
