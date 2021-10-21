@@ -1,6 +1,6 @@
-import ICreateRecommendationDTO from '../../../../dtos/Recommendation/ICreateRecommendationDTO';
-import IRecommendationRepository from '../../../../repositories/IRecommendationRepository';
-import Recommendation from '../../entities/Recommendation';
+import ICreateRecommendationDTO from '../../dtos/Recommendation/ICreateRecommendationDTO';
+import Recommendation from '../../infra/typeorm/entities/Recommendation';
+import IRecommendationRepository from '../IRecommendationRepository';
 
 export default class FakeRecommendationRepository
 	implements IRecommendationRepository

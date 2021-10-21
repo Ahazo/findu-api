@@ -1,6 +1,6 @@
 import ICreateBundleDTO from '../../../dtos/ICreateBundleDTO';
 import Bundle from '../../../infra/typeorm/entities/Bundle';
-import FakeBundleRepository from '../../../infra/typeorm/repositories/fakes/FakeBundleRepository';
+import FakeBundleRepository from '../../../repositories/fakes/FakeBundleRepository';
 import CreateBundleService from '../CreateBundleService';
 
 describe('CreateBundle', () => {

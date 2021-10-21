@@ -24,7 +24,7 @@ describe('FindProfessionalLevel', () => {
 	it('should be able to find a professional level by its ID', async () => {
 		const professionalLevelData: ICreateProfessionalLevelDTO = {
 			level_number: 1,
-			description: 'Professional Level',
+			description: 'Professional Level Description',
 			experience_needed: 1,
 		};
 

@@ -1,6 +1,6 @@
-import ICreateOrderDTO from '../../../../dtos/ICreateOrderDTO';
-import IOrderRepository from '../../../../repositories/IOrderRepository';
-import Order from '../../entities/Order';
+import ICreateOrderDTO from '../../dtos/ICreateOrderDTO';
+import Order from '../../infra/typeorm/entities/Order';
+import IOrderRepository from '../IOrderRepository';
 
 export default class FakeOrderRepository implements IOrderRepository {
 	private orders: Order[] = [];

@@ -1,41 +1,30 @@
 // import AppError from '../../../shared/errors/AppError';
 
-import ICreateInfluencerLevelDTO from '../../dtos/ICreateInfluencerLevelDTO';
-import FakeInfluencerLevelRepository from '../../infra/typeorm/repositories/fakes/FakeInfluencerLevelRepository';
-import FakeUserRepository from '../../infra/typeorm/repositories/fakes/FakeUsersRepository';
 import FakeHashProvider from '../../providers/fakes/FakeHashProvider';
+import FakeUserRepository from '../../repositories/fakes/FakeUsersRepository';
 import AuthenticateUserService from '../AuthenticateUserService';
 import CreateUserService from '../CreateUserService';
-import CreateInfluencerLevelService from '../influencerLevel/CreateInfluencerLevelService';
 
 describe('AuthenticateUser', () => {
+	let fakeUserRepository: FakeUserRepository;
+	let fakeHashProvider: FakeHashProvider;
+
+	let createUser: CreateUserService;
+	let authenticateUser: AuthenticateUserService;
+
+	beforeEach(() => {
+		fakeUserRepository = new FakeUserRepository();
+		fakeHashProvider = new FakeHashProvider();
+
+		createUser = new CreateUserService(fakeUserRepository, fakeHashProvider);
+		authenticateUser = new AuthenticateUserService(
+			fakeUserRepository,
+			fakeHashProvider
+		);
+	});
+
 	it('should be able to authenticate', async () => {
-		const fakeUserRepository = new FakeUserRepository();
-		const fakeHashProvider = new FakeHashProvider();
-		const fakeInfluencerLevelRepository = new FakeInfluencerLevelRepository();
-
-		const CreateUser = new CreateUserService(
-			fakeUserRepository,
-			fakeHashProvider
-		);
-
-		const AuthenticateUser = new AuthenticateUserService(
-			fakeUserRepository,
-			fakeHashProvider
-		);
-
-		const CreateInfluencerLevel = new CreateInfluencerLevelService(
-			fakeInfluencerLevelRepository
-		);
-
-		const levelData: ICreateInfluencerLevelDTO = {
-			description: 'Almost Mighty',
-			experience_needed: 1,
-		};
-
-		const level = await CreateInfluencerLevel.execute(levelData);
-
-		const user = await CreateUser.execute({
+		await createUser.execute({
 			person: {
 				address: {
 					postal_code: '05638-060',
@@ -52,64 +41,30 @@ describe('AuthenticateUser', () => {
 				last_name: 'Scarano',
 				birth_date: new Date(),
 			},
-			username: 'scaralu',
-			password: 'AndreGostoso767!!',
-			level_id: level.id,
+			username: 'user',
+			password: 'password',
+			level_id: 1,
 		});
 
-		const response = await AuthenticateUser.execute({
-			username: 'scaralu',
-			password: 'AndreGostoso767!!',
+		const token = await authenticateUser.execute({
+			username: 'user',
+			password: 'password',
 		});
 
-		expect(response).toHaveProperty('token');
-		expect(response.user).toBe(user);
+		expect(token).toBeDefined();
 	});
 
 	it('should not be able to authenticate an unexistent user', async () => {
-		const fakeUserRepository = new FakeUserRepository();
-		const fakeHashProvider = new FakeHashProvider();
-
-		const AuthenticateUser = new AuthenticateUserService(
-			fakeUserRepository,
-			fakeHashProvider
-		);
-
 		await expect(
-			AuthenticateUser.execute({
-				username: 'scaraluUsuarioNaoExistente',
-				password: 'AndreGostoso767!!',
+			authenticateUser.execute({
+				username: 'unexistentUser',
+				password: 'unexistentPassword',
 			})
 		).rejects.toBeInstanceOf(Error);
 	});
 
 	it('should not be able to authenticate an user with wrong password', async () => {
-		const fakeUserRepository = new FakeUserRepository();
-		const fakeHashProvider = new FakeHashProvider();
-		const fakeInfluencerLevelRepository = new FakeInfluencerLevelRepository();
-
-		const CreateUser = new CreateUserService(
-			fakeUserRepository,
-			fakeHashProvider
-		);
-
-		const AuthenticateUser = new AuthenticateUserService(
-			fakeUserRepository,
-			fakeHashProvider
-		);
-
-		const CreateInfluencerLevel = new CreateInfluencerLevelService(
-			fakeInfluencerLevelRepository
-		);
-
-		const levelData: ICreateInfluencerLevelDTO = {
-			description: 'Almost Mighty',
-			experience_needed: 1,
-		};
-
-		const level = await CreateInfluencerLevel.execute(levelData);
-
-		await CreateUser.execute({
+		await createUser.execute({
 			person: {
 				address: {
 					postal_code: '05638-060',
@@ -128,11 +83,11 @@ describe('AuthenticateUser', () => {
 			},
 			username: 'scaralu',
 			password: 'AndreGostoso767!!',
-			level_id: level.id,
+			level_id: 1,
 		});
 
 		await expect(
-			AuthenticateUser.execute({
+			authenticateUser.execute({
 				username: 'scaralu',
 				password: 'wrong-password',
 			})

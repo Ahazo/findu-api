@@ -1,5 +1,5 @@
 import ICreateDeliveryAgreementDTO from '../../../dtos/ICreateDeliveryAgreementDTO';
-import FakeDeliveryAgreementRepository from '../../../infra/typeorm/repositories/fakes/FakeDeliveryAgreementRepository';
+import FakeDeliveryAgreementRepository from '../../../repositories/fakes/FakeDeliveryAgreementRepository';
 import CreateDeliveryAgreementService from '../CreateDeliveryAgreementService';
 import UpdateDeliveryAgreementService from '../UpdateDeliveryAgreementService';
 

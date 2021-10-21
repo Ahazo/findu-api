@@ -1,6 +1,6 @@
 import ICreateOrderLineDTO from '../../../dtos/ICreateOrderLineDTO';
 import OrderLine from '../../../infra/typeorm/entities/OrderLine';
-import FakeOrderLineRepository from '../../../infra/typeorm/repositories/fakes/FakeOrderLineRepository';
+import FakeOrderLineRepository from '../../../repositories/fakes/FakeOrderLineRepository';
 import CreateOrderLineService from '../CreateOrderLineService';
 
 describe('CreateOrderLine', () => {

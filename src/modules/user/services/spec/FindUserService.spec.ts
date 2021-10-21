@@ -1,42 +1,28 @@
 import ICreateInfluencerLevelDTO from '../../dtos/ICreateInfluencerLevelDTO';
 import ICreateUserDTO from '../../dtos/ICreateUserDTO';
-import FakeInfluencerLevelRepository from '../../infra/typeorm/repositories/fakes/FakeInfluencerLevelRepository';
-import FakeUserRepository from '../../infra/typeorm/repositories/fakes/FakeUsersRepository';
 import FakeHashProvider from '../../providers/fakes/FakeHashProvider';
+import FakeInfluencerLevelRepository from '../../repositories/fakes/FakeInfluencerLevelRepository';
+import FakeUserRepository from '../../repositories/fakes/FakeUsersRepository';
 import CreateUserService from '../CreateUserService';
 import FindUserService from '../FindUserService';
 import CreateInfluencerLevelService from '../influencerLevel/CreateInfluencerLevelService';
 
-let fakeUserRepository: FakeUserRepository;
-let fakeHashProvider: FakeHashProvider;
-let fakeInfluencerLevelRepository: FakeInfluencerLevelRepository;
+describe('FindUser', () => {
+	let fakeUserRepository: FakeUserRepository;
+	let fakeHashProvider: FakeHashProvider;
 
-describe('FindBy', () => {
+	let createUser: CreateUserService;
+	let findUser: FindUserService;
+
 	beforeEach(() => {
 		fakeUserRepository = new FakeUserRepository();
 		fakeHashProvider = new FakeHashProvider();
-		fakeInfluencerLevelRepository = new FakeInfluencerLevelRepository();
+
+		findUser = new FindUserService(fakeUserRepository);
+		createUser = new CreateUserService(fakeUserRepository, fakeHashProvider);
 	});
 
 	it('should be able to find users by id', async () => {
-		const FindUser = new FindUserService(fakeUserRepository);
-
-		const CreateUser = new CreateUserService(
-			fakeUserRepository,
-			fakeHashProvider
-		);
-
-		const CreateInfluencerLevel = new CreateInfluencerLevelService(
-			fakeInfluencerLevelRepository
-		);
-
-		const levelData: ICreateInfluencerLevelDTO = {
-			description: 'Almost Mighty',
-			experience_needed: 1,
-		};
-
-		const level = await CreateInfluencerLevel.execute(levelData);
-
 		const userData: ICreateUserDTO = {
 			person: {
 				address: {
@@ -55,38 +41,17 @@ describe('FindBy', () => {
 				birth_date: new Date(),
 			},
 			username: 'scaralu',
-			password: 'AndreGostoso767!!',
-			level_id: level.id,
+			password: 'password',
+			level_id: 1,
 		};
 
-		const user = await CreateUser.execute(userData);
+		const user = await createUser.execute(userData);
+		const userFound = await findUser.executeById(user.id);
 
-		const result = await FindUser.executeById(user.id);
-
-		expect(result).toEqual(user);
+		expect(userFound).toEqual(user);
 	});
-
-	// FIND WITH USERNAME
 
 	it('should be able to find user by username', async () => {
-		const FindUser = new FindUserService(fakeUserRepository);
-
-		const CreateUser = new CreateUserService(
-			fakeUserRepository,
-			fakeHashProvider
-		);
-
-		const CreateInfluencerLevel = new CreateInfluencerLevelService(
-			fakeInfluencerLevelRepository
-		);
-
-		const levelData: ICreateInfluencerLevelDTO = {
-			description: 'Almost Mighty',
-			experience_needed: 1,
-		};
-
-		const level = await CreateInfluencerLevel.execute(levelData);
-
 		const userData: ICreateUserDTO = {
 			person: {
 				address: {
@@ -104,43 +69,18 @@ describe('FindBy', () => {
 				last_name: 'Scarano',
 				birth_date: new Date(),
 			},
-			username: 'oscaravelho',
-			password: 'AndreGostoso767!!',
-			level_id: level.id,
+			username: 'scaralu',
+			password: 'password',
+			level_id: 1,
 		};
 
-		const user = await CreateUser.execute(userData);
+		const user = await createUser.execute(userData);
+		const userFound = await findUser.executeByUsername(user.username);
 
-		const find = await FindUser.executeByUsername(user.username);
-
-		expect(find).toBe(user);
+		expect(userFound).toBe(user);
 	});
 
-	// FIND WITHOUT ID
-
 	it('should not be able to find user by unexistent id', async () => {
-		const fakeUserRepository = new FakeUserRepository();
-		const fakeHashProvider = new FakeHashProvider();
-		const fakeInfluencerLevelRepository = new FakeInfluencerLevelRepository();
-
-		const FindUser = new FindUserService(fakeUserRepository);
-
-		const CreateUser = new CreateUserService(
-			fakeUserRepository,
-			fakeHashProvider
-		);
-
-		const CreateInfluencerLevel = new CreateInfluencerLevelService(
-			fakeInfluencerLevelRepository
-		);
-
-		const levelData: ICreateInfluencerLevelDTO = {
-			description: 'Almost Mighty',
-			experience_needed: 1,
-		};
-
-		const level = await CreateInfluencerLevel.execute(levelData);
-
 		const userData: ICreateUserDTO = {
 			person: {
 				address: {
@@ -160,41 +100,16 @@ describe('FindBy', () => {
 			},
 			username: 'scaralu',
 			password: 'AndreGostoso767!!',
-			level_id: level.id,
+			level_id: 1,
 		};
 
-		const user = await CreateUser.execute(userData);
+		const user = await createUser.execute(userData);
+		const userNotFound = await findUser.executeById(user.id + 1);
 
-		const result = await FindUser.executeById(user.id + 1);
-
-		expect(result).toEqual(undefined);
+		expect(userNotFound).toBeUndefined();
 	});
 
-	// FIND WITHOUT USERNAME
-
 	it('should not be able to find unexistent username', async () => {
-		const fakeUserRepository = new FakeUserRepository();
-		const fakeHashProvider = new FakeHashProvider();
-		const fakeInfluencerLevelRepository = new FakeInfluencerLevelRepository();
-
-		const FindUser = new FindUserService(fakeUserRepository);
-
-		const CreateUser = new CreateUserService(
-			fakeUserRepository,
-			fakeHashProvider
-		);
-
-		const CreateInfluencerLevel = new CreateInfluencerLevelService(
-			fakeInfluencerLevelRepository
-		);
-
-		const levelData: ICreateInfluencerLevelDTO = {
-			description: 'Almost Mighty',
-			experience_needed: 1,
-		};
-
-		const level = await CreateInfluencerLevel.execute(levelData);
-
 		const userData: ICreateUserDTO = {
 			person: {
 				address: {
@@ -212,13 +127,15 @@ describe('FindBy', () => {
 				last_name: 'Scarano',
 				birth_date: new Date(),
 			},
-			username: 'oscaravelho',
-			password: 'AndreGostoso767!!',
-			level_id: level.id,
+			username: 'scaralu',
+			password: 'password',
+			level_id: 1,
 		};
 
-		const find = await FindUser.executeByUsername('ronaldo');
+		await createUser.execute(userData);
 
-		expect(find).toBe(undefined);
+		const find = await findUser.executeByUsername('unexistent username');
+
+		expect(find).toBeUndefined();
 	});
 });

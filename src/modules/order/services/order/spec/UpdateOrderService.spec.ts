@@ -1,5 +1,5 @@
 import ICreateOrderDTO from '../../../dtos/ICreateOrderDTO';
-import FakeOrderRepository from '../../../infra/typeorm/repositories/fakes/FakeOrderRepository';
+import FakeOrderRepository from '../../../repositories/fakes/FakeOrderRepository';
 import CreateOrderService from '../CreateOrderService';
 import UpdateOrderService from '../UpdateOrderService';
 

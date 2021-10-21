@@ -1,6 +1,6 @@
 import ICreateBundleMediasDTO from '../../../dtos/ICreateBundleMediaDTO';
 import BundleMedia from '../../../infra/typeorm/entities/BundleMedia';
-import FakeBundleMediaRepository from '../../../infra/typeorm/repositories/fakes/FakeBundleMediaRepository';
+import FakeBundleMediaRepository from '../../../repositories/fakes/FakeBundleMediaRepository';
 import CreateBundleMediaService from '../CreateBundleMediaService';
 
 describe('CreateBundle Media', () => {

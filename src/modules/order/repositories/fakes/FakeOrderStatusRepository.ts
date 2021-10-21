@@ -1,6 +1,6 @@
-import ICreateOrderStatusDTO from '../../../../dtos/ICreateOrderStatusDTO';
-import IOrderStatusRepository from '../../../../repositories/IOrderStatusRepository';
-import OrderStatus from '../../entities/OrderStatus';
+import ICreateOrderStatusDTO from '../../dtos/ICreateOrderStatusDTO';
+import OrderStatus from '../../infra/typeorm/entities/OrderStatus';
+import IOrderStatusRepository from '../IOrderStatusRepository';
 
 export default class FakeOrderStatusRepository
 	implements IOrderStatusRepository
