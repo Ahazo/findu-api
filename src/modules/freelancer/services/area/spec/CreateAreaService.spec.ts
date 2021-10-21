@@ -13,19 +13,17 @@ describe('CreateArea', () => {
 	});
 
 	it('should be able to create area', async () => {
-		const areaData: ICreateAreaDTO = {
-			description: 'Area Description',
-		};
-
-		expect(await createAreaService.execute(areaData)).toBeInstanceOf(Area);
+		expect(
+			await createAreaService.execute({
+				description: 'Area Description',
+			})
+		).toBeInstanceOf(Area);
 	});
 
 	it('should not be able to create area with existing description', async () => {
-		const area: ICreateAreaDTO = {
+		await createAreaService.execute({
 			description: 'Area Description',
-		};
-
-		await createAreaService.execute(area);
+		});
 
 		const areaWithExistingDescription: ICreateAreaDTO = {
 			description: 'Area Description',

@@ -17,16 +17,12 @@ describe('BundleRelation Create', () => {
 	});
 
 	it('should be able to create Bundle Repositories', async () => {
-		const bundleRelationData: ICreateBundleRelationDTO = {
-			bundle_id: 1,
-			freelancer_id: 1,
-			percentage: 1,
-		};
-
-		const bundleRelation = await createBundleRelationService.execute(
-			bundleRelationData
-		);
-
-		expect(bundleRelation).toBeInstanceOf(BundleRelation);
+		expect(
+			await createBundleRelationService.execute({
+				bundle_id: 1,
+				freelancer_id: 1,
+				percentage: 1,
+			})
+		).toBeInstanceOf(BundleRelation);
 	});
 });

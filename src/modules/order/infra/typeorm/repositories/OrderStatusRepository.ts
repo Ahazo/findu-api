@@ -29,4 +29,10 @@ export default class OrderStatusRepository implements IOrderStatusRepository {
 
 		return result;
 	}
+
+	async findByName(name: string): Promise<OrderStatus | undefined> {
+		const result = await this.orderStatusRepository.findOne({ where: name });
+
+		return result;
+	}
 }

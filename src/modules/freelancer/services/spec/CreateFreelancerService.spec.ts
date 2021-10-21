@@ -21,31 +21,27 @@ describe('CreateFreelancer', () => {
 	});
 
 	it('should be able to create freelancer', async () => {
-		const freelancerData: ICreateFreelancerDTO = {
-			user_id: 1,
-			level_id: 1,
-		};
-
-		const freelancer = await createFreelancer.execute(freelancerData);
-
-		expect(freelancer).toBeInstanceOf(Freelancer);
+		expect(
+			await createFreelancer.execute({
+				user_id: 1,
+				level_id: 1,
+			})
+		).toBeInstanceOf(Freelancer);
 	});
 
 	it('should not be able to create freelancer with the same user id', async () => {
-		const freelancerData: ICreateFreelancerDTO = {
+		const freelancer = await createFreelancer.execute({
 			user_id: 1,
 			level_id: 1,
-		};
+		});
 
-		await createFreelancer.execute(freelancerData);
-
-		const freelancerData1: ICreateFreelancerDTO = {
+		const freelancerWithTheSameLevel: ICreateFreelancerDTO = {
+			...freelancer,
 			user_id: 1,
-			level_id: 1,
 		};
 
 		await expect(
-			createFreelancer.execute(freelancerData)
+			createFreelancer.execute(freelancerWithTheSameLevel)
 		).rejects.toBeInstanceOf(Error);
 	});
 });

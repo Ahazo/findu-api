@@ -15,37 +15,26 @@ describe('CreateBundle', () => {
 	});
 
 	it('should be able to create bundle', async () => {
-		const bundleData: ICreateBundleDTO = {
-			title: 'Pacotão',
-			description: 'Muitas coisas drento',
-			value: 1,
-			deadline: new Date(),
-		};
-
-		const bundle = await createBundleService.execute(bundleData);
-
-		expect(bundle).toBeInstanceOf(Bundle);
+		expect(
+			await createBundleService.execute({
+				title: 'Pacotão',
+				description: 'Muitas coisas drento',
+				value: 1,
+				deadline: new Date(),
+			})
+		).toBeInstanceOf(Bundle);
 	});
 
 	it('should not be able to create bundles with the same name', async () => {
-		const bundleData: ICreateBundleDTO = {
+		const bundle = await createBundleService.execute({
 			title: 'Pacotão',
 			description: 'Muitas coisas drento',
 			value: 1,
 			deadline: new Date(),
-		};
-
-		await createBundleService.execute(bundleData);
-
-		const bundleData1: ICreateBundleDTO = {
-			title: 'Pacotão',
-			description: 'Muitas coisas drento',
-			value: 1,
-			deadline: new Date(),
-		};
+		});
 
 		await expect(
-			createBundleService.execute(bundleData1)
+			createBundleService.execute({ ...bundle, title: 'Pacotão' })
 		).rejects.toBeInstanceOf(Error);
 	});
 });

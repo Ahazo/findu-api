@@ -5,4 +5,5 @@ export default interface IOrderStatusRepository {
 	create(data: ICreateOrderStatusDTO): Promise<OrderStatus>;
 	save(data: OrderStatus): Promise<OrderStatus>;
 	findById(id: number): Promise<OrderStatus | undefined>;
+	findByName(data: string): Promise<OrderStatus | undefined>;
 }

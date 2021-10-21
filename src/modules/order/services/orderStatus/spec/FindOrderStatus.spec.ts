@@ -45,4 +45,32 @@ describe('FindOrderStatus', () => {
 
 		expect(find).toBe(undefined);
 	});
+
+	it('should be able to find order status by its name', async () => {
+		const orderStatusData: ICreateOrderStatusDTO = {
+			description: 'order aaaa',
+			step: 3,
+		};
+
+		const orderStatus = await createOrderStatusService.execute(orderStatusData);
+
+		const find = await findOrderStatusService.executeByName(
+			orderStatus.description
+		);
+
+		expect(find).toBe(orderStatus);
+	});
+
+	it('should not be able to find order status by its wrong name', async () => {
+		const orderStatusData: ICreateOrderStatusDTO = {
+			description: 'order aaaa',
+			step: 3,
+		};
+
+		const orderStatus = await createOrderStatusService.execute(orderStatusData);
+
+		const find = await findOrderStatusService.executeByName('aaaa redro');
+
+		expect(find).toBe(undefined);
+	});
 });

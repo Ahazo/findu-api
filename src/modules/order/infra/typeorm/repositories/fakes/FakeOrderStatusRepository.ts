@@ -35,4 +35,12 @@ export default class FakeOrderStatusRepository
 
 		return findOrder;
 	}
+
+	public async findByName(name: string): Promise<OrderStatus | undefined> {
+		const findOrder = this.orderStatus.find(
+			(find) => find.description === name
+		);
+
+		return findOrder;
+	}
 }

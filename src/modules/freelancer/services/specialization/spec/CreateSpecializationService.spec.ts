@@ -32,13 +32,13 @@ describe('CreateSpecialization', () => {
 
 		await createSpecializationService.execute(specializationData);
 
-		const specializationData1: ICreateSpecializationDTO = {
-			area_id: 2,
+		const specializationWithTheSameName: ICreateSpecializationDTO = {
+			...specializationData,
 			description: 'Papiromancia',
 		};
 
 		await expect(
-			createSpecializationService.execute(specializationData1)
+			createSpecializationService.execute(specializationWithTheSameName)
 		).rejects.toBeInstanceOf(Error);
 	});
 });

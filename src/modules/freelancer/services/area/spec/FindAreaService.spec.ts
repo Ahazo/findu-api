@@ -15,27 +15,21 @@ describe('FindArea', () => {
 	});
 
 	it('should be able to find area by its id', async () => {
-		const areaData: ICreateAreaDTO = {
+		const area = await createAreaService.execute({
 			description: 'Area Description',
-		};
+		});
 
-		const area = await createAreaService.execute(areaData);
-		const find = await findAreaService.executeById(area.id);
-
-		expect(find).toEqual(area);
+		expect(await findAreaService.executeById(area.id)).toEqual(area);
 	});
 
 	it('should be able to find area by its description', async () => {
-		const areaData: ICreateAreaDTO = {
+		const area = await createAreaService.execute({
 			description: 'Area Description',
-		};
+		});
 
-		const area = await createAreaService.execute(areaData);
-		const areaFound = await findAreaService.executeByDescription(
-			area.description
-		);
-
-		expect(areaFound).toEqual(area);
+		expect(
+			await findAreaService.executeByDescription(area.description)
+		).toEqual(area);
 	});
 
 	it('should not be able to find area by its wrong id', async () => {
