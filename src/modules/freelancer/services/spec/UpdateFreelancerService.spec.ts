@@ -1,5 +1,3 @@
-import FakeUsersRepository from '../../../user/repositories/fakes/FakeUsersRepository';
-import IUserRepository from '../../../user/repositories/IUserRepository';
 import ICreateFreelancerDTO from '../../dtos/ICreateFreelancerDTO';
 import FakeFreelancerRepository from '../../repositories/fakes/FakeFreelancerRepository';
 import IFreelancerRepository from '../../repositories/IFreelancerRepository';
