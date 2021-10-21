@@ -55,7 +55,7 @@ describe('FindArea', () => {
 
 		expect(
 			await findAreaService.executeByDescription('Wrong Area Description')
-		).toBe(undefined);
+		).toBeUndefined();
 	});
 
 	it('should be able to find all areas', async () => {

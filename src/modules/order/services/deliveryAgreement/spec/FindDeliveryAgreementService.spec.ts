@@ -3,7 +3,7 @@ import FakeDeliveryAgreementRepository from '../../../repositories/fakes/FakeDel
 import CreateDeliveryAgreementService from '../CreateDeliveryAgreementService';
 import FindDeliveryAgreement from '../FindDeliveryAgreementService';
 
-describe('FindDeliveryAgreement', async () => {
+describe('FindDeliveryAgreement', () => {
 	let fakeDeliveryAgreementRepository: FakeDeliveryAgreementRepository;
 
 	let createDeliveryAgreementService: CreateDeliveryAgreementService;
@@ -48,10 +48,8 @@ describe('FindDeliveryAgreement', async () => {
 			deliveryAgrData
 		);
 
-		const find = await findDeliveryAgreementService.executeById(
-			deliveryAgr.id + 1
-		);
-
-		expect(find).toBe(undefined);
+		expect(
+			await findDeliveryAgreementService.executeById(deliveryAgr.id + 1)
+		).toBeUndefined();
 	});
 });

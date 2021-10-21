@@ -35,7 +35,7 @@ describe('FindBundle', () => {
 			deadline: new Date(),
 		});
 
-		expect(await findBundleService.executeById(bundle.id + 1)).toBe(undefined);
+		expect(await findBundleService.executeById(bundle.id + 1)).toBeUndefined();
 	});
 
 	it('should be able to find bundle by its name', async () => {

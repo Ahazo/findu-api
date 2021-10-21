@@ -39,8 +39,6 @@ describe('FindOrder', () => {
 
 		const order = await createOrderService.execute(orderData);
 
-		const find = await findOrderService.executeById(order.id + 1);
-
-		expect(find).toBe(undefined);
+		expect(await findOrderService.executeById(order.id + 1)).toBeUndefined();
 	});
 });

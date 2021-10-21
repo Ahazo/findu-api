@@ -43,7 +43,7 @@ describe('FindOrderStatus', () => {
 
 		const find = await findOrderStatusService.executeById(+orderStatus.id + 1);
 
-		expect(find).toBe(undefined);
+		expect(find).toBeUndefined();
 	});
 
 	it('should be able to find order status by its name', async () => {
@@ -67,10 +67,10 @@ describe('FindOrderStatus', () => {
 			step: 3,
 		};
 
-		const orderStatus = await createOrderStatusService.execute(orderStatusData);
+		await createOrderStatusService.execute(orderStatusData);
 
 		const find = await findOrderStatusService.executeByName('aaaa redro');
 
-		expect(find).toBe(undefined);
+		expect(find).toBeUndefined();
 	});
 });
