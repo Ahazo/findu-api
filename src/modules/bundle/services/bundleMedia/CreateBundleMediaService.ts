@@ -12,7 +12,7 @@ export default class CreateBundleMediaService {
 	) {}
 
 	public async execute(data: ICreateBundleMediasDTO): Promise<BundleMedia> {
-		const result = await this.bundleMediaRepository.create(data);
-		return result;
+		const bundleMedia = await this.bundleMediaRepository.create(data);
+		return bundleMedia;
 	}
 }

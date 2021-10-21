@@ -40,7 +40,7 @@ export default class AreaController {
 	async findById(request: Request, response: Response): Promise<Response> {
 		const findArea = container.resolve(FindAreaService);
 		const { id } = request.params;
-		const area = await findArea.executeByName(id);
+		const area = await findArea.executeByDescription(id);
 
 		if (!area) {
 			response.status(500).json({
