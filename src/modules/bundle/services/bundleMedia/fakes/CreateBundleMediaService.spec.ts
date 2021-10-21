@@ -17,13 +17,11 @@ describe('CreateBundle Media', () => {
 	});
 
 	it('should be able to create bundle medias', async () => {
-		const bundleMediaData: ICreateBundleMediasDTO = {
-			bundle_id: 1,
-			url: 'sites.com',
-		};
-
-		const bundleMedia = await createBundleMediaService.execute(bundleMediaData);
-
-		expect(bundleMedia).toBeInstanceOf(BundleMedia);
+		expect(
+			await createBundleMediaService.execute({
+				bundle_id: 1,
+				url: 'sites.com',
+			})
+		).toBeInstanceOf(BundleMedia);
 	});
 });

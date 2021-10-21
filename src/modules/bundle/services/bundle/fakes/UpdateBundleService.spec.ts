@@ -17,14 +17,12 @@ describe('UpdateBundle', () => {
 	});
 
 	it('should be able to update bundle', async () => {
-		const bundleData1: ICreateBundleDTO = {
+		const bundle1 = await createBundleService.execute({
 			title: 'bundlez',
 			description: 'pacote de boracha',
 			value: 2,
 			deadline: new Date(),
-		};
-
-		const bundle1 = await createBundleService.execute(bundleData1);
+		});
 
 		const updateBundle = await updateBundleService.execute({
 			...bundle1,
@@ -33,5 +31,22 @@ describe('UpdateBundle', () => {
 		});
 
 		expect(updateBundle.description).toBe('bunda');
+	});
+
+	it('should not be able to update bundle with a existent description', async () => {
+		const bundle = await createBundleService.execute({
+			title: 'bundlez',
+			description: 'pacote de boracha',
+			value: 2,
+			deadline: new Date(),
+		});
+
+		await expect(
+			updateBundleService.execute({
+				...bundle,
+				id: bundle.id,
+				description: 'pacote de boracha',
+			})
+		).rejects.toBeInstanceOf(Error);
 	});
 });

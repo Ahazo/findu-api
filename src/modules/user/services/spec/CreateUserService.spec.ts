@@ -8,10 +8,6 @@ import FakeHashProvider from '../../providers/fakes/FakeHashProvider';
 import CreateUserService from '../CreateUserService';
 import CreateInfluencerLevelService from '../influencerLevel/CreateInfluencerLevelService';
 
-let fakeUserRepository: FakeUserRepository;
-let fakeHashProvider: FakeHashProvider;
-let fakeInfluencerLevelRepository: FakeInfluencerLevelRepository;
-
 describe('CreateUser', () => {
 	let fakeUserRepository: FakeUserRepository;
 	let fakeHashProvider: FakeHashProvider;
@@ -103,13 +99,13 @@ describe('CreateUser', () => {
 
 		await createUserService.execute(userData);
 
-		const userData1: ICreateUserDTO = {
+		const userWithTheSameName: ICreateUserDTO = {
 			...userData,
 			username: 'scaralu',
 		};
 
-		await expect(createUserService.execute(userData1)).rejects.toBeInstanceOf(
-			Error
-		);
+		await expect(
+			createUserService.execute(userWithTheSameName)
+		).rejects.toBeInstanceOf(Error);
 	});
 });

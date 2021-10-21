@@ -26,12 +26,10 @@ describe('UpdateFreelancer', () => {
 	});
 
 	it('should be able to update', async () => {
-		const freelancerData: ICreateFreelancerDTO = {
+		const freelancer = await createFreelancer.execute({
 			user_id: 1,
 			level_id: 1,
-		};
-
-		const freelancer = await createFreelancer.execute(freelancerData);
+		});
 
 		const updatedFreelancer = await updateFreelancer.execute({
 			...freelancer,

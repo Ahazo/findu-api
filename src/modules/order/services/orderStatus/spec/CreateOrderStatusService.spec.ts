@@ -26,4 +26,22 @@ describe('CreateOrderStatus', () => {
 
 		expect(orderStatus).toBeInstanceOf(OrderStatus);
 	});
+
+	it('should not be able to create order status with the same name', async () => {
+		const orderStatusData: ICreateOrderStatusDTO = {
+			description: 'ordein',
+			step: 1,
+		};
+
+		await createOrderStatusService.execute(orderStatusData);
+
+		const orderStatusWithSameName: ICreateOrderStatusDTO = {
+			...orderStatusData,
+			description: 'ordein',
+		};
+
+		await expect(
+			createOrderStatusService.execute(orderStatusWithSameName)
+		).rejects.toBeInstanceOf(Error);
+	});
 });

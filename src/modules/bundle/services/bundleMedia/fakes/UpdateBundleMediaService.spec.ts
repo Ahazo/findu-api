@@ -22,24 +22,17 @@ describe('UpdateBundleMedia', () => {
 	});
 
 	it('should be able to update bundle media', async () => {
-		const bundleMediaData: ICreateBundleMediasDTO = {
+		const bundleMedia = await createBundleMediaService.execute({
 			bundle_id: 1,
 			url: 'www.facebruk.com',
-		};
+		});
 
-		const bundleMedia = await createBundleMediaService.execute(bundleMediaData);
+		const updatedBundle = await updateBundleMediaService.execute({
+			...bundleMedia,
+			id: bundleMedia.id,
+			url: 'www.google.com',
+		});
 
-		const bundleMediaData1: ICreateBundleMediasDTO = {
-			bundle_id: 2,
-			url: 'www.yotrube.com',
-		};
-
-		const bundleMedia1 = await createBundleMediaService.execute(
-			bundleMediaData1
-		);
-
-		const updatedBundle = await updateBundleMediaService.execute(bundleMedia1);
-
-		expect(updatedBundle).toBe(bundleMedia1);
+		expect(updatedBundle.url).toBe('www.google.com');
 	});
 });
