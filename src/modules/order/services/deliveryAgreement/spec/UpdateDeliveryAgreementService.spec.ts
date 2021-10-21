@@ -22,15 +22,11 @@ describe('UpdateDeliveryAgreement', () => {
 	});
 
 	it('should be able to update delivery agreement', async () => {
-		const deliveryAgrData: ICreateDeliveryAgreementDTO = {
+		const deliveryAgr = await createDeliveryAgreementService.execute({
 			user_id: 1,
 			order_id: 1,
 			status: 'accepted',
-		};
-
-		const deliveryAgr = await createDeliveryAgreementService.execute(
-			deliveryAgrData
-		);
+		});
 
 		const update = await updateDeliveryAgreementService.execute({
 			...deliveryAgr,
