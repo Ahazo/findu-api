@@ -1,4 +1,3 @@
-import Bundle from 'modules/bundle/infra/typeorm/entities/Bundle';
 import { getRepository, Repository, Any } from 'typeorm';
 
 import ICreateDeliveryAgreementDTO from '../../../dtos/ICreateDeliveryAgreementDTO';

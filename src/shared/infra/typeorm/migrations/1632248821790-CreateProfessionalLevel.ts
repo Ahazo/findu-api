@@ -16,6 +16,12 @@ export class CreateProfessionalLevel1632248821790
 						isGenerated: true,
 					},
 					{
+						name: 'level_number',
+						type: 'int4',
+						isNullable: false,
+						isUnique: true,
+					},
+					{
 						name: 'description',
 						type: 'varchar',
 						isNullable: false,

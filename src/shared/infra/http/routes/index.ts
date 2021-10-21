@@ -4,6 +4,7 @@ import bundleRouter from '../../../../modules/bundle/infra/http/routes/bundle.ro
 import areaRouter from '../../../../modules/freelancer/infra/http/routes/area.routes';
 import freelancerRouter from '../../../../modules/freelancer/infra/http/routes/freelancer.routes';
 import professionalLevelRouter from '../../../../modules/freelancer/infra/http/routes/professionalLevel.routes';
+import orderRouter from '../../../../modules/order/infra/http/routes/order.routes';
 import influencerLevelRouter from '../../../../modules/user/infra/http/routes/influencerLevel.routes';
 import userRouter from '../../../../modules/user/infra/http/routes/user.routes';
 
@@ -14,5 +15,6 @@ routes.use('/api/professionalLevel', professionalLevelRouter);
 routes.use('/api/freelancer', freelancerRouter);
 routes.use('/api/area', areaRouter);
 routes.use('/api/bundle', bundleRouter);
+routes.use('/api/order', orderRouter);
 
 export default routes;

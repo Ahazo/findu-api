@@ -12,7 +12,7 @@ class FakeInfluencerLevelRepository implements IInfluencerLevelRepository {
 
 		Object.assign(
 			influencerLevel,
-			{ id: Math.floor(Math.random() * (10 - 1) + 1) },
+			{ id: Math.floor(Math.random() * (100 - 1) + 1) },
 			levelData
 		);
 

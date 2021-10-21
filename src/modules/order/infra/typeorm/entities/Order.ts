@@ -16,7 +16,7 @@ import DeliveryAgreement from './DeliveryAgreement';
 import OrderLine from './OrderLine';
 import OrderStatus from './OrderStatus';
 
-@Entity('order')
+@Entity('orders')
 export default class Order {
 	@PrimaryGeneratedColumn()
 	id: number;

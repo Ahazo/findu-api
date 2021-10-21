@@ -1,8 +1,4 @@
-import { EStatus } from '../../../../shared/utils/dtos/EStatus';
-import ICreatePostDTO from './ICreatePostDTO';
-
 export default interface ICreatePostMediaDTO {
-	post: ICreatePostDTO;
+	post_id: number;
 	url: string;
-	status: EStatus;
 }

@@ -1,6 +1,6 @@
-import ICreateFreelancerDTO from '../../../../dtos/ICreateFreelancerDTO';
-import IFreelancerRepository from '../../../../repositories/IFreelancerRepository';
-import Freelancer from '../../entities/Freelancer';
+import ICreateFreelancerDTO from '../../dtos/ICreateFreelancerDTO';
+import Freelancer from '../../infra/typeorm/entities/Freelancer';
+import IFreelancerRepository from '../IFreelancerRepository';
 
 class FakeFreelancerRepository implements IFreelancerRepository {
 	private freelancers: Freelancer[] = [];
@@ -10,7 +10,7 @@ class FakeFreelancerRepository implements IFreelancerRepository {
 
 		Object.assign(
 			freelancer,
-			{ id: Math.floor(Math.random() * (10 - 1) + 1) },
+			{ id: Math.floor(Math.random() * (100 - 1) + 1) },
 			data
 		);
 

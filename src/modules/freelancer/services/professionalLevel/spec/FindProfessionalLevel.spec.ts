@@ -1,5 +1,5 @@
 import ICreateProfessionalLevelDTO from '../../../dtos/ICreateProfessionalLevelDTO';
-import FakeProfessionalLevelRepository from '../../../infra/typeorm/repositories/fakes/FakeProfessionalLevelRepository';
+import FakeProfessionalLevelRepository from '../../../repositories/fakes/FakeProfessionalLevelRepository';
 import CreateProfessionalLevelService from '../CreateProfessionalLevelService';
 import FindProfessionalLevelService from '../FindProfessionalLevelService';
 
@@ -23,7 +23,8 @@ describe('FindProfessionalLevel', () => {
 
 	it('should be able to find a professional level by its ID', async () => {
 		const professionalLevelData: ICreateProfessionalLevelDTO = {
-			description: 'Professional mighty',
+			level_number: 1,
+			description: 'Professional Level',
 			experience_needed: 1,
 		};
 

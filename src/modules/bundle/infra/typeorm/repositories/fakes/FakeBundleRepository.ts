@@ -10,7 +10,7 @@ export default class FakeBundleRepository implements IBundleRepository {
 
 		Object.assign(
 			bundle,
-			{ id: Math.floor(Math.random() * (10 - 1) + 1) },
+			{ id: Math.floor(Math.random() * (100 - 1) + 1) },
 			data
 		);
 

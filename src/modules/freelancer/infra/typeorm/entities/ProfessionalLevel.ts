@@ -15,6 +15,9 @@ export default class ProfessionalLevel {
 	@PrimaryGeneratedColumn()
 	id: number;
 
+	@Column({ type: 'int4', nullable: false, unique: true })
+	level_number: number;
+
 	@Column({ type: 'varchar', nullable: false, unique: false })
 	description: string;
 
