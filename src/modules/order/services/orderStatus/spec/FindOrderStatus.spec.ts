@@ -21,56 +21,46 @@ describe('FindOrderStatus', () => {
 	});
 
 	it('should be able to find order status by its ID', async () => {
-		const orderStatusData: ICreateOrderStatusDTO = {
+		const orderStatus = await createOrderStatusService.execute({
 			description: 'order aaaa',
 			step: 3,
-		};
+		});
 
-		const orderStatus = await createOrderStatusService.execute(orderStatusData);
-
-		const find = await findOrderStatusService.executeById(+orderStatus.id);
-
-		expect(find).toBe(orderStatus);
+		expect(await findOrderStatusService.executeById(+orderStatus.id)).toBe(
+			orderStatus
+		);
 	});
 
 	it('should not be able to find order status by its wrong ID', async () => {
-		const orderStatusData: ICreateOrderStatusDTO = {
+		const orderStatus = await createOrderStatusService.execute({
 			description: 'order aaaa',
 			step: 3,
-		};
+		});
 
-		const orderStatus = await createOrderStatusService.execute(orderStatusData);
-
-		const find = await findOrderStatusService.executeById(+orderStatus.id + 1);
-
-		expect(find).toBeUndefined();
+		expect(
+			await findOrderStatusService.executeById(+orderStatus.id + 1)
+		).toBeUndefined();
 	});
 
 	it('should be able to find order status by its name', async () => {
-		const orderStatusData: ICreateOrderStatusDTO = {
+		const orderStatus = await createOrderStatusService.execute({
 			description: 'order aaaa',
 			step: 3,
-		};
+		});
 
-		const orderStatus = await createOrderStatusService.execute(orderStatusData);
-
-		const find = await findOrderStatusService.executeByName(
-			orderStatus.description
-		);
-
-		expect(find).toBe(orderStatus);
+		expect(
+			await findOrderStatusService.executeByName(orderStatus.description)
+		).toBe(orderStatus);
 	});
 
 	it('should not be able to find order status by its wrong name', async () => {
-		const orderStatusData: ICreateOrderStatusDTO = {
+		await createOrderStatusService.execute({
 			description: 'order aaaa',
 			step: 3,
-		};
+		});
 
-		await createOrderStatusService.execute(orderStatusData);
-
-		const find = await findOrderStatusService.executeByName('aaaa redro');
-
-		expect(find).toBeUndefined();
+		expect(
+			await findOrderStatusService.executeByName('aaaa redro')
+		).toBeUndefined();
 	});
 });

@@ -17,13 +17,11 @@ describe('UpdateOrder', () => {
 	});
 
 	it('should be able to update order', async () => {
-		const orderData: ICreateOrderDTO = {
+		const order = await createOrderService.execute({
 			user_id: 1,
 			bundle_id: 1,
 			order_status_id: 1,
-		};
-
-		const order = await createOrderService.execute(orderData);
+		});
 
 		const update = await updateOrderService.execute({
 			...order,
