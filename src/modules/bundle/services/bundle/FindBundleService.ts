@@ -21,8 +21,7 @@ export default class FindBundleService {
 	}
 
 	public async executeAll(): Promise<Bundle[] | undefined> {
-		const result = await this.bundleRepository.findAll();
-
-		return result;
+		const bundles = await this.bundleRepository.findAll();
+		return bundles;
 	}
 }
