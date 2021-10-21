@@ -1,5 +1,5 @@
 import ICreateBundleRelationDTO from '../../../dtos/ICreateBundleRelationDTO';
-import FakeBundleRelationsRepository from '../../../infra/typeorm/repositories/fakes/FakeBundleRelationsRepository';
+import FakeBundleRelationsRepository from '../../../repositories/fakes/FakeBundleRelationsRepository';
 import CreateBundleRelationsService from '../CreateBundleRelationsService';
 import UpdateBundleRelationsService from '../UpdateBundleRelationsService';
 

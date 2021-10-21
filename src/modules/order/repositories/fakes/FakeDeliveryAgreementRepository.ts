@@ -1,6 +1,6 @@
-import ICreateDeliveryAgreementDTO from '../../../../dtos/ICreateDeliveryAgreementDTO';
-import IDeliveryAgreementRepository from '../../../../repositories/IDeliveryAgreementRepository';
-import DeliveryAgreement from '../../entities/DeliveryAgreement';
+import ICreateDeliveryAgreementDTO from '../../dtos/ICreateDeliveryAgreementDTO';
+import DeliveryAgreement from '../../infra/typeorm/entities/DeliveryAgreement';
+import IDeliveryAgreementRepository from '../IDeliveryAgreementRepository';
 
 export default class FakeDeliveryAgreementRepository
 	implements IDeliveryAgreementRepository

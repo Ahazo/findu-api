@@ -1,7 +1,7 @@
 import ICreateBundleMediasDTO from 'modules/bundle/dtos/ICreateBundleMediaDTO';
 
-import IBundleMediaRepository from '../../../../repositories/IBundleMediaRepository';
-import BundleMedia from '../../entities/BundleMedia';
+import BundleMedia from '../../infra/typeorm/entities/BundleMedia';
+import IBundleMediaRepository from '../IBundleMediaRepository';
 
 export default class FakeBundleMediaRepository
 	implements IBundleMediaRepository

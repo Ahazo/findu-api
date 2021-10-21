@@ -1,5 +1,5 @@
 import ICreateBundleDTO from '../../../dtos/ICreateBundleDTO';
-import FakeBundleRepository from '../../../infra/typeorm/repositories/fakes/FakeBundleRepository';
+import FakeBundleRepository from '../../../repositories/fakes/FakeBundleRepository';
 import CreateBundleService from '../CreateBundleService';
 import UpdateBundleService from '../UpdateBundleService';
 

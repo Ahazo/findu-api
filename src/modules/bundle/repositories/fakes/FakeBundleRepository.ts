@@ -1,6 +1,6 @@
-import ICreateBundleDTO from '../../../../dtos/ICreateBundleDTO';
-import IBundleRepository from '../../../../repositories/IBundleRepository';
-import Bundle from '../../entities/Bundle';
+import ICreateBundleDTO from '../../dtos/ICreateBundleDTO';
+import Bundle from '../../infra/typeorm/entities/Bundle';
+import IBundleRepository from '../IBundleRepository';
 
 export default class FakeBundleRepository implements IBundleRepository {
 	private bundles: Bundle[] = [];

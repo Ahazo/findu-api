@@ -5,10 +5,12 @@ import CreateProfessionalLevelService from '../CreateProfessionalLevelService';
 
 describe('CreateProfessionalLevel', () => {
 	let fakeProfessionalLevelRepository: FakeProfessionalLevelRepository;
+
 	let createProfessionalLevel: CreateProfessionalLevelService;
 
 	beforeEach(() => {
 		fakeProfessionalLevelRepository = new FakeProfessionalLevelRepository();
+
 		createProfessionalLevel = new CreateProfessionalLevelService(
 			fakeProfessionalLevelRepository
 		);

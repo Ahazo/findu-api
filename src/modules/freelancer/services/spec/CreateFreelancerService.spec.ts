@@ -1,23 +1,16 @@
-import FakeUsersRepository from '../../../user/infra/typeorm/repositories/fakes/FakeUsersRepository';
-import ICreateFreelancerDTO from '../../dtos/ICreateFreelancerDTO';
 import Freelancer from '../../infra/typeorm/entities/Freelancer';
 import FakeFreelancerRepository from '../../repositories/fakes/FakeFreelancerRepository';
 import CreateFreelancerService from '../CreateFreelancerService';
 
 describe('CreateFreelancer', () => {
 	let fakeFreelancerRepository: FakeFreelancerRepository;
-	let fakeUserRepository: FakeUsersRepository;
 
 	let createFreelancer: CreateFreelancerService;
 
 	beforeEach(() => {
 		fakeFreelancerRepository = new FakeFreelancerRepository();
-		fakeUserRepository = new FakeUsersRepository();
 
-		createFreelancer = new CreateFreelancerService(
-			fakeFreelancerRepository,
-			fakeUserRepository
-		);
+		createFreelancer = new CreateFreelancerService(fakeFreelancerRepository);
 	});
 
 	it('should be able to create freelancer', async () => {
@@ -35,13 +28,8 @@ describe('CreateFreelancer', () => {
 			level_id: 1,
 		});
 
-		const freelancerWithTheSameLevel: ICreateFreelancerDTO = {
-			...freelancer,
-			user_id: 1,
-		};
-
-		await expect(
-			createFreelancer.execute(freelancerWithTheSameLevel)
-		).rejects.toBeInstanceOf(Error);
+		await expect(createFreelancer.execute(freelancer)).rejects.toBeInstanceOf(
+			Error
+		);
 	});
 });

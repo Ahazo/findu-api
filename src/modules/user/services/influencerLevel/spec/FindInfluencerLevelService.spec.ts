@@ -1,6 +1,6 @@
 import ICreateInfluencerLevelDTO from 'modules/user/dtos/ICreateInfluencerLevelDTO';
 
-import FakeInfluencerLevelRepository from '../../../infra/typeorm/repositories/fakes/FakeInfluencerLevelRepository';
+import FakeInfluencerLevelRepository from '../../../repositories/fakes/FakeInfluencerLevelRepository';
 import CreateInfluencerLevelService from '../CreateInfluencerLevelService';
 import FindInfluencerLevelService from '../FindInfluencerLevelService';
 

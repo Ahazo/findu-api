@@ -3,24 +3,27 @@ import User from '../../infra/typeorm/entities/User';
 import FakeHashProvider from '../../providers/fakes/FakeHashProvider';
 import FakeUserRepository from '../../repositories/fakes/FakeUsersRepository';
 import CreateUserService from '../CreateUserService';
+import UpdateProfileService from '../UpdateProfileService';
 
-describe('CreateUser', () => {
-	let fakeUserRepository: FakeUserRepository;
-	let fakeHashProvider: FakeHashProvider;
+let fakeUserRepository: FakeUserRepository;
+let fakeHashProvider: FakeHashProvider;
 
-	let createUserService: CreateUserService;
+let createUser: CreateUserService;
+let updateProfile: UpdateProfileService;
 
+describe('UpdateProfile', () => {
 	beforeEach(() => {
 		fakeUserRepository = new FakeUserRepository();
 		fakeHashProvider = new FakeHashProvider();
 
-		createUserService = new CreateUserService(
+		createUser = new CreateUserService(fakeUserRepository, fakeHashProvider);
+		updateProfile = new UpdateProfileService(
 			fakeUserRepository,
 			fakeHashProvider
 		);
 	});
 
-	it('should be able to create user', async () => {
+	it('should be able to update profile username', async () => {
 		const userData: ICreateUserDTO = {
 			person: {
 				address: {
@@ -39,16 +42,21 @@ describe('CreateUser', () => {
 				birth_date: new Date(),
 			},
 			username: 'scaralu',
-			password: 'AndreGostoso767!!',
+			password: 'password',
 			level_id: 1,
 		};
 
-		const user = await createUserService.execute(userData);
+		const user = await createUser.execute(userData);
+		const updatedUser = await updateProfile.execute({
+			userId: user.id,
+			username: 'escaravelho',
+		});
 
-		expect(user).toBeInstanceOf(User);
+		expect(updatedUser).toBeInstanceOf(User);
+		expect(updatedUser.username).toBe('escaravelho');
 	});
 
-	it('should not be able to create user with the same username', async () => {
+	it('should be able to update profile password', async () => {
 		const userData: ICreateUserDTO = {
 			person: {
 				address: {
@@ -67,14 +75,19 @@ describe('CreateUser', () => {
 				birth_date: new Date(),
 			},
 			username: 'scaralu',
-			password: 'AndreGostoso767!!',
+			password: 'password',
 			level_id: 1,
 		};
 
-		await createUserService.execute(userData);
+		const user = await createUser.execute(userData);
 
-		await expect(createUserService.execute(userData)).rejects.toBeInstanceOf(
-			Error
-		);
+		const updatedUser = await updateProfile.execute({
+			userId: user.id,
+			oldPassword: user.password,
+			password: 'password',
+		});
+
+		expect(updatedUser).toBeInstanceOf(User);
+		expect(updatedUser.password).toBe('password');
 	});
 });

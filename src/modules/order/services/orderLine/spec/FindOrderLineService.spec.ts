@@ -1,5 +1,5 @@
 import ICreateOrderLineDTO from '../../../dtos/ICreateOrderLineDTO';
-import FakeOrderLineRepository from '../../../infra/typeorm/repositories/fakes/FakeOrderLineRepository';
+import FakeOrderLineRepository from '../../../repositories/fakes/FakeOrderLineRepository';
 import CreateOrderLineService from '../CreateOrderLineService';
 import FindOrderLineService from '../FindOrderLineService';
 

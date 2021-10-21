@@ -1,6 +1,6 @@
 import ICreateDeliveryAgreementDTO from '../../../dtos/ICreateDeliveryAgreementDTO';
 import DeliveryAgreement from '../../../infra/typeorm/entities/DeliveryAgreement';
-import FakeDeliveryAgreementRepository from '../../../infra/typeorm/repositories/fakes/FakeDeliveryAgreementRepository';
+import FakeDeliveryAgreementRepository from '../../../repositories/fakes/FakeDeliveryAgreementRepository';
 import CreateDeliveryAgreementService from '../CreateDeliveryAgreementService';
 
 describe('CreateDeliveryAgreement', () => {

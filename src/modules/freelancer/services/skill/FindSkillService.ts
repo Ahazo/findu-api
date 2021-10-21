@@ -11,14 +11,14 @@ export default class FindSkillService {
 	) {}
 
 	public async executeById(id: number): Promise<Skill | undefined> {
-		const result = await this.skillRepository.findById(id);
+		const skill = await this.skillRepository.findById(id);
 
-		return result;
+		return skill;
 	}
 
 	public async executeAll(): Promise<Skill[] | undefined> {
-		const result = await this.skillRepository.findAll();
+		const skill = await this.skillRepository.findAll();
 
-		return result;
+		return skill;
 	}
 }

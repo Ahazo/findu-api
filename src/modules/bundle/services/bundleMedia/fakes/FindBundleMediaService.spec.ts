@@ -1,5 +1,5 @@
 import ICreateBundleMediasDTO from '../../../dtos/ICreateBundleMediaDTO';
-import FakeBundleMediaRepository from '../../../infra/typeorm/repositories/fakes/FakeBundleMediaRepository';
+import FakeBundleMediaRepository from '../../../repositories/fakes/FakeBundleMediaRepository';
 import CreateBundleMediaService from '../CreateBundleMediaService';
 import FindBundleMediaService from '../FindBundleMediaService';
 

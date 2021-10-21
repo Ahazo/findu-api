@@ -1,6 +1,6 @@
 import ICreatePostRecommendationDTO from '../../../dtos/Recommendation/ICreatePostRecommendationDTO';
 import PostRecommendation from '../../../infra/typeorm/entities/PostRecommendation';
-import FakePostRecommendationRepository from '../../../infra/typeorm/repositories/fakes/FakePostRecommendationRepository';
+import FakePostRecommendationRepository from '../../../repositories/fakes/FakePostRecommendationRepository';
 import CreatePostRecommendationService from '../CreatePostRecommendationService';
 
 describe('CreatePostRecommendation', () => {

@@ -1,6 +1,6 @@
-import ICreateInfluencerLevelDTO from '../../../../dtos/ICreateInfluencerLevelDTO';
-import IInfluencerLevelRepository from '../../../../repositories/IInfluencerLevelRepository';
-import InfluencerLevel from '../../entities/InfluencerLevel';
+import ICreateInfluencerLevelDTO from '../../dtos/ICreateInfluencerLevelDTO';
+import InfluencerLevel from '../../infra/typeorm/entities/InfluencerLevel';
+import IInfluencerLevelRepository from '../IInfluencerLevelRepository';
 
 class FakeInfluencerLevelRepository implements IInfluencerLevelRepository {
 	private levels: InfluencerLevel[] = [];
