@@ -33,6 +33,6 @@ describe('CreateArea', () => {
 
 		expect(
 			await createAreaService.execute(areaWithExistingDescription)
-		).toBeInstanceOf(Error);
+		).rejects.toBeInstanceOf(Error);
 	});
 });

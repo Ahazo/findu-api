@@ -16,6 +16,7 @@ export default class CreateFreelancerService {
 	) {}
 
 	public async execute(data: ICreateFreelancerDTO): Promise<Freelancer> {
+		console.log('USER_ID', data);
 		const checkUserExists = await this.userRepository.findById(data.user_id);
 
 		if (!checkUserExists) throw new Error('User not found');

@@ -15,35 +15,29 @@ let fakeProfessionalLevelRepository: FakeProfessionalLevelRepository;
 let fakeHashProvider: FakeHashProvider;
 let fakeUserRepository: FakeUsersRepository;
 
-// Resolver problemas de servico
-// Adicionar criacao de usuario
+let findFreelancer: FindFreelancerService;
 
 describe('FindBy Freelancer', () => {
 	beforeEach(() => {
 		fakeFreelancerRepository = new FakeFreelancerRepository();
-		fakeProfessionalLevelRepository = new FakeProfessionalLevelRepository();
 		fakeUserRepository = new FakeUsersRepository();
-		fakeHashProvider = new FakeHashProvider();
+		findFreelancer = new FindFreelancerService(fakeFreelancerRepository);
 	});
 
 	it('should be able to find freelancer by freelancer id', async () => {
-		const FindFreelancer = new FindFreelancerService(fakeFreelancerRepository);
-
 		const CreateFreelancer = new CreateFreelancerService(
 			fakeFreelancerRepository,
 			fakeUserRepository
 		);
-		// TOOOOOODOOOOO/
 		const freelancerData: ICreateFreelancerDTO = {
-			user_id: user.id,
-			level_id: level.id,
+			user_id: 1,
+			level_id: 1,
 		};
 
 		const freelancer = await CreateFreelancer.execute(freelancerData);
+		const freelancerFound = await findFreelancer.executeById(freelancer.id);
 
-		const result = await FindFreelancer.executeById(freelancer.id);
-
-		expect(result).toEqual(freelancer);
+		expect(freelancerFound).toEqual(freelancer);
 	});
 
 	it('should not be able to find freelancer by freelancer id', async () => {
