@@ -6,15 +6,6 @@ class FakeAreaRepository implements IAreaRepository {
 	private areas: Area[] = [];
 
 	public async create(data: ICreateAreaDTO): Promise<Area> {
-		const checkIfAreaExists = this.areas.find(
-			(area) => area.description === data.description
-		);
-
-		if (checkIfAreaExists) {
-			console.log(checkIfAreaExists);
-			throw new Error('Area already exists');
-		}
-
 		const area = new Area();
 
 		Object.assign(

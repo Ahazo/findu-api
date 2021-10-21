@@ -18,7 +18,7 @@ describe('CreateOrder', () => {
 		const orderData: ICreateOrderDTO = {
 			user_id: 1,
 			bundle_id: 1,
-			status_id: 1,
+			order_status_id: 1,
 		};
 
 		const order = await createOrderService.execute(orderData);

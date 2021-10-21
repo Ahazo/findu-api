@@ -12,10 +12,14 @@ export default class CreateAreaService {
 	) {}
 
 	public async execute(data: ICreateAreaDTO): Promise<Area> {
-		console.info('AREAAAAAAAAAAA', data);
+		const checkIfAreaExists = await this.areaRepository.findByDescription(
+			data.description
+		);
+
+		if (checkIfAreaExists) throw new Error('Area Already Exists');
+
 		const area = await this.areaRepository.create(data);
 
-		console.log('AREAAAAAAAAAAA', area);
 		return area;
 	}
 }

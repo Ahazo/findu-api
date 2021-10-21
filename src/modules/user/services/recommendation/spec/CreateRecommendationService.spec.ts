@@ -5,7 +5,6 @@ import CreateRecommendationService from '../CreateRecommendationService';
 
 describe('CreateRecommendation', () => {
 	let fakeRecommendationRepository: FakeRecommendationRepository;
-
 	let createRecommendationService: CreateRecommendationService;
 
 	beforeEach(() => {
@@ -22,7 +21,7 @@ describe('CreateRecommendation', () => {
 			user_id: 1,
 		};
 
-		const recommendation = await this.createRecommendationService.execute(
+		const recommendation = await createRecommendationService.execute(
 			recommendationData
 		);
 

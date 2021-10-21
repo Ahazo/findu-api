@@ -12,9 +12,7 @@ export default class OrderRepository implements IOrderRepository {
 	}
 
 	async create(data: ICreateOrderDTO): Promise<Order> {
-		console.log(data);
-		const order = await this.orderRepository.create(data);
-		console.log('pipas', order);
+		const order = this.orderRepository.create(data);
 		await this.orderRepository.save(order);
 
 		return order;

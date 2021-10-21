@@ -1,4 +1,4 @@
-import ICreateRecommendationDTO from '../../../../dtos/Recommendation/ICreateRecommendation';
+import ICreateRecommendationDTO from '../../../../dtos/Recommendation/ICreateRecommendationDTO';
 import IRecommendationRepository from '../../../../repositories/IRecommendationRepository';
 import Recommendation from '../../entities/Recommendation';
 

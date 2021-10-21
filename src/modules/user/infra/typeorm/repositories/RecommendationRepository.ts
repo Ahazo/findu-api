@@ -1,7 +1,7 @@
-import ICreateRecommendationDTO from 'modules/user/dtos/Recommendation/ICreateRecommendation';
+import ICreateRecommendationDTO from 'modules/user/dtos/Recommendation/ICreateRecommendationDTO';
 import Recommendation from 'modules/user/infra/typeorm/entities/Recommendation';
 import IRecommendationRepository from 'modules/user/repositories/IRecommendationRepository';
-import { getRepository, Repository, Any } from 'typeorm';
+import { getRepository, Repository } from 'typeorm';
 
 export default class RecommendationRepository
 	implements IRecommendationRepository

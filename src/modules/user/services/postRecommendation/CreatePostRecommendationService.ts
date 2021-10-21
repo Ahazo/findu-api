@@ -1,13 +1,13 @@
 import ICreatePostRecommendationDTO from 'modules/user/dtos/Recommendation/ICreatePostRecommendationDTO';
 import PostRecommendation from 'modules/user/infra/typeorm/entities/PostRecommendation';
-import PostRecommendationRepository from 'modules/user/infra/typeorm/repositories/PostRecommendationRepository';
+import IPostRecommendationRepository from 'modules/user/repositories/IPostRecommendationRepository';
 import { injectable, inject } from 'tsyringe';
 
 @injectable()
 export default class CreatePostRecommendationService {
 	constructor(
 		@inject('PostRecommendationRepository')
-		private postRecommendationRepository: PostRecommendationRepository
+		private postRecommendationRepository: IPostRecommendationRepository
 	) {}
 
 	public async execute(

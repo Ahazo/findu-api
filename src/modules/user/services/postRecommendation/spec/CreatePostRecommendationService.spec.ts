@@ -14,18 +14,18 @@ describe('CreatePostRecommendation', () => {
 		createPostRecommendationService = new CreatePostRecommendationService(
 			fakePostRecommendationRepository
 		);
+	});
 
-		it('should be able to create post recommendations', async () => {
-			const postData: ICreatePostRecommendationDTO = {
-				user_id: 1,
-				freelancer_id: 1,
-				order_id: 1,
-				content: 'muito bom compra ae rapazeada',
-			};
+	it('should be able to create post recommendations', async () => {
+		const postData: ICreatePostRecommendationDTO = {
+			user_id: 1,
+			freelancer_id: 1,
+			order_id: 1,
+			content: 'muito bom compra ae rapazeada',
+		};
 
-			const post = await this.createPostRecommendationService.execute(postData);
+		const post = await createPostRecommendationService.execute(postData);
 
-			expect(post).toBeInstanceOf(PostRecommendation);
-		});
+		expect(post).toBeInstanceOf(PostRecommendation);
 	});
 });

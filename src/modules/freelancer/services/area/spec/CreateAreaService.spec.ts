@@ -31,8 +31,8 @@ describe('CreateArea', () => {
 			description: 'Area Description',
 		};
 
-		expect(
-			await createAreaService.execute(areaWithExistingDescription)
+		await expect(
+			createAreaService.execute(areaWithExistingDescription)
 		).rejects.toBeInstanceOf(Error);
 	});
 });
