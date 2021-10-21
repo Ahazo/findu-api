@@ -30,4 +30,22 @@ describe('CreateFreelancer', () => {
 
 		expect(freelancer).toBeInstanceOf(Freelancer);
 	});
+
+	it('should not be able to create freelancer with the same user id', async () => {
+		const freelancerData: ICreateFreelancerDTO = {
+			user_id: 1,
+			level_id: 1,
+		};
+
+		await createFreelancer.execute(freelancerData);
+
+		const freelancerData1: ICreateFreelancerDTO = {
+			user_id: 1,
+			level_id: 1,
+		};
+
+		await expect(
+			createFreelancer.execute(freelancerData)
+		).rejects.toBeInstanceOf(Error);
+	});
 });

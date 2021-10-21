@@ -14,6 +14,12 @@ export default class CreateSpecializationService {
 	public async execute(
 		data: ICreateSpecializationDTO
 	): Promise<Specialization> {
+		const check = await this.specializationRepository.findByName(
+			data.description
+		);
+
+		if (check) throw new Error('This Specialization already exists');
+
 		const result = await this.specializationRepository.create(data);
 
 		return result;

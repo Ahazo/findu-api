@@ -4,5 +4,4 @@ import ICreateBundleDTO from './ICreateBundleDTO';
 export default interface ICreateBundleMediasDTO {
 	bundle_id: number;
 	url: string;
-	// status: EStatus;
 }
