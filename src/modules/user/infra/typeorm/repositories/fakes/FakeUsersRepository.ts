@@ -20,7 +20,7 @@ class FakeUsersRepository implements IUserRepository {
 
 		Object.assign(
 			user,
-			{ id: Math.floor(Math.random() * (10 - 1) + 1) },
+			{ id: Math.floor(Math.random() * (100 - 1) + 1) },
 			userData
 		);
 

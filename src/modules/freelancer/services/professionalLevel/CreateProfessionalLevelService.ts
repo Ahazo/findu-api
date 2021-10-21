@@ -14,21 +14,29 @@ export default class CreateProfessionalLevelService {
 	public async execute(
 		data: ICreateProfessionalLevelDTO
 	): Promise<ProfessionalLevel> {
-		const checkDescriptionProfessionalLevelExists =
+		const checkLevelNumberExists =
+			await this.professionalLevelRepository.findByLevelNumber(
+				data.level_number
+			);
+
+		if (checkLevelNumberExists) throw new Error('Level already exists');
+
+		const checkDescriptionExists =
 			await this.professionalLevelRepository.findByDescription(
 				data.description
 			);
 
-		if (checkDescriptionProfessionalLevelExists)
-			throw new Error('Description already exists');
+		if (checkDescriptionExists) throw new Error('Description already exists');
 
-		const checkExperienceNeededProfessionalLevelExists =
+		const checkExperienceNeededExists =
 			await this.professionalLevelRepository.findByExperienceNeeded(
 				data.experience_needed
 			);
 
-		if (checkExperienceNeededProfessionalLevelExists)
-			throw new Error('Experience needed already exists');
+		if (checkExperienceNeededExists)
+			throw new Error(
+				'Experience needed attribute already exists with same value'
+			);
 
 		const professionalLevel = await this.professionalLevelRepository.create(
 			data

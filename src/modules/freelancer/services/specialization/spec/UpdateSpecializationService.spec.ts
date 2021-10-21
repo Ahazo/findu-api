@@ -1,5 +1,5 @@
 import ICreateSpecializationDTO from '../../../dtos/ICreateSpecializationDTO';
-import FakeSpecializationRepository from '../../../infra/typeorm/repositories/fakes/FakeSpecializationRepository';
+import FakeSpecializationRepository from '../../../repositories/fakes/FakeSpecializationRepository';
 import CreateSpecializationService from '../CreateSpecializationService';
 import UpdateSpecializationService from '../UpdateSpecializationService';
 

@@ -18,12 +18,7 @@ describe('CreateBundle Media', () => {
 
 	it('should be able to create bundle medias', async () => {
 		const bundleMediaData: ICreateBundleMediasDTO = {
-			bundle: {
-				title: 'Pacotão',
-				description: 'Muitas coisas drento',
-				value: 1,
-				deadline: new Date(),
-			},
+			bundle_id: 1,
 			url: 'sites.com',
 		};
 

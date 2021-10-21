@@ -1,6 +1,6 @@
-import ICreateAreaDTO from '../../../../dtos/ICreateAreaDTO';
-import IAreaRepository from '../../../../repositories/IAreaRepository';
-import Area from '../../entities/Area';
+import ICreateAreaDTO from '../../dtos/ICreateAreaDTO';
+import Area from '../../infra/typeorm/entities/Area';
+import IAreaRepository from '../IAreaRepository';
 
 class FakeAreaRepository implements IAreaRepository {
 	private areas: Area[] = [];
@@ -8,7 +8,11 @@ class FakeAreaRepository implements IAreaRepository {
 	public async create(data: ICreateAreaDTO): Promise<Area> {
 		const area = new Area();
 
-		Object.assign(area, { id: Math.floor(Math.random() * (10 - 1) + 1) }, data);
+		Object.assign(
+			area,
+			{ id: Math.floor(Math.random() * (100 - 1) + 1) },
+			data
+		);
 
 		this.areas.push(area);
 		return area;
@@ -19,7 +23,7 @@ class FakeAreaRepository implements IAreaRepository {
 		return areaFound;
 	}
 
-	public async findByName(areaname: string): Promise<Area | undefined> {
+	public async findByDescription(areaname: string): Promise<Area | undefined> {
 		const areaFound = this.areas.find((area) => area.description === areaname);
 		return areaFound;
 	}

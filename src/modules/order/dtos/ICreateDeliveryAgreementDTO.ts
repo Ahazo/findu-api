@@ -1,9 +1,5 @@
-import ICreateUserDTO from 'modules/user/dtos/ICreateUserDTO';
-
-import ICreateOrderDTO from './ICreateOrderDTO';
-
 export default interface ICreateDeliveryAgreementDTO {
-	user: ICreateUserDTO;
-	order: ICreateOrderDTO;
+	user_id: number;
+	order_id: number;
 	status: 'accepted' | 'refused';
 }

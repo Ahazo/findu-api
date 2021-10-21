@@ -1,5 +1,5 @@
 import ICreateAreaDTO from 'modules/freelancer/dtos/ICreateAreaDTO';
-import { getRepository, Repository, Any } from 'typeorm';
+import { getRepository, Repository } from 'typeorm';
 
 import IAreaRepository from '../../../repositories/IAreaRepository';
 import Area from '../entities/Area';
@@ -27,9 +27,9 @@ export default class AreaRepository implements IAreaRepository {
 		return area;
 	}
 
-	async findByName(areaName: string): Promise<Area | undefined> {
+	async findByDescription(description: string): Promise<Area | undefined> {
 		const area = await this.areaRepository.findOne({
-			where: areaName,
+			where: description,
 		});
 
 		return area;

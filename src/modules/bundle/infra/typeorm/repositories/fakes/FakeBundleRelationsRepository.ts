@@ -12,7 +12,7 @@ export default class FakeBundleRelationsRepository
 
 		Object.assign(
 			bundleRelation,
-			{ id: Math.floor(Math.random() * (10 - 1) + 1) },
+			{ id: Math.floor(Math.random() * (100 - 1) + 1) },
 			data
 		);
 

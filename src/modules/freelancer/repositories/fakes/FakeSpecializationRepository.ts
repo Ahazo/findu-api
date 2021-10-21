@@ -1,6 +1,6 @@
-import ICreateSpecializationDTO from '../../../../dtos/ICreateSpecializationDTO';
-import ISpecializationRepository from '../../../../repositories/ISpecializationRepository';
-import Specialization from '../../entities/Specialization';
+import ICreateSpecializationDTO from '../../dtos/ICreateSpecializationDTO';
+import Specialization from '../../infra/typeorm/entities/Specialization';
+import ISpecializationRepository from '../ISpecializationRepository';
 
 class FakeSpecializationRepository implements ISpecializationRepository {
 	private specializations: Specialization[] = [];
@@ -10,7 +10,7 @@ class FakeSpecializationRepository implements ISpecializationRepository {
 
 		Object.assign(
 			specialization,
-			{ id: Math.floor(Math.random() * (10 - 1) + 1) },
+			{ id: Math.floor(Math.random() * (100 - 1) + 1) },
 			data
 		);
 

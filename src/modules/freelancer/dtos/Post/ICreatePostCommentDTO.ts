@@ -1,10 +1,5 @@
-import { EStatus } from '../../../../shared/utils/dtos/EStatus';
-import ICreateUserDTO from '../../../user/dtos/ICreateUserDTO';
-import ICreatePostDTO from './ICreatePostDTO';
-
 export default interface ICreatePostCommentDTO {
-	post: ICreatePostDTO;
-	user: ICreateUserDTO;
+	post_id: number;
+	user_id: number;
 	content: string;
-	status: EStatus;
 }

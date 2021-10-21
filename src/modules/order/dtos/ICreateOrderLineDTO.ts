@@ -1,9 +1,5 @@
-import ICreateFreelancerDTO from 'modules/freelancer/dtos/ICreateFreelancerDTO';
-
-import ICreateOrderDTO from './ICreateOrderDTO';
-
 export default interface ICreateOrderLineDTO {
-	order: ICreateOrderDTO;
-	freelancer: ICreateFreelancerDTO;
+	order_id: number;
+	freelancer_id: number;
 	total_value: number;
 }
