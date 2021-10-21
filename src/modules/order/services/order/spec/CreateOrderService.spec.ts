@@ -26,3 +26,7 @@ describe('CreateOrder', () => {
 		expect(order).toBeInstanceOf(Order);
 	});
 });
+
+// TO DO
+// Check all tests
+// Create a pattern
