@@ -15,8 +15,11 @@ export default class InfluencerLevel {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ type: 'varchar', nullable: false, unique: false })
+	@Column({ type: 'varchar', nullable: false, unique: true })
 	description: string;
+
+	@Column({ type: 'varchar', nullable: false, unique: true })
+	level_number: string;
 
 	@Column({ type: 'int', nullable: false, unique: false })
 	experience_needed: number;

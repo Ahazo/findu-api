@@ -14,6 +14,12 @@ export class CreateInfluencerLevel1632248776698 implements MigrationInterface {
 						isGenerated: true,
 					},
 					{
+						name: 'level_number',
+						type: 'int4',
+						isNullable: false,
+						isUnique: true,
+					},
+					{
 						name: 'description',
 						type: 'varchar',
 						isNullable: false,

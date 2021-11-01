@@ -29,7 +29,7 @@ export class CreateUser1632248795758 implements MigrationInterface {
 						name: 'password',
 						type: 'varchar',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'experience',
@@ -53,6 +53,13 @@ export class CreateUser1632248795758 implements MigrationInterface {
 					},
 					{
 						name: 'following_count',
+						type: 'int',
+						isNullable: false,
+						isUnique: false,
+						default: 0,
+					},
+					{
+						name: 'projects_count',
 						type: 'int',
 						isNullable: false,
 						isUnique: false,
