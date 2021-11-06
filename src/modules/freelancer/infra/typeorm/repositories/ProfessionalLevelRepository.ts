@@ -46,6 +46,15 @@ class ProfessionalLevelRepository implements IProfessionalLevelRepository {
 		});
 		return professionalLevel;
 	}
+
+	public async findByLevelNumber(
+		level_number: number
+	): Promise<ProfessionalLevel | undefined> {
+		const professionalLevel = await this.professionalLevelRepository.findOne({
+			where: { level_number },
+		});
+		return professionalLevel;
+	}
 }
 
 export default ProfessionalLevelRepository;

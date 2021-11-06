@@ -39,7 +39,6 @@ export default class Person {
 	address_id: number;
 
 	@OneToOne(() => Address, (address: Address) => address.person, {
-		eager: true,
 		cascade: true,
 	})
 	@JoinColumn({ name: 'address_id' })

@@ -59,13 +59,6 @@ export class CreateUser1632248795758 implements MigrationInterface {
 						default: 0,
 					},
 					{
-						name: 'projects_count',
-						type: 'int',
-						isNullable: false,
-						isUnique: false,
-						default: 0,
-					},
-					{
 						name: 'created_at',
 						type: 'timestamp',
 						default: 'now()',

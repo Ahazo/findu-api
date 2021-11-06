@@ -37,11 +37,18 @@ export default class UsersController {
 				experience: userFound?.experience,
 				followers: userFound?.follower_count,
 				following: userFound?.following_count,
-				projects: userFound?.projects_count,
-				levelInfo: {
-					label: userFound?.influencerLevel.description,
-					levelNumber: userFound?.influencerLevel.level_number,
-				},
+				levelDescription: userFound?.influencerLevel.description,
+				levelNumber: userFound?.influencerLevel.level_number,
+				...(userFound?.freelancer && {
+					freelancer: {
+						projects: userFound?.freelancer.projects_count,
+						open_to_work: userFound?.freelancer.open_to_work,
+						experience: userFound?.freelancer.experience,
+						levelNumber: userFound?.freelancer.professionalLevel.level_number,
+						levelDescription:
+							userFound?.freelancer.professionalLevel.description,
+					},
+				}),
 			});
 		} catch (error) {
 			return response.status(400).json({ message: error });

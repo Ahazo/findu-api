@@ -121,9 +121,6 @@ export default class User {
 	@Column({ type: 'int', nullable: false, unique: false, default: 0 })
 	following_count: number;
 
-	@Column({ type: 'int', nullable: false, unique: false, default: 0 })
-	projects_count: number;
-
 	@CreateDateColumn({ type: 'timestamp', nullable: false, unique: false })
 	created_at: Date;
 
