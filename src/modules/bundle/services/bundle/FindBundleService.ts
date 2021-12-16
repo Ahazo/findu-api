@@ -11,20 +11,17 @@ export default class FindBundleService {
 	) {}
 
 	public async executeById(id: number): Promise<Bundle | undefined> {
-		const result = await this.bundleRepository.findById(id);
-
-		return result;
+		const bundle = await this.bundleRepository.findById(id);
+		return bundle;
 	}
 
 	public async executeByName(name: string): Promise<Bundle | undefined> {
-		const result = await this.bundleRepository.findByName(name);
-
-		return result;
+		const bundle = await this.bundleRepository.findByName(name);
+		return bundle;
 	}
 
 	public async executeAll(): Promise<Bundle[] | undefined> {
-		const result = await this.bundleRepository.findAll();
-
-		return result;
+		const bundles = await this.bundleRepository.findAll();
+		return bundles;
 	}
 }

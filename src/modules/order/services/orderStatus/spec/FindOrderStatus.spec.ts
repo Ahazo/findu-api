@@ -1,5 +1,5 @@
 import ICreateOrderStatusDTO from '../../../dtos/ICreateOrderStatusDTO';
-import FakeOrderStatusRepository from '../../../infra/typeorm/repositories/fakes/FakeOrderStatusRepository';
+import FakeOrderStatusRepository from '../../../repositories/fakes/FakeOrderStatusRepository';
 import CreateOrderStatusService from '../CreateOrderStatusService';
 import FindOrderStatusService from '../FindOrderStatusService';
 
@@ -21,28 +21,46 @@ describe('FindOrderStatus', () => {
 	});
 
 	it('should be able to find order status by its ID', async () => {
-		const orderStatusData: ICreateOrderStatusDTO = {
+		const orderStatus = await createOrderStatusService.execute({
 			description: 'order aaaa',
 			step: 3,
-		};
+		});
 
-		const orderStatus = await createOrderStatusService.execute(orderStatusData);
-
-		const find = await findOrderStatusService.executeById(+orderStatus.id);
-
-		expect(find).toBe(orderStatus);
+		expect(await findOrderStatusService.executeById(+orderStatus.id)).toBe(
+			orderStatus
+		);
 	});
 
 	it('should not be able to find order status by its wrong ID', async () => {
-		const orderStatusData: ICreateOrderStatusDTO = {
+		const orderStatus = await createOrderStatusService.execute({
 			description: 'order aaaa',
 			step: 3,
-		};
+		});
 
-		const orderStatus = await createOrderStatusService.execute(orderStatusData);
+		expect(
+			await findOrderStatusService.executeById(+orderStatus.id + 1)
+		).toBeUndefined();
+	});
 
-		const find = await findOrderStatusService.executeById(+orderStatus.id + 1);
+	it('should be able to find order status by its name', async () => {
+		const orderStatus = await createOrderStatusService.execute({
+			description: 'order aaaa',
+			step: 3,
+		});
 
-		expect(find).toBe(undefined);
+		expect(
+			await findOrderStatusService.executeByName(orderStatus.description)
+		).toBe(orderStatus);
+	});
+
+	it('should not be able to find order status by its wrong name', async () => {
+		await createOrderStatusService.execute({
+			description: 'order aaaa',
+			step: 3,
+		});
+
+		expect(
+			await findOrderStatusService.executeByName('aaaa redro')
+		).toBeUndefined();
 	});
 });

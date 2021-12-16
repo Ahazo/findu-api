@@ -6,6 +6,7 @@ import freelancerRouter from '../../../../modules/freelancer/infra/http/routes/f
 import professionalLevelRouter from '../../../../modules/freelancer/infra/http/routes/professionalLevel.routes';
 import orderRouter from '../../../../modules/order/infra/http/routes/order.routes';
 import influencerLevelRouter from '../../../../modules/user/infra/http/routes/influencerLevel.routes';
+import recommendationRouter from '../../../../modules/user/infra/http/routes/recommendation.routes';
 import userRouter from '../../../../modules/user/infra/http/routes/user.routes';
 
 const routes = Router();
@@ -16,5 +17,6 @@ routes.use('/api/freelancer', freelancerRouter);
 routes.use('/api/area', areaRouter);
 routes.use('/api/bundle', bundleRouter);
 routes.use('/api/order', orderRouter);
+routes.use('/api/recommendation', recommendationRouter);
 
 export default routes;

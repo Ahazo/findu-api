@@ -5,10 +5,12 @@ import CreateSkillService from '../CreateSkillService';
 
 describe('CreateSkill', () => {
 	let fakeSkillRepository: FakeSkillRepository;
+
 	let createSkillService: CreateSkillService;
 
 	beforeEach(() => {
 		fakeSkillRepository = new FakeSkillRepository();
+
 		createSkillService = new CreateSkillService(fakeSkillRepository);
 	});
 

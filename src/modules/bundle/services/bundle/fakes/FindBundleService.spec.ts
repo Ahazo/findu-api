@@ -1,5 +1,5 @@
 import ICreateBundleDTO from '../../../dtos/ICreateBundleDTO';
-import FakeBundleRepository from '../../../infra/typeorm/repositories/fakes/FakeBundleRepository';
+import FakeBundleRepository from '../../../repositories/fakes/FakeBundleRepository';
 import CreateBundleService from '../CreateBundleService';
 import FindBundleService from '../FindBundleService';
 
@@ -17,64 +17,50 @@ describe('FindBundle', () => {
 	});
 
 	it('should be able to find bundle by its ID', async () => {
-		const bundleData: ICreateBundleDTO = {
+		const bundle = await createBundleService.execute({
 			title: 'bundlezada',
 			description: 'pacote de sargadinho',
 			value: 3,
 			deadline: new Date(),
-		};
+		});
 
-		const bundle = await createBundleService.execute(bundleData);
-
-		const find = await findBundleService.executeById(bundle.id);
-
-		expect(find).toBe(bundle);
+		expect(await findBundleService.executeById(bundle.id)).toBe(bundle);
 	});
 
 	it('should not be able to find bundle by its wrong ID', async () => {
-		const bundleData: ICreateBundleDTO = {
+		const bundle = await createBundleService.execute({
 			title: 'bundlezada',
 			description: 'pacote de sargadinho',
 			value: 3,
 			deadline: new Date(),
-		};
+		});
 
-		const bundle = await createBundleService.execute(bundleData);
-
-		const find = await findBundleService.executeById(bundle.id + 1);
-
-		expect(find).toBe(undefined);
+		expect(await findBundleService.executeById(bundle.id + 1)).toBeUndefined();
 	});
 
 	it('should be able to find bundle by its name', async () => {
-		const bundleData: ICreateBundleDTO = {
+		const bundle = await createBundleService.execute({
 			title: 'bundlezada',
 			description: 'pacote de sargadinho',
 			value: 3,
 			deadline: new Date(),
-		};
+		});
 
-		const bundle = await createBundleService.execute(bundleData);
-
-		const find = await findBundleService.executeByName(bundle.description);
-
-		expect(find).toBe(bundle);
+		expect(await findBundleService.executeByName(bundle.description)).toBe(
+			bundle
+		);
 	});
 
 	it('should not be able to find bundle by wrong its name', async () => {
-		const bundleData: ICreateBundleDTO = {
+		const bundle = await createBundleService.execute({
 			title: 'bundlezada',
 			description: 'pacote de sargadinho',
 			value: 3,
 			deadline: new Date(),
-		};
+		});
 
-		const bundle = await createBundleService.execute(bundleData);
-
-		const find = await findBundleService.executeByName(
-			'batatinha quando naisce'
-		);
-
-		expect(find).toBe(undefined);
+		expect(
+			await findBundleService.executeByName('batatinha quando naisce')
+		).toBeUndefined();
 	});
 });

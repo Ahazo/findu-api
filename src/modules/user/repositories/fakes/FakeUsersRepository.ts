@@ -1,6 +1,6 @@
-import ICreateUserDTO from '../../../../dtos/ICreateUserDTO';
-import IUserRepository from '../../../../repositories/IUserRepository';
-import User from '../../entities/User';
+import ICreateUserDTO from '../../dtos/ICreateUserDTO';
+import User from '../../infra/typeorm/entities/User';
+import IUserRepository from '../IUserRepository';
 
 class FakeUsersRepository implements IUserRepository {
 	private users: User[] = [];

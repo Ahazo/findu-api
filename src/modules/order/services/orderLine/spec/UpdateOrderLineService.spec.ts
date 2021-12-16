@@ -1,5 +1,5 @@
 import ICreateOrderLineDTO from '../../../dtos/ICreateOrderLineDTO';
-import FakeOrderLineRepository from '../../../infra/typeorm/repositories/fakes/FakeOrderLineRepository';
+import FakeOrderLineRepository from '../../../repositories/fakes/FakeOrderLineRepository';
 import CreateOrderLineService from '../CreateOrderLineService';
 import UpdateOrderLineService from '../UpdateOrderLineService';
 
@@ -22,13 +22,11 @@ describe('UpdateOrderLine', () => {
 	});
 
 	it('should be able to update Order Line', async () => {
-		const orderLineData: ICreateOrderLineDTO = {
+		const orderLine = await createOrderLineService.execute({
 			order_id: 1,
 			freelancer_id: 1,
 			total_value: 10,
-		};
-
-		const orderLine = await createOrderLineService.execute(orderLineData);
+		});
 
 		const update = await updateOrderLineService.execute({
 			...orderLine,

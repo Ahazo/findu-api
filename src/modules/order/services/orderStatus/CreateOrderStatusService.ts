@@ -12,6 +12,10 @@ export default class CreateOrderStatusService {
 	) {}
 
 	public async execute(data: ICreateOrderStatusDTO): Promise<OrderStatus> {
+		const check = await this.orderStatusRepository.findByName(data.description);
+
+		if (check) throw new Error('This Order Status already exists');
+
 		const result = await this.orderStatusRepository.create(data);
 		return result;
 	}

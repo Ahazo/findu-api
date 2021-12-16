@@ -40,11 +40,20 @@ export default class User {
 
 	@OneToMany(
 		() => ProfilePhoto,
-		(profilePhoto: ProfilePhoto) => profilePhoto.user
+		(profilePhoto: ProfilePhoto) => profilePhoto.user,
+		{
+			eager: true,
+		}
 	)
 	profilePhoto: ProfilePhoto;
 
-	@OneToMany(() => BannerPhoto, (bannerPhoto: BannerPhoto) => bannerPhoto.user)
+	@OneToMany(
+		() => BannerPhoto,
+		(bannerPhoto: BannerPhoto) => bannerPhoto.user,
+		{
+			eager: true,
+		}
+	)
 	bannerPhoto: BannerPhoto;
 
 	@OneToMany(() => PostLike, (postLike: PostLike) => postLike.user)
@@ -53,7 +62,9 @@ export default class User {
 	@OneToMany(() => Order, (order: Order) => order.user)
 	order: number;
 
-	@OneToOne(() => Freelancer, (freelancer: Freelancer) => freelancer.user)
+	@OneToOne(() => Freelancer, (freelancer: Freelancer) => freelancer.user, {
+		eager: true,
+	})
 	freelancer: Freelancer;
 
 	@OneToMany(
@@ -87,7 +98,7 @@ export default class User {
 	@Column({ type: 'varchar', length: 30, nullable: false, unique: true })
 	username: string;
 
-	@Column({ type: 'varchar', length: 120, nullable: false, unique: true })
+	@Column({ type: 'varchar', length: 120, nullable: false, unique: false })
 	password: string;
 
 	@Column({ type: 'int', nullable: false, unique: false, default: 0 })
@@ -104,10 +115,10 @@ export default class User {
 	@JoinColumn({ name: 'level_id' })
 	influencerLevel: InfluencerLevel;
 
-	@Column({ type: 'int', nullable: false, unique: true, default: 0 })
+	@Column({ type: 'int', nullable: false, unique: false, default: 0 })
 	follower_count: number;
 
-	@Column({ type: 'int', nullable: false, unique: true, default: 0 })
+	@Column({ type: 'int', nullable: false, unique: false, default: 0 })
 	following_count: number;
 
 	@CreateDateColumn({ type: 'timestamp', nullable: false, unique: false })

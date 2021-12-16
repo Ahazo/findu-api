@@ -11,14 +11,12 @@ export default class FindBundleMediaService {
 	) {}
 
 	public async executeById(id: number): Promise<BundleMedia | undefined> {
-		const result = await this.bundleMediaRepository.findById(id);
-
-		return result;
+		const bundleMedia = await this.bundleMediaRepository.findById(id);
+		return bundleMedia;
 	}
 
 	public async executeAll(): Promise<BundleMedia[] | undefined> {
-		const result = await this.bundleMediaRepository.findAll();
-
-		return result;
+		const bundleMedias = await this.bundleMediaRepository.findAll();
+		return bundleMedias;
 	}
 }

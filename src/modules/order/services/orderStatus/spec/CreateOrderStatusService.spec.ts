@@ -1,6 +1,6 @@
 import ICreateOrderStatusDTO from '../../../dtos/ICreateOrderStatusDTO';
 import OrderStatus from '../../../infra/typeorm/entities/OrderStatus';
-import FakeOrderStatusRepository from '../../../infra/typeorm/repositories/fakes/FakeOrderStatusRepository';
+import FakeOrderStatusRepository from '../../../repositories/fakes/FakeOrderStatusRepository';
 import CreateOrderStatusService from '../CreateOrderStatusService';
 
 describe('CreateOrderStatus', () => {
@@ -17,13 +17,27 @@ describe('CreateOrderStatus', () => {
 	});
 
 	it('should be able to create order status', async () => {
-		const orderStatusData: ICreateOrderStatusDTO = {
+		expect(
+			await createOrderStatusService.execute({
+				description: 'ordein',
+				step: 1,
+			})
+		).toBeInstanceOf(OrderStatus);
+	});
+
+	it('should not be able to create order status with the same name', async () => {
+		const orderStatus = await createOrderStatusService.execute({
 			description: 'ordein',
 			step: 1,
+		});
+
+		const orderStatusWithSameName: ICreateOrderStatusDTO = {
+			...orderStatus,
+			description: 'ordein',
 		};
 
-		const orderStatus = await createOrderStatusService.execute(orderStatusData);
-
-		expect(orderStatus).toBeInstanceOf(OrderStatus);
+		await expect(
+			createOrderStatusService.execute(orderStatusWithSameName)
+		).rejects.toBeInstanceOf(Error);
 	});
 });

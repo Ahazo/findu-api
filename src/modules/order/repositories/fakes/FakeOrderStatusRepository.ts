@@ -1,6 +1,6 @@
-import ICreateOrderStatusDTO from '../../../../dtos/ICreateOrderStatusDTO';
-import IOrderStatusRepository from '../../../../repositories/IOrderStatusRepository';
-import OrderStatus from '../../entities/OrderStatus';
+import ICreateOrderStatusDTO from '../../dtos/ICreateOrderStatusDTO';
+import OrderStatus from '../../infra/typeorm/entities/OrderStatus';
+import IOrderStatusRepository from '../IOrderStatusRepository';
 
 export default class FakeOrderStatusRepository
 	implements IOrderStatusRepository
@@ -32,6 +32,14 @@ export default class FakeOrderStatusRepository
 
 	public async findById(id: number): Promise<OrderStatus | undefined> {
 		const findOrder = this.orderStatus.find((find) => +find.id === id);
+
+		return findOrder;
+	}
+
+	public async findByName(name: string): Promise<OrderStatus | undefined> {
+		const findOrder = this.orderStatus.find(
+			(find) => find.description === name
+		);
 
 		return findOrder;
 	}

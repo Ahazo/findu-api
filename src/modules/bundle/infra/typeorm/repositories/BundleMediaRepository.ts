@@ -12,7 +12,7 @@ export default class BundleMediaRepository implements IBundleMediaRepository {
 	}
 
 	async create(data: ICreateBundleMediasDTO): Promise<BundleMedia> {
-		const bundle = await this.bundleMediaRepository.create(data);
+		const bundle = this.bundleMediaRepository.create(data);
 
 		await this.bundleMediaRepository.save(bundle);
 

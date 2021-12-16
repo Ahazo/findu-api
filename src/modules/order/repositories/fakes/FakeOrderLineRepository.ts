@@ -1,7 +1,7 @@
 import ICreateOrderLineDTO from 'modules/order/dtos/ICreateOrderLineDTO';
 import IOrderLineRepository from 'modules/order/repositories/IOrderLineRepository';
 
-import OrderLine from '../../entities/OrderLine';
+import OrderLine from '../../infra/typeorm/entities/OrderLine';
 
 export default class FakeOrderLineRepository implements IOrderLineRepository {
 	private orderLines: OrderLine[] = [];

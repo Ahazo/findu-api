@@ -16,6 +16,10 @@ export default class CreateUserService {
 	) {}
 
 	public async execute(userData: ICreateUserDTO): Promise<User> {
+		const check = await this.usersRepository.findByUsername(userData.username);
+
+		if (check) throw new Error('This username already exists');
+
 		const hashedPassword = await this.hashProvider.generateHash(
 			userData.password
 		);

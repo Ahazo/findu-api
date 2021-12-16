@@ -1,6 +1,6 @@
-import ICreatePostRecommendationDTO from '../../../../dtos/Recommendation/ICreatePostRecommendationDTO';
-import IPostRecommendationRepository from '../../../../repositories/IPostRecommendationRepository';
-import PostRecommendation from '../../entities/PostRecommendation';
+import ICreatePostRecommendationDTO from '../../dtos/Recommendation/ICreatePostRecommendationDTO';
+import PostRecommendation from '../../infra/typeorm/entities/PostRecommendation';
+import IPostRecommendationRepository from '../IPostRecommendationRepository';
 
 export default class FakePostRecommendationRepository
 	implements IPostRecommendationRepository

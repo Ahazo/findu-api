@@ -1,5 +1,5 @@
 import ICreateBundleRelationDTO from 'modules/bundle/dtos/ICreateBundleRelationDTO';
-import { getRepository, Repository, Any } from 'typeorm';
+import { getRepository, Repository } from 'typeorm';
 
 import IBundleRelationRepository from '../../../repositories/IBundleRelationRepository';
 import BundleRelation from '../entities/BundleRelation';

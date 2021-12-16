@@ -48,7 +48,10 @@ export default class Freelancer {
 
 	@ManyToOne(
 		() => ProfessionalLevel,
-		(professionalLevel: ProfessionalLevel) => professionalLevel.freelancer
+		(professionalLevel: ProfessionalLevel) => professionalLevel.freelancer,
+		{
+			eager: true,
+		}
 	)
 	@JoinColumn({ name: 'level_id' })
 	professionalLevel: ProfessionalLevel;

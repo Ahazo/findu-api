@@ -1,4 +1,4 @@
-import ICreateRecommendationDTO from '../dtos/Recommendation/ICreateRecommendation';
+import ICreateRecommendationDTO from '../dtos/Recommendation/ICreateRecommendationDTO';
 import Recommendation from '../infra/typeorm/entities/Recommendation';
 
 export default interface IRecommendationRepository {

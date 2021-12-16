@@ -15,4 +15,10 @@ export default class FindOrderStatusService {
 
 		return result;
 	}
+
+	public async executeByName(name: string): Promise<OrderStatus | undefined> {
+		const result = await this.orderStatusRepository.findByName(name);
+
+		return result;
+	}
 }

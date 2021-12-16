@@ -2,7 +2,7 @@
 
 import ICreateInfluencerLevelDTO from '../../../dtos/ICreateInfluencerLevelDTO';
 import InfluencerLevel from '../../../infra/typeorm/entities/InfluencerLevel';
-import FakeInfluencerLevelRepository from '../../../infra/typeorm/repositories/fakes/FakeInfluencerLevelRepository';
+import FakeInfluencerLevelRepository from '../../../repositories/fakes/FakeInfluencerLevelRepository';
 import CreateInfluencerLevelService from '../CreateInfluencerLevelService';
 
 describe('CreateInfluencerLevel', () => {

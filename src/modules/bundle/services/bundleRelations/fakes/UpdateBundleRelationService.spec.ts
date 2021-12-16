@@ -1,5 +1,5 @@
 import ICreateBundleRelationDTO from '../../../dtos/ICreateBundleRelationDTO';
-import FakeBundleRelationsRepository from '../../../infra/typeorm/repositories/fakes/FakeBundleRelationsRepository';
+import FakeBundleRelationsRepository from '../../../repositories/fakes/FakeBundleRelationsRepository';
 import CreateBundleRelationsService from '../CreateBundleRelationsService';
 import UpdateBundleRelationsService from '../UpdateBundleRelationsService';
 
@@ -22,26 +22,18 @@ describe('UpdateBundleRelation', () => {
 	});
 
 	it('should be able to update bundle relation', async () => {
-		const bundleRelData: ICreateBundleRelationDTO = {
+		const bundleRel = await createBundleRelationService.execute({
 			bundle_id: 1,
 			freelancer_id: 1,
 			percentage: 10,
-		};
+		});
 
-		const bundleRel = await createBundleRelationService.execute(bundleRelData);
+		const update = await updateBundleRelationService.execute({
+			...bundleRel,
+			id: bundleRel.id,
+			percentage: 20,
+		});
 
-		const bundleRelData1: ICreateBundleRelationDTO = {
-			bundle_id: 1,
-			freelancer_id: 1,
-			percentage: 10,
-		};
-
-		const bundleRel1 = await createBundleRelationService.execute(
-			bundleRelData1
-		);
-
-		const update = await updateBundleRelationService.execute(bundleRel1);
-
-		expect(update).toBe(bundleRel1);
+		expect(update.percentage).toBe(20);
 	});
 });

@@ -1,8 +1,8 @@
-import IRecommendationRepository from 'modules/user/repositories/IRecommendationRepository';
 import { injectable, inject } from 'tsyringe';
 
 import ICreateRecommendationDTO from '../../dtos/Recommendation/ICreateRecommendationDTO';
 import Recommendation from '../../infra/typeorm/entities/Recommendation';
+import IRecommendationRepository from '../../repositories/IRecommendationRepository';
 
 @injectable()
 export default class CreateRecommendationService {

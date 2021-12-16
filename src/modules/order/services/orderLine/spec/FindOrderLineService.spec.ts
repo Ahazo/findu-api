@@ -1,5 +1,5 @@
 import ICreateOrderLineDTO from '../../../dtos/ICreateOrderLineDTO';
-import FakeOrderLineRepository from '../../../infra/typeorm/repositories/fakes/FakeOrderLineRepository';
+import FakeOrderLineRepository from '../../../repositories/fakes/FakeOrderLineRepository';
 import CreateOrderLineService from '../CreateOrderLineService';
 import FindOrderLineService from '../FindOrderLineService';
 
@@ -19,30 +19,26 @@ describe('FindOrderLine', () => {
 	});
 
 	it('should be able to find order line by its ID', async () => {
-		const orderLineData: ICreateOrderLineDTO = {
+		const orderLine = await createOrderLineService.execute({
 			order_id: 1,
 			freelancer_id: 1,
 			total_value: 10,
-		};
+		});
 
-		const orderLine = await createOrderLineService.execute(orderLineData);
-
-		const find = await findOrderLineService.executeById(orderLine.id);
-
-		expect(find).toEqual(orderLine);
+		expect(await findOrderLineService.executeById(orderLine.id)).toEqual(
+			orderLine
+		);
 	});
 
 	it('should not be able to find order line by its wrong ID', async () => {
-		const orderLineData: ICreateOrderLineDTO = {
+		const orderLine = await createOrderLineService.execute({
 			order_id: 1,
 			freelancer_id: 1,
 			total_value: 10,
-		};
+		});
 
-		const orderLine = await createOrderLineService.execute(orderLineData);
-
-		const find = await findOrderLineService.executeById(orderLine.id + 1);
-
-		expect(find).toEqual(undefined);
+		expect(await findOrderLineService.executeById(orderLine.id + 1)).toEqual(
+			undefined
+		);
 	});
 });

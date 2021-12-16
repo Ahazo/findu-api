@@ -1,5 +1,4 @@
 import ICreateSpecializationDTO from 'modules/freelancer/dtos/ICreateSpecializationDTO';
-import Specialization from 'modules/freelancer/infra/typeorm/entities/Specialization';
 
 import FakeSpecializationRepository from '../../../repositories/fakes/FakeSpecializationRepository';
 import CreateSpecializationService from '../CreateSpecializationService';

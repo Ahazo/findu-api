@@ -23,17 +23,33 @@ export default class UsersController {
 	async findUserById(request: Request, response: Response): Promise<Response> {
 		try {
 			const findUser = container.resolve(FindUserService);
-			const user = await findUser.executeById(request.userId);
+			const userFound = await findUser.executeById(request.userId);
 
-			if (!user) {
+			if (!userFound) {
 				response.status(400).json({
-					message: 'User id not found',
+					message: 'User not found',
 				});
 			}
 
-			user!.password = '';
-
-			return response.status(200).json(user);
+			return response.status(200).json({
+				name: `${userFound?.person.first_name} ${userFound?.person.last_name}`,
+				username: userFound?.username,
+				experience: userFound?.experience,
+				followers: userFound?.follower_count,
+				following: userFound?.following_count,
+				levelDescription: userFound?.influencerLevel.description,
+				levelNumber: userFound?.influencerLevel.level_number,
+				...(userFound?.freelancer && {
+					freelancer: {
+						projects: userFound?.freelancer.projects_count,
+						open_to_work: userFound?.freelancer.open_to_work,
+						experience: userFound?.freelancer.experience,
+						levelNumber: userFound?.freelancer.professionalLevel.level_number,
+						levelDescription:
+							userFound?.freelancer.professionalLevel.description,
+					},
+				}),
+			});
 		} catch (error) {
 			return response.status(400).json({ message: error });
 		}

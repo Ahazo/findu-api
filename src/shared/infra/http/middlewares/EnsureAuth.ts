@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable consistent-return */
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
@@ -26,12 +28,16 @@ export default async function ensureAuth(
 		const decoded = jwt.verify(token, auth.jwt.secret);
 		const { id } = decoded as ITokenPayload;
 
-		request.userId = id;
+		request.user.id = id;
 
 		next();
-	} catch (err) {
+	} catch (error) {
+		let message;
+		if (error instanceof Error) message = error.message;
+		else message = String(error);
+
 		return response.status(500).json({
-			errorMessage: err.message,
+			errorMessage: message,
 		});
 	}
 }

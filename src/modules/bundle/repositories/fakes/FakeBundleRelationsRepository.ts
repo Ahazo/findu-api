@@ -1,6 +1,6 @@
-import ICreateBundleRelationDTO from '../../../../dtos/ICreateBundleRelationDTO';
-import IBundleRelationRepository from '../../../../repositories/IBundleRelationRepository';
-import BundleRelation from '../../entities/BundleRelation';
+import ICreateBundleRelationDTO from '../../dtos/ICreateBundleRelationDTO';
+import BundleRelation from '../../infra/typeorm/entities/BundleRelation';
+import IBundleRelationRepository from '../IBundleRelationRepository';
 
 export default class FakeBundleRelationsRepository
 	implements IBundleRelationRepository

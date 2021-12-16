@@ -11,8 +11,10 @@ export default class UpdateBundleMediaService {
 	) {}
 
 	public async execute(data: BundleMedia): Promise<BundleMedia> {
-		const result = await this.bundleMediaRepository.save(data);
+		const bundleMediaFound = this.bundleMediaRepository.findById(data.id);
 
-		return result;
+		if (!bundleMediaFound) throw new Error('Bundle media not found');
+
+		return this.bundleMediaRepository.save(data);
 	}
 }

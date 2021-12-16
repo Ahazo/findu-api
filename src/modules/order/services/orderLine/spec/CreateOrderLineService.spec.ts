@@ -1,6 +1,6 @@
 import ICreateOrderLineDTO from '../../../dtos/ICreateOrderLineDTO';
 import OrderLine from '../../../infra/typeorm/entities/OrderLine';
-import FakeOrderLineRepository from '../../../infra/typeorm/repositories/fakes/FakeOrderLineRepository';
+import FakeOrderLineRepository from '../../../repositories/fakes/FakeOrderLineRepository';
 import CreateOrderLineService from '../CreateOrderLineService';
 
 describe('CreateOrderLine', () => {
@@ -17,14 +17,12 @@ describe('CreateOrderLine', () => {
 	});
 
 	it('should be able to create order line', async () => {
-		const orderLineData: ICreateOrderLineDTO = {
-			order_id: 1,
-			freelancer_id: 1,
-			total_value: 2,
-		};
-
-		const orderLine = await createOrderLineService.execute(orderLineData);
-
-		expect(orderLine).toBeInstanceOf(OrderLine);
+		expect(
+			await createOrderLineService.execute({
+				order_id: 1,
+				freelancer_id: 1,
+				total_value: 2,
+			})
+		).toBeInstanceOf(OrderLine);
 	});
 });

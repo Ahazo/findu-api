@@ -1,6 +1,6 @@
 import ICreateBundleRelationDTO from '../../../dtos/ICreateBundleRelationDTO';
 import BundleRelation from '../../../infra/typeorm/entities/BundleRelation';
-import FakeBundleRelationsRepository from '../../../infra/typeorm/repositories/fakes/FakeBundleRelationsRepository';
+import FakeBundleRelationsRepository from '../../../repositories/fakes/FakeBundleRelationsRepository';
 import CreateBundleRelationsService from '../CreateBundleRelationsService';
 
 describe('BundleRelation Create', () => {
@@ -17,16 +17,12 @@ describe('BundleRelation Create', () => {
 	});
 
 	it('should be able to create Bundle Repositories', async () => {
-		const bundleRelationData: ICreateBundleRelationDTO = {
-			bundle_id: 1,
-			freelancer_id: 1,
-			percentage: 1,
-		};
-
-		const bundleRelation = await createBundleRelationService.execute(
-			bundleRelationData
-		);
-
-		expect(bundleRelation).toBeInstanceOf(BundleRelation);
+		expect(
+			await createBundleRelationService.execute({
+				bundle_id: 1,
+				freelancer_id: 1,
+				percentage: 1,
+			})
+		).toBeInstanceOf(BundleRelation);
 	});
 });

@@ -1,5 +1,5 @@
 import ICreateOrderStatusDTO from '../../../dtos/ICreateOrderStatusDTO';
-import FakeOrderStatusRepository from '../../../infra/typeorm/repositories/fakes/FakeOrderStatusRepository';
+import FakeOrderStatusRepository from '../../../repositories/fakes/FakeOrderStatusRepository';
 import CreateOrderStatusService from '../CreateOrderStatusService';
 import UpdateOrderStatusService from '../UpdateOrderStatusService';
 
@@ -21,12 +21,10 @@ describe('UpdateOrderStatus', () => {
 	});
 
 	it('should be able to update Order Status', async () => {
-		const orderStatusData: ICreateOrderStatusDTO = {
+		const orderStatus = await createOrderStatusService.execute({
 			description: 'order aaaa',
 			step: 3,
-		};
-
-		const orderStatus = await createOrderStatusService.execute(orderStatusData);
+		});
 
 		const update = await updateOrderStatusService.execute({
 			...orderStatus,

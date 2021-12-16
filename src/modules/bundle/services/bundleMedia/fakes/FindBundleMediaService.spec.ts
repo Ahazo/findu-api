@@ -1,5 +1,5 @@
 import ICreateBundleMediasDTO from '../../../dtos/ICreateBundleMediaDTO';
-import FakeBundleMediaRepository from '../../../infra/typeorm/repositories/fakes/FakeBundleMediaRepository';
+import FakeBundleMediaRepository from '../../../repositories/fakes/FakeBundleMediaRepository';
 import CreateBundleMediaService from '../CreateBundleMediaService';
 import FindBundleMediaService from '../FindBundleMediaService';
 
@@ -22,28 +22,24 @@ describe('FindBundleMedia', () => {
 	});
 
 	it('should be able to find bundle media by its ID', async () => {
-		const bundleMediaData: ICreateBundleMediasDTO = {
+		const bundleMedia = await createBundleMediaService.execute({
 			bundle_id: 1,
 			url: 'www.facebruk.com',
-		};
+		});
 
-		const bundleMedia = await createBundleMediaService.execute(bundleMediaData);
-
-		const find = await findBundleMediaService.executeById(bundleMedia.id);
-
-		expect(find).toBe(bundleMedia);
+		expect(await findBundleMediaService.executeById(bundleMedia.id)).toBe(
+			bundleMedia
+		);
 	});
 
 	it('should be not able to find bundle media by its wrong ID', async () => {
-		const bundleMediaData: ICreateBundleMediasDTO = {
+		const bundleMedia = await createBundleMediaService.execute({
 			bundle_id: 1,
 			url: 'www.facebruk.com',
-		};
+		});
 
-		const bundleMedia = await createBundleMediaService.execute(bundleMediaData);
-
-		const find = await findBundleMediaService.executeById(bundleMedia.id + 1);
-
-		expect(find).toBe(undefined);
+		expect(await findBundleMediaService.executeById(bundleMedia.id + 1)).toBe(
+			undefined
+		);
 	});
 });

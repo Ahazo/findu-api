@@ -29,7 +29,7 @@ export class CreateUser1632248795758 implements MigrationInterface {
 						name: 'password',
 						type: 'varchar',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'experience',
