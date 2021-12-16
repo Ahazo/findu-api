@@ -1,6 +1,6 @@
-import ICreateSpecializationDTO from 'modules/freelancer/dtos/ICreateSpecializationDTO';
 import { getRepository, Repository } from 'typeorm';
 
+import ICreateSpecializationDTO from '../../../dtos/ICreateSpecializationDTO';
 import ISpecializationRepository from '../../../repositories/ISpecializationRepository';
 import Specialization from '../entities/Specialization';
 

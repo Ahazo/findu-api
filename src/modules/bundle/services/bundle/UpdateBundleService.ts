@@ -1,6 +1,6 @@
-import Bundle from 'modules/bundle/infra/typeorm/entities/Bundle';
 import { injectable, inject } from 'tsyringe';
 
+import Bundle from '../../infra/typeorm/entities/Bundle';
 import IBundleRepository from '../../repositories/IBundleRepository';
 
 @injectable()

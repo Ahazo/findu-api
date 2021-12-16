@@ -1,7 +1,7 @@
-import ICreateSkillsDTO from 'modules/freelancer/dtos/ICreateSkillDTO';
-import ISkillRepository from 'modules/freelancer/repositories/ISkillRepository';
 import { getRepository, Repository } from 'typeorm';
 
+import ICreateSkillsDTO from '../../../dtos/ICreateSkillDTO';
+import ISkillRepository from '../../../repositories/ISkillRepository';
 import Skill from '../entities/Skill';
 
 export default class SkillRepository implements ISkillRepository {
@@ -27,16 +27,46 @@ export default class SkillRepository implements ISkillRepository {
 		return skill;
 	}
 
-	async findByFreelancerId(freelancerId: number): Promise<Skill[] | undefined> {
-		const skill = await this.skillRepository.find({
-			where: freelancerId.toString(),
-		});
-
-		return skill;
-	}
-
 	async findAll(): Promise<Skill[] | undefined> {
 		const skill = await this.skillRepository.find();
 		return skill;
+	}
+
+	async findAllByFreelancerId(
+		freelancerId: number
+	): Promise<Skill[] | undefined> {
+		const skills = await this.skillRepository.find({
+			where: freelancerId.toString(),
+		});
+
+		return skills;
+	}
+
+	async findAllBySpecializationId(
+		specializationId: number
+	): Promise<Skill[] | undefined> {
+		const skills = await this.skillRepository.find({
+			where: specializationId.toString(),
+		});
+
+		return skills;
+	}
+
+	async findBoundedSkill(
+		freelancer_id: number,
+		specialization_id: number
+	): Promise<Skill | undefined> {
+		const skills = await this.skillRepository.findOne({
+			where: [
+				{
+					specialization_id,
+				},
+				{
+					freelancer_id,
+				},
+			],
+		});
+
+		return skills;
 	}
 }

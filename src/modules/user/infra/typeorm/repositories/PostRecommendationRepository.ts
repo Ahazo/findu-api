@@ -1,4 +1,4 @@
-import { getRepository, Repository, Any } from 'typeorm';
+import { getRepository, Repository } from 'typeorm';
 
 import ICreatePostRecommendationDTO from '../../../dtos/Recommendation/ICreatePostRecommendationDTO';
 import IPostRecommendationRepository from '../../../repositories/IPostRecommendationRepository';
@@ -16,7 +16,7 @@ export default class PostRecommendationRepository
 	async create(
 		data: ICreatePostRecommendationDTO
 	): Promise<PostRecommendation> {
-		const postRec = await this.postRecRepository.create(data);
+		const postRec = this.postRecRepository.create(data);
 
 		await this.postRecRepository.save(postRec);
 

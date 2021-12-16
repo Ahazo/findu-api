@@ -1,7 +1,7 @@
-import ICreateBundleMediasDTO from 'modules/bundle/dtos/ICreateBundleMediaDTO';
-import BundleMedia from 'modules/bundle/infra/typeorm/entities/BundleMedia';
 import { injectable, inject } from 'tsyringe';
 
+import ICreateBundleMediasDTO from '../../dtos/ICreateBundleMediaDTO';
+import BundleMedia from '../../infra/typeorm/entities/BundleMedia';
 import IBundleMediaRepository from '../../repositories/IBundleMediaRepository';
 
 @injectable()

@@ -17,7 +17,13 @@ export default class SessionController {
 
 			return response.json({ token });
 		} catch (error) {
-			return response.status(400).json({ message: error.message });
+			let message;
+			if (error instanceof Error) message = error.message;
+			else message = String(error);
+
+			return response.status(400).json({
+				errorMessage: message,
+			});
 		}
 	}
 }

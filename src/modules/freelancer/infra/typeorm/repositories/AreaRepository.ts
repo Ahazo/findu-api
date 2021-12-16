@@ -1,6 +1,6 @@
-import ICreateAreaDTO from 'modules/freelancer/dtos/ICreateAreaDTO';
 import { getRepository, Repository } from 'typeorm';
 
+import ICreateAreaDTO from '../../../dtos/ICreateAreaDTO';
 import IAreaRepository from '../../../repositories/IAreaRepository';
 import Area from '../entities/Area';
 

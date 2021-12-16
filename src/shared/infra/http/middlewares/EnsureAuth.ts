@@ -28,7 +28,7 @@ export default async function ensureAuth(
 		const decoded = jwt.verify(token, auth.jwt.secret);
 		const { id } = decoded as ITokenPayload;
 
-		request.user.id = id;
+		request.userId = id;
 
 		next();
 	} catch (error) {

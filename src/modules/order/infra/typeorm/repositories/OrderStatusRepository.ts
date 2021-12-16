@@ -1,8 +1,7 @@
-import ICreateOrderStatusDTO from 'modules/order/dtos/ICreateOrderStatusDTO';
-import { getRepository, Repository, Any } from 'typeorm';
+import { getRepository, Repository } from 'typeorm';
 
+import ICreateOrderStatusDTO from '../../../dtos/ICreateOrderStatusDTO';
 import IOrderStatusRepository from '../../../repositories/IOrderStatusRepository';
-import Order from '../entities/Order';
 import OrderStatus from '../entities/OrderStatus';
 
 export default class OrderStatusRepository implements IOrderStatusRepository {

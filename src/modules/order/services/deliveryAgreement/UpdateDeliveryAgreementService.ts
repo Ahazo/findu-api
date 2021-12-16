@@ -1,6 +1,6 @@
-import DeliveryAgreement from 'modules/order/infra/typeorm/entities/DeliveryAgreement';
 import { injectable, inject } from 'tsyringe';
 
+import DeliveryAgreement from '../../infra/typeorm/entities/DeliveryAgreement';
 import IDeliveryAgreementRepository from '../../repositories/IDeliveryAgreementRepository';
 
 @injectable()
