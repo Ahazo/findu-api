@@ -1,4 +1,3 @@
-import ICreateOrderDTO from '../../../dtos/ICreateOrderDTO';
 import Order from '../../../infra/typeorm/entities/Order';
 import FakeOrderRepository from '../../../repositories/fakes/FakeOrderRepository';
 import CreateOrderService from '../CreateOrderService';
