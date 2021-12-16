@@ -1,7 +1,8 @@
-import ICreatePostRecommendationDTO from 'modules/user/dtos/Recommendation/ICreatePostRecommendationDTO';
-import PostRecommendation from 'modules/user/infra/typeorm/entities/PostRecommendation';
-import IPostRecommendationRepository from 'modules/user/repositories/IPostRecommendationRepository';
 import { injectable, inject } from 'tsyringe';
+
+import ICreatePostRecommendationDTO from '../../dtos/Recommendation/ICreatePostRecommendationDTO';
+import PostRecommendation from '../../infra/typeorm/entities/PostRecommendation';
+import IPostRecommendationRepository from '../../repositories/IPostRecommendationRepository';
 
 @injectable()
 export default class CreatePostRecommendationService {
