@@ -24,7 +24,7 @@ class AuthenticatUserService {
 		const user = await this.usersRepository.findByUsername(username);
 
 		if (!user) {
-			throw new Error('Inconrrect email/password combination');
+			throw new Error('Inconrrect username/password combination');
 		}
 
 		const passwordMatched = await this.hashProvider.compareHash(
@@ -33,7 +33,7 @@ class AuthenticatUserService {
 		);
 
 		if (!passwordMatched) {
-			throw new Error('Inconrrect email/password combination');
+			throw new Error('Inconrrect username/password combination');
 		}
 
 		const token = generateToken(user.id);

@@ -22,7 +22,7 @@ export default class Address {
 	street: string;
 
 	@Column({ type: 'int', nullable: false, unique: false })
-	house_number: number;
+	number: number;
 
 	@Column({ type: 'varchar', length: 100, nullable: false, unique: false })
 	city: string;
@@ -31,7 +31,7 @@ export default class Address {
 	state: string;
 
 	@Column({ type: 'varchar', length: 150, nullable: true, unique: false })
-	complement: string;
+	neighborhood: string;
 
 	@Column({ type: 'enum', enum: EStatus, default: EStatus.active })
 	status: EStatus;

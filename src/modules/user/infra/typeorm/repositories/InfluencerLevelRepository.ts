@@ -25,6 +25,17 @@ class InfluencerLevelRepository implements IInfluencerLevelRepository {
 		const influencerLevel = await this.influencerLevelRepository.findOne(id);
 		return influencerLevel;
 	}
+
+	public async findByNumber(
+		level_number: number
+	): Promise<InfluencerLevel | undefined> {
+		const influencerLevel = await this.influencerLevelRepository.findOne({
+			where: {
+				level_number,
+			},
+		});
+		return influencerLevel;
+	}
 }
 
 export default InfluencerLevelRepository;

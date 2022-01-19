@@ -23,7 +23,7 @@ export default class Person {
 	@Column({ type: 'varchar', length: 100, nullable: false, unique: true })
 	email: string;
 
-	@Column({ type: 'varchar', length: 13, nullable: false, unique: true })
+	@Column({ type: 'varchar', length: 14, nullable: false, unique: true })
 	cellphone_number: string;
 
 	@Column({ type: 'varchar', nullable: false, unique: false })

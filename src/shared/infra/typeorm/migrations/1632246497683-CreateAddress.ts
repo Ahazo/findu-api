@@ -28,7 +28,7 @@ export class CreateAddress1632246497683 implements MigrationInterface {
 						isUnique: false,
 					},
 					{
-						name: 'house_number',
+						name: 'number',
 						type: 'int',
 						isNullable: false,
 						isUnique: false,
@@ -48,7 +48,7 @@ export class CreateAddress1632246497683 implements MigrationInterface {
 						isUnique: false,
 					},
 					{
-						name: 'complement',
+						name: 'neighborhood',
 						type: 'varchar',
 						isNullable: true,
 						isUnique: false,

@@ -30,7 +30,7 @@ export class CreatePerson1632247967291 implements MigrationInterface {
 					{
 						name: 'cellphone_number',
 						type: 'varchar',
-						length: '13',
+						length: '14',
 						isNullable: false,
 						isUnique: true,
 					},

@@ -33,4 +33,23 @@ export default class InfluencerLevelController {
 
 		return response.status(200).json(influencerLevel);
 	}
+
+	async findByLevelNumber(
+		request: Request,
+		response: Response
+	): Promise<Response> {
+		const findInfluencerLevel = container.resolve(FindInfluencerLevelService);
+		const { levelNumber } = request.params;
+		const influencerLevel = await findInfluencerLevel.executeByLevelNumber(
+			+levelNumber
+		);
+
+		if (!influencerLevel) {
+			response.status(400).json({
+				message: 'Influencer Level number not found',
+			});
+		}
+
+		return response.status(200).json(influencerLevel);
+	}
 }
