@@ -17,7 +17,7 @@ export default async function ensureAuth(
 	next: NextFunction
 ) {
 	try {
-		const token = request.headers.authorization;
+		const token = request.headers.authorization?.replace('Bearer ', '');
 
 		if (!token) {
 			return response.status(400).json('User not found');

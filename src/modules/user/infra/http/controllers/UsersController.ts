@@ -43,8 +43,8 @@ export default class UsersController {
 	async findUserById(request: Request, response: Response): Promise<Response> {
 		try {
 			const findUser = container.resolve(FindUserService);
-			const userFound = await findUser.executeById(request.userId);
 
+			const userFound = await findUser.executeById(request.userId);
 			if (!userFound) {
 				response.status(400).json({
 					message: 'User not found',
