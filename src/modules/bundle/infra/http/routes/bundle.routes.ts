@@ -15,12 +15,17 @@ bundleRouter.post('/', ensureAuth, bundleController.create);
 bundleRouter.get('/:id', ensureAuth, bundleController.findById);
 bundleRouter.put('/', ensureAuth, bundleController.update);
 
-bundleRouter.post('/bundlemedia/', bundleMediaController.create);
-bundleRouter.get('/bundlemedia/:id', bundleMediaController.findById);
-bundleRouter.put('/bundlemedia/', bundleMediaController.update);
+bundleRouter.post('/media/', bundleMediaController.create);
+bundleRouter.get('/media/:id', bundleMediaController.findById);
+bundleRouter.put('/media/', bundleMediaController.update);
 
-bundleRouter.post('/bundlerelation/', bundleRelationController.create);
-bundleRouter.get('/bundlerelation/:id', bundleRelationController.findById);
-bundleRouter.put('/bundlerelation/', bundleRelationController.update);
+bundleRouter.post('/relation/', bundleRelationController.create);
+bundleRouter.get('/relation/:id', bundleRelationController.findById);
+bundleRouter.put('/relation/', bundleRelationController.update);
+bundleRouter.get(
+	'/relation/alou/:freelancer_id',
+	ensureAuth,
+	bundleRelationController.findByFreelancerId
+);
 
 export default bundleRouter;

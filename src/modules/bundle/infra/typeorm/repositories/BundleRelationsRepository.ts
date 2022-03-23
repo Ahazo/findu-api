@@ -36,9 +36,12 @@ export default class BundleRelationRepository
 		return bundle;
 	}
 
-	async findAll(): Promise<BundleRelation[] | undefined> {
-		const bundle = await this.bundleRelationRepository.find();
-
+	async findAllByFreelancer(
+		freelancer_id: number
+	): Promise<BundleRelation[] | undefined> {
+		const bundle = await this.bundleRelationRepository.find({
+			where: { freelancer_id },
+		});
 		return bundle;
 	}
 }

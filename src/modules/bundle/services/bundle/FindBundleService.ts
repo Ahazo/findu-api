@@ -14,14 +14,4 @@ export default class FindBundleService {
 		const bundle = await this.bundleRepository.findById(id);
 		return bundle;
 	}
-
-	public async executeByName(name: string): Promise<Bundle | undefined> {
-		const bundle = await this.bundleRepository.findByName(name);
-		return bundle;
-	}
-
-	public async executeAll(): Promise<Bundle[] | undefined> {
-		const bundles = await this.bundleRepository.findAll();
-		return bundles;
-	}
 }

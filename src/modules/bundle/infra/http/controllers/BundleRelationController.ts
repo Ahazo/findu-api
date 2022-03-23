@@ -48,4 +48,22 @@ export default class BundleRelationController {
 
 		return response.status(200).json(bundleRelation);
 	}
+
+	async findByFreelancerId(
+		request: Request,
+		response: Response
+	): Promise<Response> {
+		console.warn('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+
+		const findBundle = container.resolve(FindBundleRelationsService);
+		const { freelancer_id } = request.params;
+		const bundles = await findBundle.executeByFreelancerId(+freelancer_id);
+
+		if (!bundles)
+			return response.status(404).json({ message: 'No bundles found.' });
+
+		console.log(bundles);
+
+		return response.status(200).json(bundles);
+	}
 }

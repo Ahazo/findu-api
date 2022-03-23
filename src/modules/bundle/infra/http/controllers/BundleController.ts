@@ -32,7 +32,7 @@ export default class BundleController {
 	async findById(request: Request, response: Response): Promise<Response> {
 		const findBundle = container.resolve(FindBundleService);
 		const { id } = request.params;
-		const bundle = findBundle.executeById(+id);
+		const bundle = await findBundle.executeById(+id);
 
 		if (!bundle) {
 			return response.status(500).json({

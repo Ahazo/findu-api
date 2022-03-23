@@ -16,9 +16,12 @@ export default class FindBundleRelationsService {
 		return result;
 	}
 
-	public async executeAll(): Promise<BundleRelation[] | undefined> {
-		const result = await this.bundleRelationsRepository.findAll();
-
-		return result;
+	public async executeByFreelancerId(
+		freelancer_id: number
+	): Promise<BundleRelation[] | undefined> {
+		const bundles = await this.bundleRelationsRepository.findAllByFreelancer(
+			freelancer_id
+		);
+		return bundles;
 	}
 }
