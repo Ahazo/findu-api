@@ -28,10 +28,4 @@ export default class FindSpecializationService {
 
 		return specialization;
 	}
-
-	public async executeAll(): Promise<Specialization[] | undefined> {
-		const result = await this.specializationRepository.findAll();
-
-		return result;
-	}
 }

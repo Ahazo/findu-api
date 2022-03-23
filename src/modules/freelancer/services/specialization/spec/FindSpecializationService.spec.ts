@@ -1,5 +1,4 @@
-import ICreateSpecializationDTO from 'modules/freelancer/dtos/ICreateSpecializationDTO';
-
+import ICreateSpecializationDTO from '../../../dtos/ICreateSpecializationDTO';
 import FakeSpecializationRepository from '../../../repositories/fakes/FakeSpecializationRepository';
 import CreateSpecializationService from '../CreateSpecializationService';
 import FindSpecializationService from '../FindSpecializationService';
@@ -76,9 +75,7 @@ describe('FindSpecialization', () => {
 			description: 'especializado em tecnologia malucaaaaaa',
 		};
 
-		const specialization = await createSpecializationService.execute(
-			specializationData
-		);
+		await createSpecializationService.execute(specializationData);
 
 		const find = await findSpecializationService.executeByName(
 			'especializado em tecnologia normal'
@@ -93,18 +90,14 @@ describe('FindSpecialization', () => {
 			description: 'especializado em tecnologia malucaaaaaa',
 		};
 
-		const firstSpecialization = await createSpecializationService.execute(
-			firstSpecializationData
-		);
+		await createSpecializationService.execute(firstSpecializationData);
 
 		const secondSpecializationData: ICreateSpecializationDTO = {
 			area_id: 2,
 			description: 'especializado em tecnologia normaaaal',
 		};
 
-		const secondSpecialization = await createSpecializationService.execute(
-			secondSpecializationData
-		);
+		await createSpecializationService.execute(secondSpecializationData);
 
 		const findAll = await findSpecializationService.executeAll();
 

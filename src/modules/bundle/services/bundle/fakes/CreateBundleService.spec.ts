@@ -1,4 +1,3 @@
-import ICreateBundleDTO from '../../../dtos/ICreateBundleDTO';
 import Bundle from '../../../infra/typeorm/entities/Bundle';
 import FakeBundleRepository from '../../../repositories/fakes/FakeBundleRepository';
 import CreateBundleService from '../CreateBundleService';
@@ -20,7 +19,13 @@ describe('CreateBundle', () => {
 				title: 'Pacotão',
 				description: 'Muitas coisas drento',
 				value: 1,
-				deadline: new Date(),
+				deadline: 2,
+				bundleRelation: [
+					{
+						freelancer_id: 1,
+						percentage: 100,
+					},
+				],
 			})
 		).toBeInstanceOf(Bundle);
 	});
@@ -30,7 +35,13 @@ describe('CreateBundle', () => {
 			title: 'Pacotão',
 			description: 'Muitas coisas drento',
 			value: 1,
-			deadline: new Date(),
+			deadline: 2,
+			bundleRelation: [
+				{
+					freelancer_id: 1,
+					percentage: 100,
+				},
+			],
 		});
 
 		await expect(

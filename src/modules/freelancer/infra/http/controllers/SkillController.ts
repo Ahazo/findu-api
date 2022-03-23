@@ -7,17 +7,31 @@ import UpdateSkillService from '../../../services/skill/UpdateSkillService';
 
 export default class SkillController {
 	async create(request: Request, response: Response): Promise<Response> {
-		const skillData = request.body;
+		const { specialization_id } = request.body;
+		if (!specialization_id) {
+			return response
+				.status(400)
+				.json({ message: 'Specialization ID not sent.' });
+		}
 
-		const createSkill = container.resolve(CreateSkillService);
-		const skill = await createSkill.execute(skillData);
+		try {
+			const createData = {
+				specialization_id,
+				freelancer_id: request.userId,
+			};
 
-		if (!skill)
-			response.status(400).json({
-				message: 'There was an error creating your skill',
-			});
+			const createSkill = container.resolve(CreateSkillService);
+			const skill = await createSkill.execute(createData);
 
-		return response.status(200).json(skill);
+			if (!skill)
+				return response.status(400).json({
+					message: 'There was an error creating your skill',
+				});
+
+			return response.status(200).json(skill);
+		} catch (error: any) {
+			return response.status(500).json(error.message);
+		}
 	}
 
 	async findById(request: Request, response: Response): Promise<Response> {

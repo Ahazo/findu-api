@@ -27,13 +27,13 @@ export class CreateBundle1632249161397 implements MigrationInterface {
 					},
 					{
 						name: 'value',
-						type: 'int',
+						type: 'decimal',
 						isNullable: false,
 						isUnique: false,
 					},
 					{
 						name: 'deadline',
-						type: 'timestamp',
+						type: 'int',
 						isNullable: true,
 						isUnique: false,
 					},

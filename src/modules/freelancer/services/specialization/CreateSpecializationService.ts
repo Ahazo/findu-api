@@ -21,7 +21,6 @@ export default class CreateSpecializationService {
 		if (check) throw new Error('This Specialization already exists');
 
 		const result = await this.specializationRepository.create(data);
-
 		return result;
 	}
 }

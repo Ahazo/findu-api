@@ -22,7 +22,7 @@ export default class Specialization {
 	@Column({ type: 'int', nullable: false, unique: false })
 	area_id: number;
 
-	@OneToOne(() => Area, (area: Area) => area.specialization)
+	@OneToOne(() => Area, (area: Area) => area.specialization, { eager: true })
 	@JoinColumn({ name: 'area_id' })
 	area: Area;
 

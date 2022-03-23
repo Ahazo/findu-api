@@ -20,10 +20,11 @@ export default class Skill {
 
 	@ManyToOne(
 		() => Specialization,
-		(specialization: Specialization) => specialization.skill
+		(specialization: Specialization) => specialization.skill,
+		{ eager: true }
 	)
 	@JoinColumn({ name: 'specialization_id' })
-	specialization: number;
+	specialization: Specialization;
 
 	@Column({ type: 'int', nullable: false, unique: false })
 	freelancer_id: number;

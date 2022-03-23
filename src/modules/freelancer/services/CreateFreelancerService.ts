@@ -19,7 +19,6 @@ export default class CreateFreelancerService {
 			throw new Error('User already exists in Freelancer');
 
 		const result = await this.freelancerRepository.create(data);
-
 		return result;
 	}
 }

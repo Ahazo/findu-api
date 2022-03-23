@@ -23,7 +23,7 @@ export class CreateSpecialization1632248845787 implements MigrationInterface {
 						name: 'description',
 						type: 'varchar',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'status',

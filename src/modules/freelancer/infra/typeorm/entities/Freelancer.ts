@@ -78,7 +78,7 @@ export default class Freelancer {
 	bundleRelation: BundleRelation;
 
 	@OneToMany(() => Skill, (skill: Skill) => skill.freelancer, { eager: true })
-	skill: Skill;
+	skill: Skill[];
 
 	@Column({ type: 'enum', enum: EStatus, default: EStatus.active })
 	status: EStatus;

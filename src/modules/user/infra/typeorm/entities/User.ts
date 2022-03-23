@@ -101,6 +101,12 @@ export default class User {
 	@Column({ type: 'varchar', length: 120, nullable: false, unique: false })
 	password: string;
 
+	@Column({ type: 'varchar', length: 120, nullable: true, unique: false })
+	description: string;
+
+	@Column({ type: 'varchar', length: 120, nullable: true, unique: false })
+	label: string;
+
 	@Column({ type: 'int', nullable: false, unique: false, default: 0 })
 	experience: number;
 

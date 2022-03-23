@@ -27,7 +27,7 @@ export class CreateBundleRelations1632249171262 implements MigrationInterface {
 					},
 					{
 						name: 'percentage',
-						type: 'int',
+						type: 'decimal',
 						isNullable: false,
 						isUnique: false,
 					},

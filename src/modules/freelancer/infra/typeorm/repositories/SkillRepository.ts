@@ -60,8 +60,6 @@ export default class SkillRepository implements ISkillRepository {
 			where: [
 				{
 					specialization_id,
-				},
-				{
 					freelancer_id,
 				},
 			],

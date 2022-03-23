@@ -26,11 +26,11 @@ export default class Bundle {
 	@Column({ type: 'varchar', length: 200, nullable: true, unique: false })
 	description: string;
 
-	@Column({ type: 'int', nullable: false, unique: false })
+	@Column({ type: 'decimal', nullable: false, unique: false })
 	value: number;
 
-	@Column({ type: 'timestamp', nullable: false, unique: false })
-	deadline: Date;
+	@Column({ type: 'int', nullable: false, unique: false })
+	deadline: number;
 
 	@OneToMany(
 		() => BundleMedia,
@@ -42,9 +42,9 @@ export default class Bundle {
 	@OneToMany(
 		() => BundleRelation,
 		(bundleRelation: BundleRelation) => bundleRelation.bundle,
-		{ eager: true }
+		{ eager: true, cascade: true }
 	)
-	bundleRelation: BundleRelation;
+	bundleRelation: BundleRelation[];
 
 	@CreateDateColumn({ type: 'timestamp', nullable: false, unique: false })
 	created_at: Date;

@@ -31,9 +31,9 @@ export default class BundleRelation {
 		(freelancer: Freelancer) => freelancer.bundleRelation
 	)
 	@JoinColumn({ name: 'freelancer_id' })
-	freelancer: Bundle;
+	freelancer: Freelancer;
 
-	@Column({ type: 'int', nullable: false, unique: true })
+	@Column({ type: 'decimal', nullable: false, unique: true })
 	percentage: number;
 
 	@CreateDateColumn({ type: 'timestamp', nullable: false, unique: false })

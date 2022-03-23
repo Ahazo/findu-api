@@ -29,7 +29,7 @@ export default class AreaRepository implements IAreaRepository {
 
 	async findByDescription(description: string): Promise<Area | undefined> {
 		const area = await this.areaRepository.findOne({
-			where: description,
+			description,
 		});
 
 		return area;

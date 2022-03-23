@@ -7,19 +7,26 @@ import UpdateSpecializationService from '../../../services/specialization/Update
 
 export default class SpecializationController {
 	async create(request: Request, response: Response): Promise<Response> {
-		const specializationCreate = container.resolve(CreateSpecializationService);
-		const specializationData = request.body;
+		try {
+			const specializationCreate = container.resolve(
+				CreateSpecializationService
+			);
+			const specializationData = request.body;
+			const specialization = await specializationCreate.execute(
+				specializationData
+			);
 
-		const specialization = await specializationCreate.execute(
-			specializationData
-		);
+			if (!specialization)
+				return response.status(500).json({
+					message: 'There was an error creating your specialization',
+				});
 
-		if (!specialization)
-			response.status(400).json({
-				message: 'There was an error creating your specialization',
+			return response.status(200).json(specialization);
+		} catch (error: any) {
+			return response.status(500).json({
+				message: error.message,
 			});
-
-		return response.status(200).json(specialization);
+		}
 	}
 
 	async findById(request: Request, response: Response): Promise<Response> {
@@ -39,8 +46,9 @@ export default class SpecializationController {
 
 	async findAll(_request: Request, response: Response): Promise<Response> {
 		const findSpecialization = container.resolve(FindSpecializationService);
+		const specializations = await findSpecialization.execute();
 
-		const specializations = findSpecialization.execute();
+		console.log(specializations);
 
 		return response.status(200).json(specializations);
 	}

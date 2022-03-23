@@ -13,8 +13,8 @@ export default class BundleController {
 		const bundle = await createBundle.execute(bundleData);
 
 		if (!bundle)
-			response.status(400).json({
-				message: 'There was an error creating your new bundle',
+			return response.status(400).json({
+				message: 'There was an error creating your bundle.',
 			});
 
 		return response.status(200).json(bundle);
@@ -35,21 +35,7 @@ export default class BundleController {
 		const bundle = findBundle.executeById(+id);
 
 		if (!bundle) {
-			response.status(500).json({
-				message: 'Bundle ID not found',
-			});
-		}
-
-		return response.status(200).json(bundle);
-	}
-
-	async findByName(request: Request, response: Response): Promise<Response> {
-		const findBundle = container.resolve(FindBundleService);
-		const { description } = request.params;
-		const bundle = findBundle.executeByName(description);
-
-		if (!bundle) {
-			response.status(500).json({
+			return response.status(500).json({
 				message: 'Bundle ID not found',
 			});
 		}

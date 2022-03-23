@@ -13,7 +13,6 @@ export default class BundleRepository implements IBundleRepository {
 
 	async create(data: ICreateBundleDTO): Promise<Bundle> {
 		const bundle = this.bundleRepository.create(data);
-
 		await this.bundleRepository.save(bundle);
 		return bundle;
 	}
@@ -24,11 +23,6 @@ export default class BundleRepository implements IBundleRepository {
 
 	async findById(id: number): Promise<Bundle | undefined> {
 		const bundle = await this.bundleRepository.findOne(id);
-		return bundle;
-	}
-
-	async findByName(name: string): Promise<Bundle | undefined> {
-		const bundle = await this.bundleRepository.findOne({ where: name });
 		return bundle;
 	}
 
