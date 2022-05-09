@@ -67,4 +67,18 @@ export default class SkillRepository implements ISkillRepository {
 
 		return skills;
 	}
+
+	async findAllByFreelancerId(
+		freelancer_id: number
+	): Promise<Skill[] | undefined> {
+		const skills = await this.skillRepository.find();
+		return skills;
+	}
+
+	async findAllBySpecializationId(
+		specialization_id: number
+	): Promise<Skill[] | undefined> {
+		const skills = await this.skillRepository.find();
+		return skills;
+	}
 }

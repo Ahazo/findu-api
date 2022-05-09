@@ -1,3 +1,8 @@
+NODE VERSION --- 16.14.2
+
+nvm install 16.14.2
+yarn && yarn server
+
 # ahazo-api
 Ahazo backend service
 

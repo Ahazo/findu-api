@@ -12,32 +12,40 @@ export default class UsersController {
 		const userData = request.body;
 
 		if (!userData) {
+			console.log('Request without data');
 			return response.status(400).json({
 				error: 'Unable to read user data',
 			});
 		}
+		try {
+			const findInfluencerLevel = container.resolve(FindInfluencerLevelService);
+			const influencerLevel = await findInfluencerLevel.executeByLevelNumber(1);
 
-		const findInfluencerLevel = container.resolve(FindInfluencerLevelService);
-		const influencerLevel = await findInfluencerLevel.executeByLevelNumber(1);
+			if (!influencerLevel) {
+				return response.status(500).json({
+					error: 'Unable to retrive inital level data.',
+				});
+			}
 
-		if (!influencerLevel) {
+			const createUser = container.resolve(CreateUserService);
+			const user = await createUser.execute({
+				...userData,
+				level_id: influencerLevel?.id,
+			});
+
+			const token = generateToken(user.id);
+
+			return response.status(200).json({
+				user,
+				token,
+			});
+		} catch (err: any) {
+			console.log('Error on signUpController --- ', err.message);
+			console.log(err);
 			return response.status(500).json({
-				error: 'Unable to retrive inital level data.',
+				message: err.message,
 			});
 		}
-
-		const createUser = container.resolve(CreateUserService);
-		const user = await createUser.execute({
-			...userData,
-			level_id: influencerLevel?.id,
-		});
-
-		const token = generateToken(user.id);
-
-		return response.status(200).json({
-			user,
-			token,
-		});
 	}
 
 	async findUserById(request: Request, response: Response): Promise<Response> {
@@ -49,9 +57,9 @@ export default class UsersController {
 					message: 'User not found',
 				});
 			}
-
 			return response.status(200).json(userFound);
 		} catch (error: any) {
+			console.log('Error in findUserByID: ', error.message);
 			return response.status(500).json({ message: error.message });
 		}
 	}

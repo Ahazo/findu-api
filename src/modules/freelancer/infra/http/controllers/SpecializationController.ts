@@ -47,9 +47,6 @@ export default class SpecializationController {
 	async findAll(_request: Request, response: Response): Promise<Response> {
 		const findSpecialization = container.resolve(FindSpecializationService);
 		const specializations = await findSpecialization.execute();
-
-		console.log(specializations);
-
 		return response.status(200).json(specializations);
 	}
 

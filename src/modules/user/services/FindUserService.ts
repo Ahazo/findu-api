@@ -29,7 +29,7 @@ export default class FindUserService {
 			return user;
 		}
 
-		const isUserFreelancerActive = user.freelancer.status === 'active';
+		const isUserFreelancerActive = user.freelancer?.status === 'active';
 		const skills: ISkillsRemodel[] = [];
 
 		if (isUserFreelancerActive) {

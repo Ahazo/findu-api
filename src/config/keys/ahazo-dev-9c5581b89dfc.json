@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "ahazo-dev",
+  "private_key_id": "9c5581b89dfc0308647b4ad9b806ea3516f001d2",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCJOmKqtZryV56N\ndgi7SGhtwYHCEMxWGzZXyzmInhgYGkMh5qaHzNaCyv0Brc7j0DU7/Ku72Vxqc5Oy\n2dc6QDSEqhHPXxmZuV+WfMjRtAEQ3EcclDAXz8Q7PkdxAgohkbzULl4ZTN8vYCgt\nOAKiKvKC1Oeg0qDbus8VKp/iiy4275eg4BLYZlkIy64B65vZpxnxYpghEvAzqyqh\nTJH2A8+Pi3LzAKF1g1PC2l8EHIQJ9Vuhl4hTCk/I3Jy4kC1dXSxrMoUsfHG86hn1\nhulWvBzR5FK4VHdWTfGxGnQXwaDq5yiZX/9Tb9hsX/RyI7BPCKQTjLXsTRzGVy5c\nUCs170cTAgMBAAECggEAOyaQixbWoClGbaF4KAoRAWZMoTMOcPsv1G4D8bB7oEAJ\nud4q4BRaTmxi3EtoB2ii2aWS/Ni3bic9ffVKQZCVUq3gGWvbpBh0bHCDO2kEoJji\nih4SEOF8qzCwKLUBWvDv3OHTq8In3crr5nnjILW0bNKKuRaxQaVnR69k1Yi6tfC0\n7O0mi365I9x+HZJHwZcN+swAeMqO62u4XmKv+Me40+Vqk08u/d9qxF8IF/gBrBJ0\nEvXKPgxk0UJ54VrfWl2Y4BtH+JJV/8GzFaaNjfzUxhk7GT9nsVgD7zI1TiAPLE4A\nuMVeTsowiIS26tUex/FGfLRz2ZjRb0qq0r0ZBxBroQKBgQC7wOOHvlYxtkJb7jME\nFo0uYHgaDYAoE8qDq5fkCRDXVIVm4CbZegAkUfXNaZyIJpg4KPOR38GGyogGlVaq\nSXVOgfkYhN3/GrPPw0dZtOrcoUiN34G/waKZC1cSOggD89ykJJaRiphl74Yi7tnc\n36vEKPkQxL7xKu6m0sb4AaUFIwKBgQC7G+7GBNGXTK99uGf0K9XpaR1bR3tUygsC\n2ahVVnIblf9dLvR51Db5k6hT4WJTjkk+3NyAFup5rwPJOR8P2U8/O8DCd3o2L/51\naTt7LscH2bOHRgl4zLQ3OVT2jDc49/kQMHmCC9yS0xN6SJd75ulmPMf3NC6eFKR1\nCZh2hsCtUQKBgFg+8fJ0SKj25Du3Om06eEMK/ogoPksX+kBm325DwJGk3UqcIkZn\nbDel+iUA9Zycn0EOJmUyyRAkk0ic2m4RNryepEic8oabs1X8j8WfHiBzAdoE6kQJ\nq/XI+bTMZ8YL0XGo7MgdX0HSEbbLksSYsG/zXhU+lAxgRGlOekxI4ZoHAoGBALe5\nGsCndKGqs9qvmqtf66BQDXpWexxrc1puHGMHCe5aX6/A7l896Gkx+qO6eFDxMqye\nM4k2dy/akM4h34UxbSX65zBMHt1cTPA+zyAKc3Ya5rRaKezKm95p1ipszcCLhKzH\n3Fe8i+5DgimdY9lOiDlST0tFmsywGjetn14qvMCxAoGAeofM8AB+LQN6nVjFazdp\nVO9BcpTAjiDtkKv/HKXjP53q0DgBA4cxl9Hud1FTqJP5euTsO7iTTwLcM4OXJWYB\nq/RfLN3M06I4Lfiw5F3TcZBZ/mDi8QK8ke1nDTNRa4nQVSwWYlC8Y4UbmPJdg/tv\nd0SxWp50o4iRrf+pGId3ViA=\n-----END PRIVATE KEY-----\n",
+  "client_email": "findu-api@ahazo-dev.iam.gserviceaccount.com",
+  "client_id": "110109439822750944891",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/findu-api%40ahazo-dev.iam.gserviceaccount.com"
+}

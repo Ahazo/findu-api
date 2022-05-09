@@ -25,4 +25,9 @@ export default class BundleRepository implements IBundleRepository {
 		const bundle = await this.bundleRepository.findOne(id);
 		return bundle;
 	}
+
+	async findByName(name: string): Promise<Bundle | undefined> {
+		const bundle = await this.bundleRepository.findOne({ where: name });
+		return bundle;
+	}
 }
