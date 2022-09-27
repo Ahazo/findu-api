@@ -8,14 +8,14 @@ export class CreateBundle1664236912451 implements MigrationInterface {
 				columns: [
 					{
 						name: 'id',
-						type: 'int',
+						type: 'varchar',
 						isPrimary: true,
-						generationStrategy: 'increment',
-						isGenerated: true,
+						generationStrategy: 'uuid',
+						default: 'uuid_generate_v4()',
 					},
 					{
 						name: 'freelancer_id',
-						type: 'int',
+						type: 'varchar',
 						isNullable: false,
 						isUnique: false,
 					},

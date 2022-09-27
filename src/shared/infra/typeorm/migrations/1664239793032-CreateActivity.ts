@@ -8,26 +8,26 @@ export class CreateActivities1664239793032 implements MigrationInterface {
 				columns: [
 					{
 						name: 'id',
-						type: 'int',
+						type: 'varchar',
 						isPrimary: true,
-						generationStrategy: 'increment',
-						isGenerated: true,
+						generationStrategy: 'uuid',
+						default: 'uuid_generate_v4()',
 					},
 					{
 						name: 'user_id',
-						type: 'int',
+						type: 'varchar',
 						isNullable: false,
 						isUnique: false,
 					},
 					{
 						name: 'target_user_id',
-						type: 'int',
+						type: 'varchar',
 						isNullable: false,
 						isUnique: false,
 					},
 					{
 						name: 'specialization_id',
-						type: 'int',
+						type: 'varchar',
 						isNullable: false,
 						isUnique: false,
 					},
@@ -41,8 +41,7 @@ export class CreateActivities1664239793032 implements MigrationInterface {
 						name: 'status',
 						type: 'enum',
 						enum: ['contract', 'cancel', 'recommendation'],
-						enumName: 'statusEnum',
-						default: `'active'`,
+						enumName: 'orderStatusEnum',
 						isNullable: false,
 					},
 					{
@@ -56,8 +55,6 @@ export class CreateActivities1664239793032 implements MigrationInterface {
 						default: 'now()',
 					},
 				],
-
-				// TODO
 				foreignKeys: [
 					{
 						name: 'activity_user',

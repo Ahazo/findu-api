@@ -8,10 +8,10 @@ export class CreatePerson1632247967291 implements MigrationInterface {
 				columns: [
 					{
 						name: 'id',
-						type: 'int',
+						type: 'varchar',
 						isPrimary: true,
-						generationStrategy: 'increment',
-						isGenerated: true,
+						generationStrategy: 'uuid',
+						default: 'uuid_generate_v4()',
 					},
 					{
 						name: 'cpf',
@@ -55,7 +55,7 @@ export class CreatePerson1632247967291 implements MigrationInterface {
 					},
 					{
 						name: 'address_id',
-						type: 'int',
+						type: 'varchar',
 						isNullable: false,
 						isUnique: true,
 					},

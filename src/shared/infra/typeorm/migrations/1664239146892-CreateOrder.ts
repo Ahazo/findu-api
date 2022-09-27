@@ -8,26 +8,26 @@ export class CreateOrder1664239146892 implements MigrationInterface {
 				columns: [
 					{
 						name: 'id',
-						type: 'int',
+						type: 'varchar',
 						isPrimary: true,
-						generationStrategy: 'increment',
-						isGenerated: true,
+						generationStrategy: 'uuid',
+						default: 'uuid_generate_v4()',
 					},
 					{
 						name: 'user_id',
-						type: 'int',
+						type: 'varchar',
 						isNullable: false,
 						isUnique: false,
 					},
 					{
 						name: 'bundle_id',
-						type: 'int',
+						type: 'varchar',
 						isNullable: false,
 						isUnique: false,
 					},
 					{
 						name: 'order_status_id',
-						type: 'int',
+						type: 'varchar',
 						isNullable: false,
 						isUnique: false,
 					},

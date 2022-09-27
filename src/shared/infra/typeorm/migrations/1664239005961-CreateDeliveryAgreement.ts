@@ -10,14 +10,14 @@ export class CreateDeliveryAgreements1664239005961
 				columns: [
 					{
 						name: 'id',
-						type: 'int',
+						type: 'varchar',
 						isPrimary: true,
-						generationStrategy: 'increment',
-						isGenerated: true,
+						generationStrategy: 'uuid',
+						default: 'uuid_generate_v4()',
 					},
 					{
 						name: 'bundle_id',
-						type: 'int',
+						type: 'varchar',
 						isNullable: false,
 						isUnique: false,
 					},

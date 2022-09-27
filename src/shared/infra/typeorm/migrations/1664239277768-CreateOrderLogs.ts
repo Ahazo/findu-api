@@ -8,20 +8,20 @@ export class CreateOrderLogs1664239277768 implements MigrationInterface {
 				columns: [
 					{
 						name: 'id',
-						type: 'int',
+						type: 'varchar',
 						isPrimary: true,
-						generationStrategy: 'increment',
-						isGenerated: true,
+						generationStrategy: 'uuid',
+						default: 'uuid_generate_v4()',
 					},
 					{
 						name: 'order_id',
-						type: 'int',
+						type: 'varchar',
 						isNullable: false,
 						isUnique: false,
 					},
 					{
 						name: 'order_status_id',
-						type: 'int',
+						type: 'varchar',
 						isNullable: false,
 						isUnique: false,
 					},
