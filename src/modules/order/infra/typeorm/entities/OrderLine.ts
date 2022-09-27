@@ -5,7 +5,6 @@ import {
 	JoinColumn,
 	ManyToOne,
 	PrimaryGeneratedColumn,
-	UpdateDateColumn,
 } from 'typeorm';
 
 import Freelancer from '../../../../freelancer/infra/typeorm/entities/Freelancer';
@@ -28,8 +27,11 @@ export default class OrderLine {
 
 	@ManyToOne(() => Freelancer, (freelancer: Freelancer) => freelancer.orderLine)
 	@JoinColumn({ name: 'freelancer_id' })
-	freelancer: number;
+	freelancer: Freelancer;
 
 	@Column({ type: 'int', nullable: false, unique: false })
 	total_value: number;
+
+	@CreateDateColumn({ type: 'timestamp', nullable: false, unique: false })
+	created_at: Date;
 }

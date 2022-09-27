@@ -12,8 +12,6 @@ import {
 
 import { EStatus } from '../../../../../shared/utils/dtos/EStatus';
 import Freelancer from '../../../../freelancer/infra/typeorm/entities/Freelancer';
-import PostComment from '../../../../freelancer/infra/typeorm/entities/PostComment';
-import PostLike from '../../../../freelancer/infra/typeorm/entities/PostLike';
 import DeliveryAgreement from '../../../../order/infra/typeorm/entities/DeliveryAgreement';
 import Order from '../../../../order/infra/typeorm/entities/Order';
 import BannerPhoto from './BannerPhoto';
@@ -35,9 +33,6 @@ export default class User {
 	)
 	deliveryAgreement: DeliveryAgreement;
 
-	@OneToMany(() => PostComment, (postComment: PostComment) => postComment.user)
-	postComment: string;
-
 	@OneToMany(
 		() => ProfilePhoto,
 		(profilePhoto: ProfilePhoto) => profilePhoto.user,
@@ -55,9 +50,6 @@ export default class User {
 		}
 	)
 	bannerPhoto: BannerPhoto;
-
-	@OneToMany(() => PostLike, (postLike: PostLike) => postLike.user)
-	postLike: string;
 
 	@OneToMany(() => Order, (order: Order) => order.user)
 	order: number;

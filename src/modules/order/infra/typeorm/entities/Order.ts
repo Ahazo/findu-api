@@ -10,7 +10,7 @@ import {
 	UpdateDateColumn,
 } from 'typeorm';
 
-import Bundle from '../../../../bundle/infra/typeorm/entities/Bundle';
+import Bundle from '../../../../freelancer/infra/typeorm/entities/bundle/Bundle';
 import User from '../../../../user/infra/typeorm/entities/User';
 import DeliveryAgreement from './DeliveryAgreement';
 import OrderLine from './OrderLine';

@@ -22,7 +22,7 @@ export default class SessionController {
 			else message = String(error);
 
 			return response.status(400).json({
-				errorMessage: message,
+				message,
 			});
 		}
 	}

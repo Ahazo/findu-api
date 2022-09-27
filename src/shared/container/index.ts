@@ -1,16 +1,14 @@
 import { container } from 'tsyringe';
 
-import BundleMediaRepository from '../../modules/bundle/infra/typeorm/repositories/BundleMediaRepository';
-import BundleRelationRepository from '../../modules/bundle/infra/typeorm/repositories/BundleRelationsRepository';
-import BundleRepository from '../../modules/bundle/infra/typeorm/repositories/BundleRepository';
-import IBundleMediaRepository from '../../modules/bundle/repositories/IBundleMediaRepository';
-import IBundleRelationRepository from '../../modules/bundle/repositories/IBundleRelationRepository';
-import IBundleRepository from '../../modules/bundle/repositories/IBundleRepository';
 import AreaRepository from '../../modules/freelancer/infra/typeorm/repositories/AreaRepository';
+import BundleMediaRepository from '../../modules/freelancer/infra/typeorm/repositories/bundle/BundleMediaRepository';
+import BundleRepository from '../../modules/freelancer/infra/typeorm/repositories/bundle/BundleRepository';
 import FreelancerRepository from '../../modules/freelancer/infra/typeorm/repositories/FreelancerRepository';
 import ProfessionalLevelRepository from '../../modules/freelancer/infra/typeorm/repositories/ProfessionalLevelRepository';
 import SkillRepository from '../../modules/freelancer/infra/typeorm/repositories/SkillRepository';
 import SpecializationRepository from '../../modules/freelancer/infra/typeorm/repositories/SpecializationRepository';
+import IBundleMediaRepository from '../../modules/freelancer/repositories/bundle/IBundleMediaRepository';
+import IBundleRepository from '../../modules/freelancer/repositories/bundle/IBundleRepository';
 import IAreaRepository from '../../modules/freelancer/repositories/IAreaRepository';
 import IFreelancerRepository from '../../modules/freelancer/repositories/IFreelancerRepository';
 import IProfessionalLevelRepository from '../../modules/freelancer/repositories/IProfessionalLevelRepository';
@@ -73,11 +71,6 @@ container.registerSingleton<IBundleRepository>(
 container.registerSingleton<IBundleMediaRepository>(
 	'BundleMediaRepository',
 	BundleMediaRepository
-);
-
-container.registerSingleton<IBundleRelationRepository>(
-	'BundleRelationsRepository',
-	BundleRelationRepository
 );
 
 container.registerSingleton<IDeliveryAgreementRepository>(

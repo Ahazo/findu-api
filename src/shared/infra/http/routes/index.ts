@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-import bundleRouter from '../../../../modules/bundle/infra/http/routes/bundle.routes';
 import areaRouter from '../../../../modules/freelancer/infra/http/routes/area.routes';
+import bundleRouter from '../../../../modules/freelancer/infra/http/routes/bundle/bundle.routes';
 import freelancerRouter from '../../../../modules/freelancer/infra/http/routes/freelancer.routes';
 import professionalLevelRouter from '../../../../modules/freelancer/infra/http/routes/professionalLevel.routes';
 import specializationRouter from '../../../../modules/freelancer/infra/http/routes/specialization.routes';

@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreatePerson1632247967291 implements MigrationInterface {
+export class CreateFreelancer1664236184676 implements MigrationInterface {
 	public async up(queryRunner: QueryRunner): Promise<void> {
 		await queryRunner.createTable(
 			new Table({
-				name: 'persons',
+				name: 'freelancers',
 				columns: [
 					{
 						name: 'id',
@@ -14,50 +14,23 @@ export class CreatePerson1632247967291 implements MigrationInterface {
 						isGenerated: true,
 					},
 					{
-						name: 'cpf',
-						type: 'varchar',
-						length: '14',
-						isNullable: false,
-						isUnique: true,
-					},
-					{
-						name: 'email',
-						type: 'varchar',
-						length: '100',
-						isNullable: false,
-						isUnique: true,
-					},
-					{
-						name: 'cellphone_number',
-						type: 'varchar',
-						length: '14',
-						isNullable: false,
-						isUnique: true,
-					},
-					{
-						name: 'first_name',
-						type: 'varchar',
-						length: '100',
-						isNullable: false,
-						isUnique: false,
-					},
-					{
-						name: 'last_name',
-						type: 'varchar',
-						isNullable: false,
-						isUnique: false,
-					},
-					{
-						name: 'birth_date',
-						type: 'timestamp',
-						isNullable: false,
-						isUnique: false,
-					},
-					{
-						name: 'address_id',
+						name: 'user_id',
 						type: 'int',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
+					},
+					{
+						name: 'title',
+						type: 'varchar',
+						isNullable: false,
+						isUnique: false,
+					},
+					{
+						name: 'open_to_work',
+						type: 'boolean',
+						isNullable: false,
+						isUnique: false,
+						default: true,
 					},
 					{
 						name: 'status',
@@ -80,19 +53,19 @@ export class CreatePerson1632247967291 implements MigrationInterface {
 				],
 				foreignKeys: [
 					{
-						name: 'address_to_person',
-						referencedTableName: 'addresses',
+						name: 'user_to_freelancer',
+						referencedTableName: 'users',
 						referencedColumnNames: ['id'],
-						columnNames: ['address_id'],
+						columnNames: ['user_id'],
 						onDelete: 'SET NULL',
-						onUpdate: 'CASCADE',
 					},
 				],
 			})
 		);
 	}
+
 	public async down(queryRunner: QueryRunner): Promise<void> {
-		await queryRunner.dropForeignKey('persons', 'address_to_person');
-		await queryRunner.dropTable('persons');
+		await queryRunner.dropForeignKey('freelancers', 'freelancer_to_user');
+		await queryRunner.dropTable('freelancers');
 	}
 }

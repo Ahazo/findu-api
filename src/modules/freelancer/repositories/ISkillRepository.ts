@@ -11,4 +11,8 @@ export default interface ISkillRepository {
 	findAllBySpecializationId(
 		specialization_id: number
 	): Promise<Skill[] | undefined>;
+	findBoundedSkill(
+		freelancer_id: number,
+		specialization_id: number
+	): Promise<Skill | undefined>;
 }

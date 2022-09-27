@@ -11,11 +11,9 @@ import {
 } from 'typeorm';
 
 import { EStatus } from '../../../../../shared/utils/dtos/EStatus';
-import BundleRelation from '../../../../bundle/infra/typeorm/entities/BundleRelation';
 import OrderLine from '../../../../order/infra/typeorm/entities/OrderLine';
 import PostRecommendation from '../../../../user/infra/typeorm/entities/PostRecommendation';
 import User from '../../../../user/infra/typeorm/entities/User';
-import Post from './Post';
 import ProfessionalLevel from './ProfessionalLevel';
 import Skill from './Skill';
 
@@ -23,9 +21,6 @@ import Skill from './Skill';
 export default class Freelancer {
 	@PrimaryGeneratedColumn()
 	id: number;
-
-	@OneToMany(() => Post, (post: Post) => post.freelancer)
-	post: number;
 
 	@OneToMany(() => OrderLine, (orderLine: OrderLine) => orderLine.freelancer)
 	orderLine: number;
@@ -70,12 +65,6 @@ export default class Freelancer {
 
 	@UpdateDateColumn({ type: 'timestamp', nullable: false, unique: false })
 	updated_at: Date;
-
-	@OneToMany(
-		() => BundleRelation,
-		(bundleRelation: BundleRelation) => bundleRelation.freelancer
-	)
-	bundleRelation: BundleRelation;
 
 	@OneToMany(() => Skill, (skill: Skill) => skill.freelancer, { eager: true })
 	skill: Skill[];
