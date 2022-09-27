@@ -26,6 +26,13 @@ export class CreateFreelancer1664236184676 implements MigrationInterface {
 						isUnique: false,
 					},
 					{
+						name: 'projects_count',
+						type: 'int',
+						isNullable: false,
+						isUnique: false,
+						default: 0,
+					},
+					{
 						name: 'open_to_work',
 						type: 'boolean',
 						isNullable: false,

@@ -13,18 +13,18 @@ import User from './User';
 
 @Entity('followers')
 export default class Follower {
-	@PrimaryGeneratedColumn()
-	id: number;
+	@PrimaryGeneratedColumn('uuid')
+	id: string;
 
-	@Column({ type: 'int', nullable: false, unique: false })
-	user_id: number;
+	@Column({ type: 'varchar', nullable: false, unique: false })
+	user_id: string;
 
 	@ManyToOne(() => User, (user: User) => user.follower_parent)
 	@JoinColumn({ name: 'user_id' })
 	user: User;
 
-	@Column({ type: 'int', nullable: false, unique: false })
-	followed_user_id: number;
+	@Column({ type: 'varchar', nullable: false, unique: false })
+	followed_user_id: string;
 
 	@ManyToOne(() => User, (user: User) => user.follower_child)
 	@JoinColumn({ name: 'followed_user_id' })

@@ -13,8 +13,8 @@ import Order from './Order';
 
 @Entity('delivery_agreements')
 export default class DeliveryAgreement {
-	@PrimaryGeneratedColumn()
-	id: number;
+	@PrimaryGeneratedColumn('uuid')
+	id: string;
 
 	@Column({ type: 'int', nullable: false, unique: true })
 	order_id: number;

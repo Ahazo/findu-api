@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateDeliveryAgreements1664239005961
+export class CreateDeliveryAgreements1664312798705
 	implements MigrationInterface
 {
 	public async up(queryRunner: QueryRunner): Promise<void> {
@@ -16,7 +16,7 @@ export class CreateDeliveryAgreements1664239005961
 						default: 'uuid_generate_v4()',
 					},
 					{
-						name: 'bundle_id',
+						name: 'order_id',
 						type: 'varchar',
 						isNullable: false,
 						isUnique: false,
@@ -40,10 +40,10 @@ export class CreateDeliveryAgreements1664239005961
 				],
 				foreignKeys: [
 					{
-						name: 'bundle_to_delivery_agreement',
-						referencedTableName: 'bundles',
+						name: 'order_to_delivery_agreement',
+						referencedTableName: 'orders',
 						referencedColumnNames: ['id'],
-						columnNames: ['bundle_id'],
+						columnNames: ['order_id'],
 						onDelete: 'SET NULL',
 					},
 				],
@@ -54,7 +54,7 @@ export class CreateDeliveryAgreements1664239005961
 	public async down(queryRunner: QueryRunner): Promise<void> {
 		await queryRunner.dropForeignKey(
 			'delivery_agreements',
-			'bundle_to_delivery_agreement'
+			'order_to_delivery_agreement'
 		);
 		await queryRunner.dropTable('delivery_agreements');
 	}

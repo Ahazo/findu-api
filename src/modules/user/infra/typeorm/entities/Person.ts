@@ -14,8 +14,8 @@ import User from './User';
 
 @Entity('persons')
 export default class Person {
-	@PrimaryGeneratedColumn()
-	id: number;
+	@PrimaryGeneratedColumn('uuid')
+	id: string;
 
 	@Column({ type: 'varchar', length: 14, nullable: false, unique: true })
 	cpf: string;
@@ -35,8 +35,8 @@ export default class Person {
 	@Column({ type: Date, nullable: false, unique: false })
 	birth_date: Date;
 
-	@Column({ type: 'int', nullable: false, unique: false })
-	address_id: number;
+	@Column({ type: 'varchar', nullable: false, unique: false })
+	address_id: string;
 
 	@OneToOne(() => Address, (address: Address) => address.person, {
 		cascade: true,
@@ -47,7 +47,7 @@ export default class Person {
 	@Column({ type: 'enum', enum: EStatus, default: EStatus.active })
 	status: EStatus;
 
-	@OneToOne(() => User, (user: User) => user.person_id)
+	@OneToOne(() => User, (user: User) => user.person)
 	user: User;
 
 	@CreateDateColumn({ type: 'timestamp' })

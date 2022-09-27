@@ -12,8 +12,8 @@ import Person from './Person';
 
 @Entity('addresses')
 export default class Address {
-	@PrimaryGeneratedColumn()
-	id: number;
+	@PrimaryGeneratedColumn('uuid')
+	id: string;
 
 	@Column({ type: 'varchar', length: 9, nullable: false, unique: false })
 	postal_code: string;

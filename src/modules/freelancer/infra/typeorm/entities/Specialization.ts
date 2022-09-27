@@ -2,9 +2,11 @@ import {
 	Column,
 	Entity,
 	JoinColumn,
-	OneToOne,
 	PrimaryGeneratedColumn,
 	OneToMany,
+	CreateDateColumn,
+	UpdateDateColumn,
+	ManyToOne,
 } from 'typeorm';
 
 import { EStatus } from '../../../../../shared/utils/dtos/EStatus';
@@ -13,16 +15,13 @@ import Skill from './Skill';
 
 @Entity('specializations')
 export default class Specialization {
-	@PrimaryGeneratedColumn()
-	id: number;
+	@PrimaryGeneratedColumn('uuid')
+	id: string;
 
-	@OneToMany(() => Skill, (skill: Skill) => skill.specialization)
-	skill: number;
+	@Column({ type: 'varchar', nullable: false, unique: false })
+	area_id: string;
 
-	@Column({ type: 'int', nullable: false, unique: false })
-	area_id: number;
-
-	@OneToOne(() => Area, (area: Area) => area.specialization, { eager: true })
+	@ManyToOne(() => Area, (area: Area) => area.specialization, { eager: true })
 	@JoinColumn({ name: 'area_id' })
 	area: Area;
 
@@ -31,4 +30,13 @@ export default class Specialization {
 
 	@Column({ type: 'enum', enum: EStatus, default: EStatus.active })
 	status: EStatus;
+
+	@CreateDateColumn({ type: 'timestamp', nullable: false, unique: false })
+	created_at: Date;
+
+	@UpdateDateColumn({ type: 'timestamp', nullable: false, unique: false })
+	updated_at: Date;
+
+	@OneToMany(() => Skill, (skill: Skill) => skill.specialization)
+	skill: Skill;
 }

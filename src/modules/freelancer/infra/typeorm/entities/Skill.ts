@@ -4,6 +4,8 @@ import {
 	JoinColumn,
 	PrimaryGeneratedColumn,
 	ManyToOne,
+	CreateDateColumn,
+	UpdateDateColumn,
 } from 'typeorm';
 
 import { EStatus } from '../../../../../shared/utils/dtos/EStatus';
@@ -12,11 +14,11 @@ import Specialization from './Specialization';
 
 @Entity('skills')
 export default class Skill {
-	@PrimaryGeneratedColumn()
-	id: number;
+	@PrimaryGeneratedColumn('uuid')
+	id: string;
 
-	@Column({ type: 'int', nullable: false, unique: false })
-	specialization_id: number;
+	@Column({ type: 'varchar', nullable: false, unique: false })
+	specialization_id: string;
 
 	@ManyToOne(
 		() => Specialization,
@@ -26,13 +28,19 @@ export default class Skill {
 	@JoinColumn({ name: 'specialization_id' })
 	specialization: Specialization;
 
-	@Column({ type: 'int', nullable: false, unique: false })
-	freelancer_id: number;
+	@Column({ type: 'varchar', nullable: false, unique: false })
+	freelancer_id: string;
 
 	@ManyToOne(() => Freelancer, (freelancer: Freelancer) => freelancer.skill)
 	@JoinColumn({ name: 'freelancer_id' })
-	freelancer: number;
+	freelancer: Freelancer;
 
 	@Column({ type: 'enum', enum: EStatus, default: EStatus.active })
 	status: EStatus;
+
+	@CreateDateColumn({ type: 'timestamp', nullable: false, unique: false })
+	created_at: Date;
+
+	@UpdateDateColumn({ type: 'timestamp', nullable: false, unique: false })
+	updated_at: Date;
 }
