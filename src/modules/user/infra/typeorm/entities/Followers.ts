@@ -28,7 +28,7 @@ export default class Follower {
 
 	@ManyToOne(() => User, (user: User) => user.follower_child)
 	@JoinColumn({ name: 'followed_user_id' })
-	followedUser: User;
+	followed_user: User;
 
 	@CreateDateColumn({ type: 'timestamp', nullable: false, unique: false })
 	created_at: Date;

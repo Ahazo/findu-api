@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 
 import { EStatus } from '../../../../../shared/utils/enums/EStatus';
+import Activity from '../../../../activity/infra/typeorm/entities/Activity';
 import Freelancer from '../../../../freelancer/infra/typeorm/entities/Freelancer';
 import DeliveryAgreement from '../../../../order/infra/typeorm/entities/DeliveryAgreement';
 import Order from '../../../../order/infra/typeorm/entities/Order';
@@ -83,9 +84,15 @@ export default class User {
 	)
 	recommendation: Recommendation[];
 
-	@OneToMany(() => Follower, (follower: Follower) => follower.user_id)
+	@OneToMany(() => Follower, (follower: Follower) => follower.user)
 	follower_parent: Follower[];
 
-	@OneToMany(() => Follower, (follower: Follower) => follower.followed_user_id)
+	@OneToMany(() => Follower, (follower: Follower) => follower.followed_user)
 	follower_child: Follower[];
+
+	@OneToMany(() => Activity, (activity: Activity) => activity.user)
+	activity_parent: Activity[];
+
+	@OneToMany(() => Activity, (activity: Activity) => activity.target_user)
+	activity_child: Activity[];
 }

@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 
 import { EStatus } from '../../../../../shared/utils/enums/EStatus';
+import Activity from '../../../../activity/infra/typeorm/entities/Activity';
 import Area from './Area';
 import Skill from './Skill';
 
@@ -38,5 +39,8 @@ export default class Specialization {
 	updated_at: Date;
 
 	@OneToMany(() => Skill, (skill: Skill) => skill.specialization)
-	skill: Skill;
+	skill: Skill[];
+
+	@OneToMany(() => Activity, (activity: Activity) => activity.specialization)
+	activity: Activity[];
 }
