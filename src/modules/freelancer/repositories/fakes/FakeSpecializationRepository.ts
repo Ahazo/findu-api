@@ -28,7 +28,7 @@ class FakeSpecializationRepository implements ISpecializationRepository {
 		return specialization;
 	}
 
-	async findById(id: number): Promise<Specialization | undefined> {
+	async findById(id: string): Promise<Specialization | undefined> {
 		const specializationFound = this.specializations.find(
 			(specialization) => specialization.id === id
 		);

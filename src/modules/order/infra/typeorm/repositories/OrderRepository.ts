@@ -22,7 +22,7 @@ export default class OrderRepository implements IOrderRepository {
 		return this.orderRepository.save(data);
 	}
 
-	async findById(id: number): Promise<Order | undefined> {
+	async findById(id: string): Promise<Order | undefined> {
 		const result = await this.orderRepository.findOne(id);
 
 		return result;

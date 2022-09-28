@@ -5,21 +5,21 @@ import { container } from 'tsyringe';
 import { generateToken } from '../../../../../shared/utils/generateToken';
 import CreateUserService from '../../../services/CreateUserService';
 import FindUserService from '../../../services/FindUserService';
+import UpdateProfileService from '../../../services/UpdateProfileService';
 
 export default class UsersController {
 	async createUser(request: Request, response: Response): Promise<Response> {
 		const userData = request.body;
 
 		if (!userData) {
-			console.log('Request without data');
 			return response.status(400).json({
 				error: 'Unable to read user data',
 			});
 		}
+
 		try {
 			const createUser = container.resolve(CreateUserService);
 			const user = await createUser.execute(userData);
-
 			const token = generateToken(user.id);
 
 			return response.status(200).json({
@@ -27,8 +27,7 @@ export default class UsersController {
 				token,
 			});
 		} catch (err: any) {
-			console.log('Error on signUpController --- ', err.message);
-			console.log(err);
+			console.error('Error on signUpController --- ', err.message);
 			return response.status(500).json({
 				message: err.message,
 			});
@@ -46,7 +45,7 @@ export default class UsersController {
 			}
 			return response.status(200).json(userFound);
 		} catch (error: any) {
-			console.log('Error in findUserByID: ', error.message);
+			console.error('Error on findUserByID --- ', error.message);
 			return response.status(500).json({ message: error.message });
 		}
 	}
@@ -55,16 +54,38 @@ export default class UsersController {
 		request: Request,
 		response: Response
 	): Promise<Response> {
-		const findUser = container.resolve(FindUserService);
-		const { username } = request.params;
-		const user = await findUser.executeByUsername(username);
+		try {
+			const findUser = container.resolve(FindUserService);
+			const { username } = request.params;
+			const user = await findUser.executeByUsername(username);
+			if (!user) {
+				return response.status(400).json({
+					message: 'User id not found',
+				});
+			}
+			return response.status(200).json(user);
+		} catch (error: any) {
+			console.error('Error on findUserByUsername --- ', error.message);
+			return response.status(500).json({ message: error.message });
+		}
+	}
 
-		if (!user) {
-			response.status(400).json({
-				message: 'User id not found',
+	// TODO: Check values to be updated
+	async updateUser(request: Request, response: Response): Promise<Response> {
+		const findUser = container.resolve(FindUserService);
+		const updateUser = container.resolve(UpdateProfileService);
+
+		const userFound = await findUser.executeById(request.userId);
+		if (!userFound) {
+			return response.status(400).json({
+				message: 'User not found',
 			});
 		}
 
-		return response.status(200).json(user);
+		const user = updateUser.execute({
+			userId: userFound.id,
+		});
+
+		return response.json(user);
 	}
 }

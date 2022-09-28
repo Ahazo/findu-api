@@ -31,7 +31,7 @@ export default class FakeBundleMediaRepository
 		return data;
 	}
 
-	public async findById(id: number): Promise<BundleMedia | undefined> {
+	public async findById(id: string): Promise<BundleMedia | undefined> {
 		const findBundle = this.bundles.find((bundle) => bundle.id === id);
 		return findBundle;
 	}

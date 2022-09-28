@@ -27,7 +27,7 @@ export default class DeliveryAgreementRepository
 		return this.deliveryAgreementRepository.save(data);
 	}
 
-	async findById(id: number): Promise<DeliveryAgreement | undefined> {
+	async findById(id: string): Promise<DeliveryAgreement | undefined> {
 		const deliveryAgreement = await this.deliveryAgreementRepository.findOne(
 			id
 		);

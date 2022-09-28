@@ -10,7 +10,7 @@ export default class FindRecommendationService {
 		private recommendationRepository: IRecommendationRepository
 	) {}
 
-	public async executeById(id: number): Promise<Recommendation | undefined> {
+	public async executeById(id: string): Promise<Recommendation | undefined> {
 		const find = await this.recommendationRepository.findById(id);
 
 		return find;

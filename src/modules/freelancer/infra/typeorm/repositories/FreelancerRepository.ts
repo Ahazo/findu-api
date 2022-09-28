@@ -24,12 +24,12 @@ class FreelancerRepository implements IFreelancerRepository {
 		return this.freelancerRepository.save(freelancer);
 	}
 
-	public async findById(id: number): Promise<Freelancer | undefined> {
+	public async findById(id: string): Promise<Freelancer | undefined> {
 		const freelancer = await this.freelancerRepository.findOne(id);
 		return freelancer;
 	}
 
-	public async findByUserId(user_id: number): Promise<Freelancer | undefined> {
+	public async findByUserId(user_id: string): Promise<Freelancer | undefined> {
 		const freelancer = await this.freelancerRepository.findOne(user_id);
 		return freelancer;
 	}

@@ -22,7 +22,7 @@ export default class AreaRepository implements IAreaRepository {
 		return this.areaRepository.save(area);
 	}
 
-	async findById(id: number): Promise<Area | undefined> {
+	async findById(id: string): Promise<Area | undefined> {
 		const area = await this.areaRepository.findOne(id);
 		return area;
 	}

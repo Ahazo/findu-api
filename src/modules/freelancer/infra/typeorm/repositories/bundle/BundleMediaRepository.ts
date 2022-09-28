@@ -17,11 +17,11 @@ class BundleMediaRepository implements IBundleMediaRepository {
 		return bundleMedia;
 	}
 
-	async delete(id: number): Promise<DeleteResult> {
+	async delete(id: string): Promise<DeleteResult> {
 		return this.bundleMediaRepository.delete(id);
 	}
 
-	async findById(id: number): Promise<BundleMedia | undefined> {
+	async findById(id: string): Promise<BundleMedia | undefined> {
 		return this.bundleMediaRepository.findOne(id);
 	}
 }

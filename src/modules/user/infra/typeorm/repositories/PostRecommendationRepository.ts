@@ -27,7 +27,7 @@ export default class PostRecommendationRepository
 		return this.postRecRepository.save(data);
 	}
 
-	async findById(id: number): Promise<PostRecommendation | undefined> {
+	async findById(id: string): Promise<PostRecommendation | undefined> {
 		const postRec = await this.postRecRepository.findOne(id);
 
 		return postRec;

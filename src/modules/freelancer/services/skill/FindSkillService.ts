@@ -10,7 +10,7 @@ export default class FindSkillService {
 		private skillRepository: ISkillRepository
 	) {}
 
-	public async executeById(id: number): Promise<Skill | undefined> {
+	public async executeById(id: string): Promise<Skill | undefined> {
 		const skill = await this.skillRepository.findById(id);
 
 		return skill;

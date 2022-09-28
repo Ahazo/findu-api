@@ -15,7 +15,7 @@ export default class FindSpecializationService {
 		return specializations;
 	}
 
-	public async executeById(id: number): Promise<Specialization | undefined> {
+	public async executeById(id: string): Promise<Specialization | undefined> {
 		const specialization = await this.specializationRepository.findById(id);
 
 		return specialization;

@@ -10,7 +10,7 @@ export default class CreateFreelancerService {
 		private freelancerRepository: IFreelancerRepository
 	) {}
 
-	public async executeById(id: number): Promise<Freelancer | undefined> {
+	public async executeById(id: string): Promise<Freelancer | undefined> {
 		const result = await this.freelancerRepository.findById(id);
 
 		return result;

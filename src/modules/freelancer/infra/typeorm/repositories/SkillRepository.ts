@@ -22,7 +22,7 @@ export default class SkillRepository implements ISkillRepository {
 		return this.skillRepository.save(skill);
 	}
 
-	async findById(id: number): Promise<Skill | undefined> {
+	async findById(id: string): Promise<Skill | undefined> {
 		const skill = await this.skillRepository.findOne(id);
 		return skill;
 	}
@@ -33,7 +33,7 @@ export default class SkillRepository implements ISkillRepository {
 	}
 
 	async findAllByFreelancerId(
-		freelancer_id: number
+		freelancer_id: string
 	): Promise<Skill[] | undefined> {
 		const skills = await this.skillRepository.find({
 			where: freelancer_id.toString(),
@@ -53,8 +53,8 @@ export default class SkillRepository implements ISkillRepository {
 	}
 
 	async findBoundedSkill(
-		freelancer_id: number,
-		specialization_id: number
+		freelancer_id: string,
+		specialization_id: string
 	): Promise<Skill | undefined> {
 		const skills = await this.skillRepository.findOne({
 			where: [

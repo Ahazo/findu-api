@@ -10,7 +10,7 @@ export default class FindOrderLineService {
 		private orderLineRepository: IOrderLineRepository
 	) {}
 
-	public async executeById(id: number): Promise<OrderLine | undefined> {
+	public async executeById(id: string): Promise<OrderLine | undefined> {
 		const result = await this.orderLineRepository.findById(id);
 
 		return result;

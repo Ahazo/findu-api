@@ -30,7 +30,7 @@ export default class FakeRecommendationRepository
 		return data;
 	}
 
-	public async findById(id: number): Promise<Recommendation | undefined> {
+	public async findById(id: string): Promise<Recommendation | undefined> {
 		const findIndex = this.recommendations.find((find) => find.id === id);
 
 		return findIndex;

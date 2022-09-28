@@ -17,7 +17,7 @@ class BundleRepository implements IBundleRepository {
 		return bundle;
 	}
 
-	async findById(id: number): Promise<Bundle | undefined> {
+	async findById(id: string): Promise<Bundle | undefined> {
 		const bundle = this.bundleRepository.findOne(id);
 		return bundle;
 	}
@@ -26,7 +26,7 @@ class BundleRepository implements IBundleRepository {
 		return this.bundleRepository.save(data);
 	}
 
-	async delete(id: number): Promise<DeleteResult> {
+	async delete(id: string): Promise<DeleteResult> {
 		return this.bundleRepository.delete(id);
 	}
 }

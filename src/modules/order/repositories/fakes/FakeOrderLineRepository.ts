@@ -28,7 +28,7 @@ export default class FakeOrderLineRepository implements IOrderLineRepository {
 		return data;
 	}
 
-	public async findById(id: number): Promise<OrderLine | undefined> {
+	public async findById(id: string): Promise<OrderLine | undefined> {
 		const findOrder = this.orderLines.find((find) => find.id === id);
 
 		return findOrder;

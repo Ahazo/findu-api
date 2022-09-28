@@ -41,7 +41,7 @@ export default class Order {
 	bundle: Bundle;
 
 	@Column({ type: 'int', nullable: false, unique: false })
-	order_status_id: number;
+	order_status_id: string;
 
 	@ManyToOne(() => OrderStatus, (orderStatus: OrderStatus) => orderStatus.order)
 	@JoinColumn({ name: 'order_status_id' })

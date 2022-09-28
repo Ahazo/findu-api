@@ -10,7 +10,7 @@ export default class FindBundleService {
 		private bundleRepository: IBundleRepository
 	) {}
 
-	public async executeById(id: number): Promise<Bundle | undefined> {
+	public async executeById(id: string): Promise<Bundle | undefined> {
 		const bundle = await this.bundleRepository.findById(id);
 		return bundle;
 	}

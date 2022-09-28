@@ -10,7 +10,7 @@ export default class FindOrderStatusService {
 		private orderStatusRepository: IOrderStatusRepository
 	) {}
 
-	public async executeById(id: number): Promise<OrderStatus | undefined> {
+	public async executeById(id: string): Promise<OrderStatus | undefined> {
 		const result = await this.orderStatusRepository.findById(id);
 
 		return result;

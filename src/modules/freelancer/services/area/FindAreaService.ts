@@ -10,7 +10,7 @@ export default class FindAreaService {
 		private areaRepository: IAreaRepository
 	) {}
 
-	public async executeById(id: number): Promise<Area | undefined> {
+	public async executeById(id: string): Promise<Area | undefined> {
 		const area = await this.areaRepository.findById(id);
 
 		return area;

@@ -18,7 +18,7 @@ class FakeAreaRepository implements IAreaRepository {
 		return area;
 	}
 
-	public async findById(id: number): Promise<Area | undefined> {
+	public async findById(id: string): Promise<Area | undefined> {
 		const areaFound = this.areas.find((area) => area.id === id);
 		return areaFound;
 	}

@@ -31,7 +31,7 @@ export default class FakeBundleRelationsRepository
 		return data;
 	}
 
-	public async findById(id: number): Promise<BundleRelation | undefined> {
+	public async findById(id: string): Promise<BundleRelation | undefined> {
 		const findBundle = this.bundles.find((bundle) => bundle.id === id);
 		return findBundle;
 	}

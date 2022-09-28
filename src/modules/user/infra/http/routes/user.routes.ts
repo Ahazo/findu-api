@@ -11,6 +11,7 @@ const sessionController = new SessionController();
 
 usersRouter.post('/', usersController.createUser);
 usersRouter.get('/', ensureAuth, usersController.findUserById);
+usersRouter.put('/:id', ensureAuth, usersController.updateUser);
 
 usersRouter.post('/session', sessionController.create);
 

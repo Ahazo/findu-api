@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 import auth from '../../../../config/auth';
 
 interface ITokenPayload {
-	id: number;
+	id: string;
 	iat: number;
 	exp: number;
 }

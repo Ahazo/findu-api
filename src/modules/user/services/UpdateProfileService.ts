@@ -5,7 +5,7 @@ import IHashProvider from '../providers/models/IHashProvider';
 import IUserRepository from '../repositories/IUserRepository';
 
 interface IRequestDTO {
-	userId: number;
+	userId: string;
 	username?: string;
 
 	oldPassword?: string;
@@ -13,7 +13,7 @@ interface IRequestDTO {
 }
 
 @injectable()
-export default class SaveUserService {
+export default class UpdateProfileService {
 	constructor(
 		@inject('UsersRepository')
 		private usersRepository: IUserRepository,
@@ -61,12 +61,9 @@ export default class SaveUserService {
 			if (!checkOldPassword) {
 				throw new Error('Passwords does not match');
 			}
-		}
 
-		if (password) {
 			user.password = await this.hashProvider.generateHash(password);
 		}
-
 		return this.usersRepository.save(user);
 	}
 }

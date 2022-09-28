@@ -9,7 +9,7 @@ export default class DeleteBundleMediaService {
 		private bundleMediaRepository: IBundleMediaRepository
 	) {}
 
-	async execute(id: number): Promise<void> {
+	async execute(id: string): Promise<void> {
 		const bundleMedia = this.bundleMediaRepository.findById(id);
 
 		if (!bundleMedia) {

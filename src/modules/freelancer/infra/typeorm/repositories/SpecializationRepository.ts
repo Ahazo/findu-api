@@ -24,7 +24,7 @@ export default class SpecializationRepository
 		return this.specializationRepository.save(specialization);
 	}
 
-	async findById(id: number): Promise<Specialization | undefined> {
+	async findById(id: string): Promise<Specialization | undefined> {
 		const specialization = this.specializationRepository.findOne(id);
 
 		return specialization;

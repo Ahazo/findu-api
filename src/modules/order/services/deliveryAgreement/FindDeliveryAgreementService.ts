@@ -10,7 +10,7 @@ export default class FindDeliveryAgreement {
 		private deliveryAgreementRepository: IDeliveryAgreementRepository
 	) {}
 
-	public async executeById(id: number): Promise<DeliveryAgreement | undefined> {
+	public async executeById(id: string): Promise<DeliveryAgreement | undefined> {
 		const result = await this.deliveryAgreementRepository.findById(id);
 		return result;
 	}

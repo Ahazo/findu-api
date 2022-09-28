@@ -4,5 +4,5 @@ import PostRecommendation from '../infra/typeorm/entities/PostRecommendation';
 export default interface IPostRecommendationRepository {
 	create(data: ICreatePostRecommendationDTO): Promise<PostRecommendation>;
 	update(data: PostRecommendation): Promise<PostRecommendation>;
-	findById(id: number): Promise<PostRecommendation | undefined>;
+	findById(id: string): Promise<PostRecommendation | undefined>;
 }

@@ -5,7 +5,7 @@ import IUserRepository from '../IUserRepository';
 class FakeUsersRepository implements IUserRepository {
 	private users: User[] = [];
 
-	public async findById(id: number): Promise<User | undefined> {
+	public async findById(id: string): Promise<User | undefined> {
 		const userFound = this.users.find((user) => user.id === id);
 		return userFound;
 	}

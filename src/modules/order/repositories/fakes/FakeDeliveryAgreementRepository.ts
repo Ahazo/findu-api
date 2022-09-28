@@ -32,7 +32,7 @@ export default class FakeDeliveryAgreementRepository
 		return data;
 	}
 
-	public async findById(id: number): Promise<DeliveryAgreement | undefined> {
+	public async findById(id: string): Promise<DeliveryAgreement | undefined> {
 		const findDelivery = this.deliveryAgreements.find((find) => find.id === id);
 
 		return findDelivery;

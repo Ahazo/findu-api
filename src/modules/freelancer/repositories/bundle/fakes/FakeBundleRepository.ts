@@ -27,7 +27,7 @@ export default class FakeBundleRepository implements IBundleRepository {
 		return bundle;
 	}
 
-	public async findById(id: number): Promise<Bundle | undefined> {
+	public async findById(id: string): Promise<Bundle | undefined> {
 		const bundleFound = this.bundles.find((bundle) => bundle.id === id);
 		return bundleFound;
 	}

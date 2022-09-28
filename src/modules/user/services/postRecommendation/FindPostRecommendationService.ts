@@ -11,7 +11,7 @@ export default class FindPostRecommendationService {
 	) {}
 
 	public async executeById(
-		id: number
+		id: string
 	): Promise<PostRecommendation | undefined> {
 		const find = await this.postRecommendationRepository.findById(id);
 

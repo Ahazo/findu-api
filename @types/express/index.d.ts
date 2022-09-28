@@ -3,7 +3,7 @@
 
 declare namespace Express {
 	export interface Request {
-		userId: number;
+		userId: string;
 	}
 
 	export interface IncomingHttpHeaders {

@@ -23,7 +23,7 @@ export default class OrderStatusRepository implements IOrderStatusRepository {
 		return this.orderStatusRepository.save(data);
 	}
 
-	async findById(id: number): Promise<OrderStatus | undefined> {
+	async findById(id: string): Promise<OrderStatus | undefined> {
 		const result = await this.orderStatusRepository.findOne(id);
 
 		return result;

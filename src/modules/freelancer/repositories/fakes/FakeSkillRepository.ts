@@ -28,14 +28,14 @@ class FakeSkillRepository implements ISkillRepository {
 		return skill;
 	}
 
-	public async findById(id: number): Promise<Skill | undefined> {
+	public async findById(id: string): Promise<Skill | undefined> {
 		const skillFound = this.skills.find((skill) => skill.id === id);
 
 		return skillFound;
 	}
 
 	public async findAllByFreelancerId(
-		freelancer_id: number
+		freelancer_id: string
 	): Promise<Skill[] | undefined> {
 		const freelancerSkills = this.skills.filter(
 			(skill) => skill.id === freelancer_id
@@ -45,7 +45,7 @@ class FakeSkillRepository implements ISkillRepository {
 	}
 
 	public async findAllBySpecializationId(
-		specialization_id: number
+		specialization_id: string
 	): Promise<Skill[] | undefined> {
 		const specializationSkills = this.skills.filter(
 			(skill) => skill.id === specialization_id
@@ -55,8 +55,8 @@ class FakeSkillRepository implements ISkillRepository {
 	}
 
 	public async findBoundedSkill(
-		freelancer_id: number,
-		specialization_id: number
+		freelancer_id: string,
+		specialization_id: string
 	): Promise<Skill | undefined> {
 		const boundedSkill = this.skills.find(
 			(skill) =>

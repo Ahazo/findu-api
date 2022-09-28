@@ -17,14 +17,14 @@ export default class DeliveryAgreement {
 	id: string;
 
 	@Column({ type: 'int', nullable: false, unique: true })
-	order_id: number;
+	order_id: string;
 
 	@ManyToOne(() => Order, (order: Order) => order.deliveryAgreement)
 	@JoinColumn({ name: 'order_id' })
 	order: Order;
 
 	@Column({ type: 'int', nullable: false, unique: false })
-	user_id: number;
+	user_id: string;
 
 	@ManyToOne(() => User, (user: User) => user.deliveryAgreement)
 	@JoinColumn({ name: 'user_id' })
