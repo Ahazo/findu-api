@@ -1,4 +1,4 @@
-import { EStatus } from '../../../../../shared/utils/dtos/EStatus';
+import { EStatus } from '../../../../../shared/utils/enums/EStatus';
 import FakeSkillRepository from '../../../repositories/fakes/FakeSkillRepository';
 import CreateSkillService from '../CreateSkillService';
 import UpdateSkillService from '../UpdateSkillService';

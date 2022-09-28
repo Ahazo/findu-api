@@ -7,7 +7,7 @@ import {
 	UpdateDateColumn,
 } from 'typeorm';
 
-import { EStatus } from '../../../../../shared/utils/dtos/EStatus';
+import { EStatus } from '../../../../../shared/utils/enums/EStatus';
 import Person from './Person';
 
 @Entity('addresses')

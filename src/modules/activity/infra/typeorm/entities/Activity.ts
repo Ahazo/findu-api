@@ -8,9 +8,8 @@ import {
 } from 'typeorm';
 
 import { EStatus } from '../../../../../shared/utils/enums/EStatus';
-import Specialization from './Specialization';
 
-@Entity('areas')
+@Entity('activities')
 export default class Area {
 	@PrimaryGeneratedColumn('uuid')
 	id: string;

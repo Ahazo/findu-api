@@ -9,7 +9,7 @@ import {
 	Entity,
 } from 'typeorm';
 
-import { EStatus } from '../../../../../shared/utils/dtos/EStatus';
+import { EStatus } from '../../../../../shared/utils/enums/EStatus';
 import Recommendation from '../../../../user/infra/typeorm/entities/Recommendation';
 import User from '../../../../user/infra/typeorm/entities/User';
 import Bundle from './bundle/Bundle';

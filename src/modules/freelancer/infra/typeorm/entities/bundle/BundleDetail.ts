@@ -29,6 +29,8 @@ export default class BundleDetail {
 	@UpdateDateColumn({ type: 'timestamp', nullable: false, unique: false })
 	updated_at: Date;
 
-	@OneToOne(() => Bundle, (bundle: Bundle) => bundle.bundleDetail)
+	@OneToOne(() => Bundle, (bundle: Bundle) => bundle.bundleDetail, {
+		eager: true,
+	})
 	bundle: Bundle;
 }

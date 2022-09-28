@@ -1,4 +1,4 @@
 export default interface ICreateBundleMediaDTO {
-	bundle_id: number;
+	bundle_id?: string;
 	url: string;
 }

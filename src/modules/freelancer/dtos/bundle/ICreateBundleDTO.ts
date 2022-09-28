@@ -1,7 +1,9 @@
+import ICreateBundleDetailDTO from './ICreateBundleDetailDTO';
+import ICreateBundleMediaDTO from './ICreateBundleMediaDTO';
+
 export default interface ICreateBundleDTO {
+	freelancer_id: string;
 	title: string;
-	description: string;
-	value: number;
-	due_time: number;
-	freelancer_id: number;
+	bundle_detail: ICreateBundleDetailDTO;
+	bundle_media: ICreateBundleMediaDTO;
 }

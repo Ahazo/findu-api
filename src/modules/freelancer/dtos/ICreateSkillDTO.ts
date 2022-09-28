@@ -1,4 +1,4 @@
 export default interface ICreateSkillDTO {
-	freelancer_id: number;
-	specialization_id: number;
+	freelancer_id: string;
+	specialization_id: string;
 }

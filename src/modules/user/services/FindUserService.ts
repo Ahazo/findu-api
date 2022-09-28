@@ -1,6 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 
-import { EStatus } from '../../../shared/utils/dtos/EStatus';
+import { EStatus } from '../../../shared/utils/enums/EStatus';
 import User from '../infra/typeorm/entities/User';
 import IUserRepository from '../repositories/IUserRepository';
 

@@ -9,7 +9,7 @@ import {
 	JoinColumn,
 } from 'typeorm';
 
-import { EStatus } from '../../../../../../shared/utils/dtos/EStatus';
+import { EStatus } from '../../../../../../shared/utils/enums/EStatus';
 import Order from '../../../../../order/infra/typeorm/entities/Order';
 import Freelancer from '../Freelancer';
 import BundleDetail from './BundleDetail';

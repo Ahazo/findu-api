@@ -8,7 +8,7 @@ import {
 	CreateDateColumn,
 } from 'typeorm';
 
-import { EStatus } from '../../../../../../shared/utils/dtos/EStatus';
+import { EStatus } from '../../../../../../shared/utils/enums/EStatus';
 import Bundle from './Bundle';
 
 @Entity('bundle_medias')

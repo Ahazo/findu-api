@@ -8,7 +8,7 @@ import {
 	UpdateDateColumn,
 } from 'typeorm';
 
-import { EStatus } from '../../../../../shared/utils/dtos/EStatus';
+import { EStatus } from '../../../../../shared/utils/enums/EStatus';
 import Freelancer from './Freelancer';
 import Specialization from './Specialization';
 

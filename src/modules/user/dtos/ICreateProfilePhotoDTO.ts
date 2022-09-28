@@ -1,8 +1,4 @@
-import { EStatus } from '../../../shared/utils/dtos/EStatus';
-import ICreateUserDTO from './ICreateUserDTO';
-
 export default interface ICreateProfilePhotoDTO {
-	user: ICreateUserDTO;
+	user_id: string;
 	url: string;
-	status: EStatus;
 }
