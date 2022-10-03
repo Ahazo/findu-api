@@ -1,3 +1,6 @@
+import { v4 as uuid } from 'uuid';
+
+import { EStatus } from '../../../../../shared/utils/enums/EStatus';
 import FakeRecommendationRepository from '../../../repositories/fakes/FakeRecommendationRepository';
 import CreateRecommendationService from '../CreateRecommendationService';
 import UpdateRecommendationService from '../UpdateRecommendationService';
@@ -21,16 +24,16 @@ describe('UpdateRecommendation', () => {
 
 	it('should be able to update recommendation', async () => {
 		const recommendation = await createRecommendationService.execute({
-			post_id: 1,
-			user_id: 1,
+			recommended_freelancer_id: uuid(),
+			user_id: uuid(),
 		});
 
 		const update = await updateRecommendationService.execute({
 			...recommendation,
 			id: recommendation.id,
-			user_id: 2,
+			status: EStatus.deleted,
 		});
 
-		expect(update.user_id).toEqual(2);
+		expect(update.status).toEqual(EStatus.deleted);
 	});
 });

@@ -22,7 +22,7 @@ export default class BundleMediaController {
 		try {
 			const { id } = request.params;
 			const bundleMediaDelete = container.resolve(DeleteBundleMediaService);
-			await bundleMediaDelete.execute(+id);
+			await bundleMediaDelete.execute(id);
 			return response.status(204);
 		} catch (err: any) {
 			return response.status(400).json({

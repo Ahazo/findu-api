@@ -41,7 +41,7 @@ export default class PostRecommendationController {
 		);
 
 		const { id } = request.params;
-		const postRecommendation = await findPostRecommendation.executeById(+id);
+		const postRecommendation = await findPostRecommendation.executeById(id);
 
 		if (!postRecommendation) {
 			response.status(500).json({

@@ -29,7 +29,8 @@ describe('UpdateProfile', () => {
 				address: {
 					postal_code: '05638-060',
 					street: 'Rua Gabriel Antunes',
-					house_number: 4,
+					neighborhood: 'Jardim Londrina',
+					number: 4,
 					complement: 'na frente do poster de um cara gostoso',
 					city: 'Sao Paulo',
 					state: 'SP',
@@ -41,15 +42,14 @@ describe('UpdateProfile', () => {
 				last_name: 'Scarano',
 				birth_date: new Date(),
 			},
-			username: 'scaralu',
+			username: 'user',
 			password: 'password',
-			level_id: 1,
 		};
 
 		const user = await createUser.execute(userData);
 		const updatedUser = await updateProfile.execute({
 			userId: user.id,
-			username: 'escaravelho',
+			userData: { username: 'new-user' },
 		});
 
 		expect(updatedUser).toBeInstanceOf(User);
@@ -62,7 +62,8 @@ describe('UpdateProfile', () => {
 				address: {
 					postal_code: '05638-060',
 					street: 'Rua Gabriel Antunes',
-					house_number: 4,
+					neighborhood: 'Jardim Londrina',
+					number: 4,
 					complement: 'na frente do poster de um cara gostoso',
 					city: 'Sao Paulo',
 					state: 'SP',
@@ -74,9 +75,8 @@ describe('UpdateProfile', () => {
 				last_name: 'Scarano',
 				birth_date: new Date(),
 			},
-			username: 'scaralu',
+			username: 'user',
 			password: 'password',
-			level_id: 1,
 		};
 
 		const user = await createUser.execute(userData);
@@ -97,36 +97,35 @@ describe('UpdateProfile', () => {
 				address: {
 					postal_code: '05638-060',
 					street: 'Rua Gabriel Antunes',
-					house_number: 4,
+					neighborhood: 'Jardim Londrina',
+					number: 4,
 					complement: 'na frente do poster de um cara gostoso',
 					city: 'Sao Paulo',
 					state: 'SP',
 				},
 				cpf: '493.726.168-18',
-				email: 'dev@gmail.com',
+				email: 'scarano.dev@gmail.com',
 				cellphone_number: '(11) 97801-3866',
 				first_name: 'Lucca',
 				last_name: 'Scarano',
 				birth_date: new Date(),
 			},
-			username: 'scaralu',
+			username: 'user',
 			password: 'password',
-			level_id: 1,
 		};
 
 		const user = await createUser.execute(userData);
 
 		const updateUserWrongUserName = {
 			userId: 123,
-			username: "inexistent user",
-			password: "wrongPass123213",
-		}
+			username: 'inexistent user',
+			password: 'wrongPass123213',
+		};
 
-		await expect(updateProfile.execute(updateUserWrongUserName)).rejects.toBeInstanceOf(
-			Error
-		);
-
-	}) 
+		await expect(
+			updateProfile.execute(updateUserWrongUserName)
+		).rejects.toBeInstanceOf(Error);
+	});
 
 	it('should not be able to update if username already exists', async () => {
 		const userDataOne: ICreateUserDTO = {
@@ -134,21 +133,21 @@ describe('UpdateProfile', () => {
 				address: {
 					postal_code: '05638-060',
 					street: 'Rua Gabriel Antunes',
-					house_number: 4,
+					neighborhood: 'Jardim Londrina',
+					number: 4,
 					complement: 'na frente do poster de um cara gostoso',
 					city: 'Sao Paulo',
 					state: 'SP',
 				},
 				cpf: '493.726.168-18',
-				email: 'dev@gmail.com',
+				email: 'scarano.dev@gmail.com',
 				cellphone_number: '(11) 97801-3866',
 				first_name: 'Lucca',
 				last_name: 'Scarano',
 				birth_date: new Date(),
 			},
-			username: 'alemaolv',
+			username: 'user',
 			password: 'password',
-			level_id: 1,
 		};
 
 		const userDataTwo: ICreateUserDTO = {
@@ -156,36 +155,35 @@ describe('UpdateProfile', () => {
 				address: {
 					postal_code: '05638-060',
 					street: 'Rua Gabriel Antunes',
-					house_number: 4,
+					neighborhood: 'Jardim Londrina',
+					number: 4,
 					complement: 'na frente do poster de um cara gostoso',
 					city: 'Sao Paulo',
 					state: 'SP',
 				},
 				cpf: '493.726.168-18',
-				email: 'devtest@gmail.com',
+				email: 'scarano.dev@gmail.com',
 				cellphone_number: '(11) 97801-3866',
-				first_name: 'lucas',
-				last_name: 'andrade',
+				first_name: 'Lucca',
+				last_name: 'Scarano',
 				birth_date: new Date(),
 			},
-			username: 'scaralu',
+			username: 'user',
 			password: 'password',
-			level_id: 1,
 		};
 
-		
 		await createUser.execute(userDataOne);
 		const userTwoCreation = await createUser.execute(userDataTwo);
 
 		const existingUserName = {
 			userId: userTwoCreation.id,
 			username: 'alemaolv',
-		}
+		};
 
-
-		await expect(updateProfile.execute(existingUserName)).rejects.toThrow(TypeError ('Username already exists'))
-
-	}) 
+		await expect(updateProfile.execute(existingUserName)).rejects.toThrow(
+			TypeError('Username already exists')
+		);
+	});
 
 	it('should not be able to update password if dont inform the old one', async () => {
 		const userData: ICreateUserDTO = {
@@ -193,35 +191,35 @@ describe('UpdateProfile', () => {
 				address: {
 					postal_code: '05638-060',
 					street: 'Rua Gabriel Antunes',
-					house_number: 4,
+					neighborhood: 'Jardim Londrina',
+					number: 4,
 					complement: 'na frente do poster de um cara gostoso',
 					city: 'Sao Paulo',
 					state: 'SP',
 				},
 				cpf: '493.726.168-18',
-				email: 'dev@gmail.com',
+				email: 'scarano.dev@gmail.com',
 				cellphone_number: '(11) 97801-3866',
 				first_name: 'Lucca',
 				last_name: 'Scarano',
 				birth_date: new Date(),
 			},
-			username: 'alemaolv',
+			username: 'user',
 			password: 'password',
-			level_id: 1,
 		};
-		
+
 		const userCreation = await createUser.execute(userData);
 
 		const existingUserName = {
 			userId: userCreation.id,
 			username: userCreation.username,
-			password: "errorPassword"
-		}
+			password: 'errorPassword',
+		};
 
-
-		await expect(updateProfile.execute(existingUserName)).rejects.toThrow(TypeError ('You need to infor the old password to set a new password'))
-
-	}) 
+		await expect(updateProfile.execute(existingUserName)).rejects.toThrow(
+			TypeError('You need to infor the old password to set a new password')
+		);
+	});
 
 	it('should not be able to update password if doesnt matched', async () => {
 		const userData: ICreateUserDTO = {
@@ -229,34 +227,34 @@ describe('UpdateProfile', () => {
 				address: {
 					postal_code: '05638-060',
 					street: 'Rua Gabriel Antunes',
-					house_number: 4,
+					neighborhood: 'Jardim Londrina',
+					number: 4,
 					complement: 'na frente do poster de um cara gostoso',
 					city: 'Sao Paulo',
 					state: 'SP',
 				},
 				cpf: '493.726.168-18',
-				email: 'dev@gmail.com',
+				email: 'scarano.dev@gmail.com',
 				cellphone_number: '(11) 97801-3866',
 				first_name: 'Lucca',
 				last_name: 'Scarano',
 				birth_date: new Date(),
 			},
-			username: 'alemaolv',
+			username: 'user',
 			password: 'password',
-			level_id: 1,
 		};
-		
+
 		const userCreation = await createUser.execute(userData);
 
 		const existingUserName = {
 			userId: userCreation.id,
 			username: userCreation.username,
-			oldPassword: "errorPasswordOne",
-			password: "errorPasswordTwo",
-		}
+			oldPassword: 'errorPasswordOne',
+			password: 'errorPasswordTwo',
+		};
 
-
-		await expect(updateProfile.execute(existingUserName)).rejects.toThrow(TypeError ('Passwords does not match'))
-
-	}) 
+		await expect(updateProfile.execute(existingUserName)).rejects.toThrow(
+			TypeError('Passwords does not match')
+		);
+	});
 });

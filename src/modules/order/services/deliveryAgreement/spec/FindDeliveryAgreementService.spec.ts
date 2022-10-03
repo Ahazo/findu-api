@@ -1,3 +1,5 @@
+import { v4 as uuid } from 'uuid';
+
 import FakeDeliveryAgreementRepository from '../../../repositories/fakes/FakeDeliveryAgreementRepository';
 import CreateDeliveryAgreementService from '../CreateDeliveryAgreementService';
 import FindDeliveryAgreement from '../FindDeliveryAgreementService';
@@ -22,9 +24,9 @@ describe('FindDeliveryAgreement', () => {
 
 	it('should be able to find delivery agreement by its ID', async () => {
 		const deliveryAgr = await createDeliveryAgreementService.execute({
-			user_id: 1,
-			order_id: 1,
-			status: 'accepted',
+			user_id: uuid(),
+			order_id: uuid(),
+			received: true,
 		});
 
 		expect(await findDeliveryAgreementService.executeById(deliveryAgr.id)).toBe(
@@ -33,18 +35,16 @@ describe('FindDeliveryAgreement', () => {
 	});
 
 	it('should not be able to find delivery agreement by its wrong ID', async () => {
-		const deliveryAgreementData = await createDeliveryAgreementService.execute({
-			user_id: 1,
-			order_id: 1,
-			status: 'accepted',
+		await createDeliveryAgreementService.execute({
+			user_id: uuid(),
+			order_id: uuid(),
+			received: true,
 		});
 
-		const deliveryAgreement = await createDeliveryAgreementService.execute(
-			deliveryAgreementData
-		);
+		const fakeDeliveryAgreementId = uuid();
 
 		expect(
-			await findDeliveryAgreementService.executeById(deliveryAgreement.id + 1)
+			await findDeliveryAgreementService.executeById(fakeDeliveryAgreementId)
 		).toBeUndefined();
 	});
 });

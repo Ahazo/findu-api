@@ -1,4 +1,5 @@
-import ICreateDeliveryAgreementDTO from '../../../dtos/ICreateDeliveryAgreementDTO';
+import { v4 as uuid } from 'uuid';
+
 import FakeDeliveryAgreementRepository from '../../../repositories/fakes/FakeDeliveryAgreementRepository';
 import CreateDeliveryAgreementService from '../CreateDeliveryAgreementService';
 import UpdateDeliveryAgreementService from '../UpdateDeliveryAgreementService';
@@ -23,17 +24,17 @@ describe('UpdateDeliveryAgreement', () => {
 
 	it('should be able to update delivery agreement', async () => {
 		const deliveryAgr = await createDeliveryAgreementService.execute({
-			user_id: 1,
-			order_id: 1,
-			status: 'accepted',
+			user_id: uuid(),
+			order_id: uuid(),
+			received: false,
 		});
 
 		const update = await updateDeliveryAgreementService.execute({
 			...deliveryAgr,
 			id: deliveryAgr.id,
-			status: 'refused',
+			received: true,
 		});
 
-		expect(update.status).toEqual('refused');
+		expect(update.received).toBe(true);
 	});
 });

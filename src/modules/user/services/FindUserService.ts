@@ -1,5 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 
+import IUserResponseDTO from '../dtos/IUserResponseDTO';
 import User from '../infra/typeorm/entities/User';
 import IUserRepository from '../repositories/IUserRepository';
 

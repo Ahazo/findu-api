@@ -19,7 +19,7 @@ export default class FreelancerController {
 	async findById(request: Request, response: Response): Promise<Response> {
 		const findFreelancer = container.resolve(FindFreelancerService);
 		const { id } = request.params;
-		const freelancer = await findFreelancer.executeById(+id);
+		const freelancer = await findFreelancer.executeById(id);
 
 		if (!freelancer) {
 			response.status(400).json({

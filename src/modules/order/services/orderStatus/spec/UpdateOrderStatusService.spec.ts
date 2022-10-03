@@ -1,4 +1,3 @@
-import ICreateOrderStatusDTO from '../../../dtos/ICreateOrderStatusDTO';
 import FakeOrderStatusRepository from '../../../repositories/fakes/FakeOrderStatusRepository';
 import CreateOrderStatusService from '../CreateOrderStatusService';
 import UpdateOrderStatusService from '../UpdateOrderStatusService';
@@ -22,16 +21,15 @@ describe('UpdateOrderStatus', () => {
 
 	it('should be able to update Order Status', async () => {
 		const orderStatus = await createOrderStatusService.execute({
-			description: 'order aaaa',
-			step: 3,
+			description: 'pending',
 		});
 
 		const update = await updateOrderStatusService.execute({
 			...orderStatus,
 			id: orderStatus.id,
-			description: 'ordeiro',
+			description: 'pending payment',
 		});
 
-		expect(update.description).toEqual('ordeiro');
+		expect(update.description).toEqual('pending payment');
 	});
 });

@@ -1,4 +1,5 @@
-import ICreateDeliveryAgreementDTO from '../../../dtos/ICreateDeliveryAgreementDTO';
+import { v4 as uuid } from 'uuid';
+
 import DeliveryAgreement from '../../../infra/typeorm/entities/DeliveryAgreement';
 import FakeDeliveryAgreementRepository from '../../../repositories/fakes/FakeDeliveryAgreementRepository';
 import CreateDeliveryAgreementService from '../CreateDeliveryAgreementService';
@@ -19,9 +20,9 @@ describe('CreateDeliveryAgreement', () => {
 	it('should be able to create delivery agreements', async () => {
 		expect(
 			await deliveryAgreementService.execute({
-				user_id: 1,
-				order_id: 1,
-				status: 'accepted',
+				user_id: uuid(),
+				order_id: uuid(),
+				received: true,
 			})
 		).toBeInstanceOf(DeliveryAgreement);
 	});

@@ -32,7 +32,7 @@ export default class DeliveryAgreementController {
 	async findById(request: Request, response: Response): Promise<Response> {
 		const findDelivery = container.resolve(FindDeliveryAgreementService);
 		const { id } = request.params;
-		const delivery = await findDelivery.executeById(+id);
+		const delivery = await findDelivery.executeById(id);
 
 		if (!delivery) {
 			response.status(500).json({

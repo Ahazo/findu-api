@@ -33,7 +33,7 @@ export default class OrderStatusController {
 		const findOrderStatus = container.resolve(FindOrderStatusService);
 		const { id } = request.params;
 
-		const orderStatus = findOrderStatus.executeById(+id);
+		const orderStatus = findOrderStatus.executeById(id);
 
 		if (!orderStatus) {
 			response.status(500).json({

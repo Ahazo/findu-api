@@ -6,10 +6,7 @@ import IUserRepository from '../repositories/IUserRepository';
 
 interface IRequestDTO {
 	userId: string;
-	username?: string;
-
-	oldPassword?: string;
-	password?: string;
+	userData: IUserUpdate;
 }
 
 @injectable()
@@ -22,48 +19,49 @@ export default class UpdateProfileService {
 		private hashProvider: IHashProvider
 	) {}
 
-	public async execute({
-		userId,
-		username,
-		password,
-		oldPassword,
-	}: IRequestDTO): Promise<User> {
+	public async execute({ userId, userData }: IRequestDTO): Promise<User> {
 		const user = await this.usersRepository.findById(userId);
 
 		if (!user) {
 			throw new Error('User not found');
 		}
 
-		if (username) {
+		if (userData.username) {
 			const updatedUsername = await this.usersRepository.findByUsername(
-				username
+				userData.username
 			);
 
 			if (updatedUsername && updatedUsername?.id !== userId) {
 				throw new Error('Username already exists');
 			}
 
-			user.username = username;
+			user.username = userData.username;
 		}
 
-		if (password && !oldPassword) {
-			throw new Error(
-				'You need to infor the old password to set a new password'
-			);
+		if (userData.first_name) {
+			user.person.first_name = userData.first_name;
 		}
 
-		if (password && oldPassword) {
-			const checkOldPassword = await this.hashProvider.compareHash(
-				oldPassword,
-				user.password
+		if (userData.last_name) {
+			user.person.last_name = userData.last_name;
+		}
+
+		if (userData.description) {
+			user.description = userData.description;
+		}
+
+		if (userData.email) {
+			const updatedUsername = await this.usersRepository.findByEmail(
+				userData.email
 			);
 
-			if (!checkOldPassword) {
-				throw new Error('Passwords does not match');
+			if (updatedUsername && updatedUsername?.id !== userId) {
+				throw new Error('Username already exists');
 			}
 
-			user.password = await this.hashProvider.generateHash(password);
+			user.person.email = userData.email;
 		}
+
 		return this.usersRepository.save(user);
 	}
 }

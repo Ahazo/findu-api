@@ -33,7 +33,7 @@ export default class OrderLineController {
 		const findOrderLine = container.resolve(FindOrderLineService);
 		const { id } = request.params;
 
-		const find = await findOrderLine.executeById(+id);
+		const find = await findOrderLine.executeById(id);
 
 		if (!find) {
 			response.status(500).json({

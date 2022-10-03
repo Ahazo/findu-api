@@ -26,7 +26,8 @@ describe('CreateUser', () => {
 				address: {
 					postal_code: '05638-060',
 					street: 'Rua Gabriel Antunes',
-					house_number: 4,
+					neighborhood: 'Jardim Londrina',
+					number: 4,
 					complement: 'na frente do poster de um cara gostoso',
 					city: 'Sao Paulo',
 					state: 'SP',
@@ -38,9 +39,8 @@ describe('CreateUser', () => {
 				last_name: 'Scarano',
 				birth_date: new Date(),
 			},
-			username: 'scaralu',
-			password: 'AndreGostoso767!!',
-			level_id: 1,
+			username: 'user',
+			password: 'password',
 		};
 
 		const user = await createUserService.execute(userData);
@@ -54,7 +54,8 @@ describe('CreateUser', () => {
 				address: {
 					postal_code: '05638-060',
 					street: 'Rua Gabriel Antunes',
-					house_number: 4,
+					neighborhood: 'Jardim Londrina',
+					number: 4,
 					complement: 'na frente do poster de um cara gostoso',
 					city: 'Sao Paulo',
 					state: 'SP',
@@ -66,9 +67,8 @@ describe('CreateUser', () => {
 				last_name: 'Scarano',
 				birth_date: new Date(),
 			},
-			username: 'scaralu',
-			password: 'AndreGostoso767!!',
-			level_id: 1,
+			username: 'user',
+			password: 'password',
 		};
 
 		await createUserService.execute(userData);

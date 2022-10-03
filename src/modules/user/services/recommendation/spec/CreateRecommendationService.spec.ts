@@ -1,4 +1,5 @@
-import ICreateRecommendationDTO from '../../../dtos/Recommendation/ICreateRecommendationDTO';
+import { v4 as uuid } from 'uuid';
+
 import Recommendation from '../../../infra/typeorm/entities/Recommendation';
 import FakeRecommendationRepository from '../../../repositories/fakes/FakeRecommendationRepository';
 import CreateRecommendationService from '../CreateRecommendationService';
@@ -16,14 +17,10 @@ describe('CreateRecommendation', () => {
 	});
 
 	it('should be able to create recommendation', async () => {
-		const recommendationData: ICreateRecommendationDTO = {
-			post_id: 1,
-			user_id: 1,
-		};
-
-		const recommendation = await createRecommendationService.execute(
-			recommendationData
-		);
+		const recommendation = await createRecommendationService.execute({
+			recommended_freelancer_id: uuid(),
+			user_id: uuid(),
+		});
 
 		expect(recommendation).toBeInstanceOf(Recommendation);
 	});

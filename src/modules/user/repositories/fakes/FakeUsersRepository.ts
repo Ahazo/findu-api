@@ -1,3 +1,5 @@
+import { v4 as uuid } from 'uuid';
+
 import ICreateUserDTO from '../../dtos/ICreateUserDTO';
 import User from '../../infra/typeorm/entities/User';
 import IUserRepository from '../IUserRepository';
@@ -15,15 +17,14 @@ class FakeUsersRepository implements IUserRepository {
 		return userFound;
 	}
 
+	public async findByEmail(email: string): Promise<User | undefined> {
+		const userFound = this.users.find((user) => user.person.email === email);
+		return userFound;
+	}
+
 	public async create(userData: ICreateUserDTO): Promise<User> {
 		const user = new User();
-
-		Object.assign(
-			user,
-			{ id: Math.floor(Math.random() * (100 - 1) + 1) },
-			userData
-		);
-
+		Object.assign(user, { id: uuid() }, userData);
 		this.users.push(user);
 		return user;
 	}

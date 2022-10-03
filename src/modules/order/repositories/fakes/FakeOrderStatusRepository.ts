@@ -31,7 +31,7 @@ export default class FakeOrderStatusRepository
 	}
 
 	public async findById(id: string): Promise<OrderStatus | undefined> {
-		const findOrder = this.orderStatus.find((find) => +find.id === id);
+		const findOrder = this.orderStatus.find((find) => find.id === id);
 
 		return findOrder;
 	}

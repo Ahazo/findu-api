@@ -37,7 +37,7 @@ export default class SkillController {
 	async findById(request: Request, response: Response): Promise<Response> {
 		const findSkill = container.resolve(FindSkillService);
 		const { id } = request.params;
-		const skill = await findSkill.executeById(+id);
+		const skill = await findSkill.executeById(id);
 
 		if (!skill) {
 			response.status(500).json({

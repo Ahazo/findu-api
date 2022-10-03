@@ -33,7 +33,7 @@ export default class OrderController {
 		const findOrder = container.resolve(FindOrderService);
 		const { id } = request.params;
 
-		const find = findOrder.executeById(+id);
+		const find = findOrder.executeById(id);
 
 		if (!find) {
 			response.status(500).json({

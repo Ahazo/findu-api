@@ -37,5 +37,5 @@ export default class DeliveryAgreement {
 	updated_at: Date;
 
 	@Column({ type: 'varchar', nullable: false, unique: false })
-	status: 'accepted' | 'refused';
+	received: boolean;
 }

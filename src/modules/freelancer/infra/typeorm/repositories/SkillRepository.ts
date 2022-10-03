@@ -43,7 +43,7 @@ export default class SkillRepository implements ISkillRepository {
 	}
 
 	async findAllBySpecializationId(
-		specializationId: number
+		specializationId: string
 	): Promise<Skill[] | undefined> {
 		const skills = await this.skillRepository.find({
 			where: specializationId.toString(),

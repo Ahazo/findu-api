@@ -19,21 +19,19 @@ describe('CreateOrderStatus', () => {
 	it('should be able to create order status', async () => {
 		expect(
 			await createOrderStatusService.execute({
-				description: 'ordein',
-				step: 1,
+				description: 'pending payment',
 			})
 		).toBeInstanceOf(OrderStatus);
 	});
 
 	it('should not be able to create order status with the same name', async () => {
 		const orderStatus = await createOrderStatusService.execute({
-			description: 'ordein',
-			step: 1,
+			description: 'accepted',
 		});
 
 		const orderStatusWithSameName: ICreateOrderStatusDTO = {
 			...orderStatus,
-			description: 'ordein',
+			description: 'accepted',
 		};
 
 		await expect(

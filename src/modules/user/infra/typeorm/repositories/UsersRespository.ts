@@ -27,14 +27,21 @@ class UsersRepository implements IUserRepository {
 				username,
 			},
 		});
+
 		return user;
 	}
 
 	public async findById(id: string): Promise<User | undefined> {
 		const user = await this.userRepository.findOne(id);
-		if (user) {
-			user.password = '';
-		}
+		return user;
+	}
+
+	public async findByEmail(email: string): Promise<User | undefined> {
+		const user = await this.userRepository.findOne({
+			where: {
+				email,
+			},
+		});
 
 		return user;
 	}

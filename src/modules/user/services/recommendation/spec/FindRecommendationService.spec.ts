@@ -1,3 +1,5 @@
+import { v4 as uuid } from 'uuid';
+
 import ICreateRecommendationDTO from '../../../dtos/Recommendation/ICreateRecommendationDTO';
 import Recommendation from '../../../infra/typeorm/entities/Recommendation';
 import FakeRecommendationRepository from '../../../repositories/fakes/FakeRecommendationRepository';
@@ -22,14 +24,10 @@ describe('FindRecommendation', () => {
 	});
 
 	it('should be able to find recommendation service by its ID', async () => {
-		const recommendationData: ICreateRecommendationDTO = {
-			post_id: 1,
-			user_id: 1,
-		};
-
-		const recommendation = await createRecommendationService.execute(
-			recommendationData
-		);
+		const recommendation = await createRecommendationService.execute({
+			recommended_freelancer_id: uuid(),
+			user_id: uuid(),
+		});
 
 		const find = await findRecommendationService.executeById(recommendation.id);
 
@@ -37,17 +35,15 @@ describe('FindRecommendation', () => {
 	});
 
 	it('should not be able to find recommendation service by its wrong ID', async () => {
-		const recommendationData: ICreateRecommendationDTO = {
-			post_id: 1,
-			user_id: 1,
-		};
+		await createRecommendationService.execute({
+			recommended_freelancer_id: uuid(),
+			user_id: uuid(),
+		});
 
-		const recommendation = await createRecommendationService.execute(
-			recommendationData
-		);
+		const fakeRecommendationId = uuid();
 
 		const find = await findRecommendationService.executeById(
-			recommendation.id + 1
+			fakeRecommendationId
 		);
 
 		expect(find).toEqual(undefined);

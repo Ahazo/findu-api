@@ -33,7 +33,7 @@ export default class SpecializationController {
 		const findSpecialization = container.resolve(FindSpecializationService);
 		const { id } = request.params;
 
-		const specialization = findSpecialization.executeById(+id);
+		const specialization = findSpecialization.executeById(id);
 
 		if (!specialization) {
 			response.status(500).json({
